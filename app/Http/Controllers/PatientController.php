@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PatientController extends Controller
 {
@@ -57,36 +58,46 @@ class PatientController extends Controller
 
 
     // Atualizar paciente
-public function update(Request $request, Patient $patient)
-{
-    $validated = $request->validate([
-        'name' => 'required|string|max:255',
-        'birth_date' => 'nullable|date',
-        'gender' => 'nullable|string|max:20',
-        'phone' => 'nullable|string|max:30',
-        'address' => 'nullable|string',
-        'province' => 'nullable|string|max:100',
-        'nationality' => 'nullable|string|max:100',
-        'BI' => 'nullable|string|max:20|unique:patients,BI,' . $patient->id,
-        'email' => 'nullable|string|email|max:255|unique:patients,email,' . $patient->id,
-        'allergies' => 'nullable|string',
-        'diseases' => 'nullable|string',
-        'medications' => 'nullable|string',
-        'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-    ]);
+    public function update(Request $request, Patient $patient)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'birth_date' => 'nullable|date',
+            'gender' => 'nullable|string|max:20',
+            'phone' => 'nullable|string|max:30',
+            'address' => 'nullable|string',
+            'province' => 'nullable|string|max:100',
+            'nationality' => 'nullable|string|max:100',
+            'BI' => 'nullable|string|max:20|unique:patients,BI,' . $patient->id,
+            'email' => 'nullable|string|email|max:255|unique:patients,email,' . $patient->id,
+            'allergies' => 'nullable|string',
+            'diseases' => 'nullable|string',
+            'medications' => 'nullable|string',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+        ]);
 
-    if ($request->hasFile('foto')) {
-        if ($patient->foto) {
-            \Illuminate\Support\Facades\Storage::disk('public')->delete($patient->foto);
+        if ($request->hasFile('foto')) {
+            if ($patient->foto) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($patient->foto);
+            }
+
+            $validated['foto'] = $request->file('foto')->store('patients', 'public');
         }
 
-        $validated['foto'] = $request->file('foto')->store('patients', 'public');
+        $patient->update($validated);
+
+        return redirect()
+            ->route('patients.index')
+            ->with('success', 'Paciente atualizado com sucesso!');
     }
 
-    $patient->update($validated);
+    public function destroy(Patient $patient)
+    {
+        // Eliminar o paciente
+        $patient->delete();
 
-    return redirect()
-        ->route('patients.index')
-        ->with('success', 'Paciente atualizado com sucesso!');
-}
+        return redirect()
+            ->route('patients.index')
+            ->with('success', 'Paciente eliminado com sucesso!');
+    }
 }
