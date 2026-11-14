@@ -2,6 +2,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PatientController;
 
 Route::redirect('/', '/login');
 
@@ -23,10 +24,7 @@ Route::view('/doctors', 'admin.doctors.index')->name('doctors.index');
 Route::view('/doctors/create', 'admin.doctors.create')->name('doctors.create');
 Route::view('/doctors/edit', 'admin.doctors.edit')->name('doctors.edit');
 
-// PACIENTES
-Route::view('/patients', 'admin.patients.index')->name('patients.index');
-Route::view('/patients/create', 'admin.patients.create')->name('patients.create');
-Route::view('/patients/edit', 'admin.patients.edit')->name('patients.edit');
+
 
 // CONSULTAS
 Route::view('/appointments', 'admin.appointments.index')->name('appointments.index');
@@ -51,7 +49,7 @@ Route::view('/employees/edit', 'admin.employees.edit')->name('employees.edit');
 Route::view('/employees/attendance', 'admin.employees.attendance')->name('employees.attendance');
 Route::view('/attendance', 'admin.employees.attendance.index');
 
-// FACTURAS
+// FACTURASç
 Route::view('/invoices', 'admin.invoices.index')->name('invoices.index');
 Route::view('/invoices/create', 'admin.invoices.create')->name('invoices.create');
 Route::view('/invoices/edit', 'admin.invoices.edit')->name('invoices.edit');
@@ -96,3 +94,32 @@ Route::view('/profile/edit', 'admin.profile.edit')->name('profile.edit');
 
 // CALENDÁRIO
 Route::view('/calendar', 'admin.calendar.index')->name('calendar.index');
+
+
+
+
+
+// mostrar lista
+Route::get('/patients', [PatientController::class, 'index'])
+    ->name('patients.index');
+
+// oostrar formulár de cadast
+Route::get('/patients/create', [PatientController::class, 'create'])
+    ->name('patients.create');
+
+// guardar paciente
+Route::post('/patients', [PatientController::class, 'store'])
+    ->name('patients.store');
+
+
+
+Route::get('/patients/{patient}/edit', [PatientController::class, 'edit'])
+    ->name('patients.edit');
+
+// Atualizar paciente
+Route::put('/patients/{patient}', [PatientController::class, 'update'])
+    ->name('patients.update');
+
+// Eliminar paciente
+Route::delete('/patients/{patient}', [PatientController::class, 'destroy'])
+    ->name('patients.destroy');

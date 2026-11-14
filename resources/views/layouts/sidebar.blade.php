@@ -4,7 +4,7 @@
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
 
-                <li class="menu-title">Principal</li>
+                <li class="menu-title"></li>
 
                 <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
                     <a href="/dashboard">
@@ -16,52 +16,52 @@
                 <li class="{{ request()->is('doctors') ? 'active' : '' }}">
                     <a href="/doctors">
                         <i class="fa fa-user-md"></i>
-                        <span>Médicos</span>
+                        <span>Doctors</span>
                     </a>
                 </li>
 
                 <li class="{{ request()->is('patients') ? 'active' : '' }}">
                     <a href="/patients">
                         <i class="fa fa-wheelchair"></i>
-                        <span>Pacientes</span>
+                        <span>Patients</span>
                     </a>
                 </li>
 
                 <li class="{{ request()->is('appointments') ? 'active' : '' }}">
                     <a href="/appointments">
                         <i class="fa fa-calendar"></i>
-                        <span>Consultas</span>
+                        <span>Appointments</span>
                     </a>
                 </li>
 
                 <li class="{{ request()->is('schedule') ? 'active' : '' }}">
                     <a href="/schedule">
                         <i class="fa fa-calendar-check-o"></i>
-                        <span>Horários dos Médicos</span>
+                        <span>Doctor Schedules</span>
                     </a>
                 </li>
 
                 <li class="{{ request()->is('departments') ? 'active' : '' }}">
                     <a href="/departments">
                         <i class="fa fa-hospital-o"></i>
-                        <span>Departamentos</span>
+                        <span>Departments</span>
                     </a>
                 </li>
 
                 <li class="submenu">
                     <a href="#">
                         <i class="fa fa-user"></i>
-                        <span>Funcionários</span>
+                        <span>Employees</span>
                         <span class="menu-arrow"></span>
                     </a>
 
                     <ul style="display: none;">
                         <li class="{{ request()->is('employees') ? 'active' : '' }}">
-                            <a href="/employees">Lista de Funcionários</a>
+                            <a href="/employees">Employee List</a>
                         </li>
 
                         <li class="{{ request()->is('attendance') ? 'active' : '' }}">
-                            <a href="/attendance">Assiduidade</a>
+                            <a href="/attendance">Attendance</a>
                         </li>
                     </ul>
                 </li>
@@ -69,25 +69,25 @@
                 <li class="submenu">
                     <a href="#">
                         <i class="fa fa-money"></i>
-                        <span>Contas</span>
+                        <span>Accounts</span>
                         <span class="menu-arrow"></span>
                     </a>
 
                     <ul style="display: none;">
                         <li class="{{ request()->is('invoices') ? 'active' : '' }}">
-                            <a href="/invoices">Facturas</a>
+                            <a href="/invoices">Invoices</a>
                         </li>
 
                         <li class="{{ request()->is('payments') ? 'active' : '' }}">
-                            <a href="/payments">Pagamentos</a>
+                            <a href="/payments">Payments</a>
                         </li>
 
                         <li class="{{ request()->is('expenses') ? 'active' : '' }}">
-                            <a href="/expenses">Despesas</a>
+                            <a href="/expenses">Expenses</a>
                         </li>
 
                         <li class="{{ request()->is('taxes') ? 'active' : '' }}">
-                            <a href="/taxes">Impostos</a>
+                            <a href="/taxes">Taxes</a>
                         </li>
 
                     </ul>
@@ -98,27 +98,27 @@
                 <li class="{{ request()->is('activities') ? 'active' : '' }}">
                     <a href="/activities">
                         <i class="fa fa-bell-o"></i>
-                        <span>Actividades</span>
+                        <span>Activities</span>
                     </a>
                 </li>
 
                 <li class="submenu">
                     <a href="#">
                         <i class="fa fa-flag-o"></i>
-                        <span>Relatórios</span>
+                        <span>Reports</span>
                         <span class="menu-arrow"></span>
                     </a>
 
                     <ul style="display: none;">
-                        <li><a href="/expense-reports">Relatório de Despesas</a></li>
-                        <li><a href="/invoices">Relatório de Facturas</a></li>
+                        <li><a href="/expense-reports">Expense Report</a></li>
+                        <li><a href="/invoices">Invoice Report</a></li>
                     </ul>
                 </li>
 
                 <li class="{{ request()->is('settings') ? 'active' : '' }}">
                     <a href="/settings">
                         <i class="fa fa-cog"></i>
-                        <span>Configurações</span>
+                        <span>Settings</span>
                     </a>
                 </li>
 
@@ -127,7 +127,7 @@
                 <li class="{{ request()->is('calendar') ? 'active' : '' }}">
                     <a href="/calendar">
                         <i class="fa fa-calendar"></i>
-                        <span>Calendário</span>
+                        <span>Calendar</span>
                     </a>
                 </li>
 
@@ -136,16 +136,16 @@
                 <li class="submenu">
                     <a href="#">
                         <i class="fa fa-columns"></i>
-                        <span>Páginas</span>
+                        <span>Pages</span>
                         <span class="menu-arrow"></span>
                     </a>
 
                     <ul style="display: none;">
-                        <li><a href="/login">Iniciar Sessão</a></li>
-                        <li><a href="/forgot-password">Recuperar Palavra-passe</a></li>
-                        <li><a href="/change-password">Alterar Palavra-passe</a></li>
-                        <li><a href="/lock-screen">Bloqueio de Ecrã</a></li>
-                        <li><a href="/profile">Perfil</a></li>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/forgot-password">Forgot Password</a></li>
+                        <li><a href="/change-password">Change Password</a></li>
+                        <li><a href="/lock-screen">Lock Screen</a></li>
+                        <li><a href="/profile">Profile</a></li>
 
                     </ul>
                 </li>
@@ -153,7 +153,7 @@
                 <li class="submenu">
                     <a href="javascript:void(0);">
                         <i class="fa fa-share-alt"></i>
-                        <span>Vários Níveis</span>
+                        <span>Level</span>
                         <span class="menu-arrow"></span>
                     </a>
 

@@ -1,256 +1,258 @@
 
 @extends('layouts.main')
 
-@section('title', 'Adicionar Paciente')
+@section('title', 'Cadastrar Paciente')
 
 @section('content')
 
 <div class="content">
-
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-            <h4 class="page-title">Adicionar Paciente</h4>
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="page-title">Cadastrar Paciente</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('patients.index') }}">Pacientes</a>
+                    </li>
+                    <li class="breadcrumb-item active">Cadastrar Paciente</li>
+                </ul>
+            </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-lg-8 offset-lg-2">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Informações do Paciente</h4>
+                </div>
 
-            <form>
+                <div class="card-body">
 
-                <div class="row">
+                    <form action="{{ route('patients.store') }}"
+                          method="POST"
+                          enctype="multipart/form-data">
 
-                    {{-- Nome --}}
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Primeiro Nome <span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" name="first_name">
-                        </div>
-                    </div>
+                        @csrf
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Último Nome</label>
-                            <input class="form-control" type="text" name="last_name">
-                        </div>
-                    </div>
-
-                    {{-- Conta --}}
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Nome de Utilizador <span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" name="username">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Email <span class="text-danger">*</span></label>
-                            <input class="form-control" type="email" name="email">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Palavra-passe</label>
-                            <input class="form-control" type="password" name="password">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Confirmar Palavra-passe</label>
-                            <input class="form-control" type="password" name="password_confirmation">
-                        </div>
-                    </div>
-
-                    {{-- Data de nascimento --}}
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Data de Nascimento</label>
-                            <div class="cal-icon">
-                                <input
-                                    type="text"
-                                    class="form-control datetimepicker"
-                                    name="date_of_birth"
-                                >
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Género --}}
-                    <div class="col-sm-6">
-                        <div class="form-group gender-select">
-                            <label class="gen-label">Género:</label>
-
-                            <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" name="gender" value="Masculino" class="form-check-input">
-                                    Masculino
-                                </label>
-                            </div>
-
-                            <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" name="gender" value="Feminino" class="form-check-input">
-                                    Feminino
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Endereço --}}
-                    <div class="col-sm-12">
                         <div class="row">
 
-                            <div class="col-sm-12">
+                            <!-- Nome Completo -->
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Endereço</label>
-                                    <input type="text" class="form-control" name="address">
+                                    <label>Nome Completo *</label>
+                                    <input type="text" name="name"
+                                           class="form-control"
+                                           value="{{ old('name') }}"
+                                           placeholder="Nome completo do paciente"
+                                           required>
+                                    @error('name')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
 
-                            <div class="col-sm-6 col-md-6 col-lg-3">
+                            <!-- Sexo -->
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>País</label>
-                                    <select class="form-control select" name="country">
-                                        <option value="Angola">Angola</option>
-                                        <option value="Portugal">Portugal</option>
-                                        <option value="Brasil">Brasil</option>
-                                        <option value="Outro">Outro</option>
+                                    <label>Sexo</label>
+                                    <select name="gender" class="form-control">
+                                        <option value="">Selecionar sexo</option>
+                                        <option value="Masculino" {{ old('gender') == 'Masculino' ? 'selected' : '' }}>Masculino</option>
+                                        <option value="Feminino" {{ old('gender') == 'Feminino' ? 'selected' : '' }}>Feminino</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="col-sm-6 col-md-6 col-lg-3">
+                            <!-- BI -->
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Cidade</label>
-                                    <input type="text" class="form-control" name="city">
+                                    <label>Bilhete de Identidade</label>
+                                    <input type="text" name="BI"
+                                           class="form-control"
+                                           value="{{ old('BI') }}"
+                                           placeholder="Número do BI">
                                 </div>
                             </div>
 
-                            <div class="col-sm-6 col-md-6 col-lg-3">
+                            <!-- Estado Civil -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Estado Civil</label>
+                                    <select name="marital_status" class="form-control">
+                                        <option value="">Selecionar</option>
+                                        <option value="Solteiro(a)" {{ old('marital_status') == 'Solteiro(a)' ? 'selected' : '' }}>Solteiro(a)</option>
+                                        <option value="Casado(a)" {{ old('marital_status') == 'Casado(a)' ? 'selected' : '' }}>Casado(a)</option>
+                                        <option value="Divorciado(a)" {{ old('marital_status') == 'Divorciado(a)' ? 'selected' : '' }}>Divorciado(a)</option>
+                                        <option value="Viúvo(a)" {{ old('marital_status') == 'Viúvo(a)' ? 'selected' : '' }}>Viúvo(a)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Data de Nascimento -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Data de Nascimento</label>
+                                    <input type="date" name="birth_date"
+                                           class="form-control"
+                                           value="{{ old('birth_date') }}">
+                                </div>
+                            </div>
+
+                            <!-- Nacionalidade -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Nacionalidade</label>
+                                    <input type="text" name="nationality"
+                                           class="form-control"
+                                           value="{{ old('nationality', 'Angolana') }}">
+                                </div>
+                            </div>
+
+                            <!-- Telefone -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Telefone</label>
+                                    <input type="text" name="phone"
+                                           class="form-control"
+                                           value="{{ old('phone') }}"
+                                           placeholder="Ex: 923 000 000">
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" name="email"
+                                           class="form-control"
+                                           value="{{ old('email') }}"
+                                           placeholder="exemplo@email.com">
+                                </div>
+                            </div>
+
+                            <!-- Morada -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Morada</label>
+                                    <input type="text" name="address"
+                                           class="form-control"
+                                           value="{{ old('address') }}"
+                                           placeholder="Endereço do paciente">
+                                </div>
+                            </div>
+
+                            <!-- Província -->
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Província</label>
-                                    <select class="form-control select" name="province">
-                                        <option value="">Selecionar</option>
-                                        <option>Luanda</option>
-                                        <option>Benguela</option>
-                                        <option>Huambo</option>
-                                        <option>Huíla</option>
-                                        <option>Bié</option>
-                                        <option>Cabinda</option>
-                                        <option>Cuando</option>
-                                        <option>Cubango</option>
-                                        <option>Cuanza Norte</option>
-                                        <option>Cuanza Sul</option>
-                                        <option>Cunene</option>
-                                        <option>Malanje</option>
-                                        <option>Moxico</option>
-                                        <option>Moxico Leste</option>
-                                        <option>Namibe</option>
-                                        <option>Uíge</option>
-                                        <option>Zaire</option>
-                                        <option>Icolo e Bengo</option>
-                                        <option>Bengo</option>
-                                        <option>Lunda Norte</option>
-                                        <option>Lunda Sul</option>
+                                    <select name="province" class="form-control">
+                                        <option value="">Selecionar província</option>
+                                        @foreach([
+                                            'Bengo', 'Benguela', 'Bié', 'Cabinda',
+                                            'Cuando', 'Cuanza Norte', 'Cuanza Sul',
+                                            'Cunene', 'Huambo', 'Huíla', 'Icolo e Bengo',
+                                            'Luanda', 'Lunda Norte', 'Lunda Sul',
+                                            'Malanje', 'Moxico', 'Moxico Leste',
+                                            'Namibe', 'Uíge', 'Zaire'
+                                        ] as $provincia)
+                                            <option value="{{ $provincia }}"
+                                                {{ old('province') == $provincia ? 'selected' : '' }}>
+                                                {{ $provincia }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="col-sm-6 col-md-6 col-lg-3">
+                            <!-- Grupo Sanguíneo -->
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Código Postal</label>
-                                    <input type="text" class="form-control" name="postal_code">
+                                    <label>Grupo Sanguíneo</label>
+                                    <select name="blood_type" class="form-control">
+                                        <option value="">Selecionar grupo sanguíneo</option>
+                                        @foreach(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'] as $grupo)
+                                            <option value="{{ $grupo }}"
+                                                {{ old('blood_type') == $grupo ? 'selected' : '' }}>
+                                                {{ $grupo }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Alergias -->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Alergias</label>
+                                    <textarea name="allergies" rows="3"
+                                              class="form-control"
+                                              placeholder="Descreva as alergias do paciente">{{ old('allergies') }}</textarea>
+                                </div>
+                            </div>
+
+                            <!-- Doenças -->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Doenças</label>
+                                    <textarea name="diseases" rows="3"
+                                              class="form-control"
+                                              placeholder="Doenças conhecidas">{{ old('diseases') }}</textarea>
+                                </div>
+                            </div>
+
+                            <!-- Medicamentos -->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Medicamentos em Uso</label>
+                                    <textarea name="medications" rows="3"
+                                              class="form-control"
+                                              placeholder="Medicamentos que o paciente utiliza">{{ old('medications') }}</textarea>
+                                </div>
+                            </div>
+
+                            <!-- Fotografia -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Fotografia</label>
+                                    <input type="file" name="foto"
+                                           class="form-control"
+                                           accept="image/*">
+                                </div>
+                            </div>
+
+                            <!-- Estado -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Estado</label>
+                                    <select name="status" class="form-control" required>
+                                        <option value="active" {{ old('status', 'active') == 'active' ? 'selected' : '' }}>Ativo</option>
+                                        <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inativo</option>
+                                    </select>
                                 </div>
                             </div>
 
                         </div>
-                    </div>
 
-                    {{-- Contacto --}}
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Telefone</label>
-                            <input class="form-control" type="text" name="phone">
+                        <!-- Botões -->
+                        <div class="text-right mt-4">
+                            <a href="{{ route('patients.index') }}"
+                               class="btn btn-secondary">
+                                Cancelar
+                            </a>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save"></i>
+                                Cadastrar Paciente
+                            </button>
                         </div>
-                    </div>
 
-                    {{-- Fotografia --}}
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Fotografia</label>
-
-                            <div class="profile-upload">
-                                <div class="upload-img">
-                                    <img
-                                        alt=""
-                                        src="{{ asset('assets/img/user.jpg') }}"
-                                    >
-                                </div>
-
-                                <div class="upload-input">
-                                    <input
-                                        type="file"
-                                        class="form-control"
-                                        name="avatar"
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
 
                 </div>
-
-                {{-- Estado --}}
-                <div class="form-group">
-
-                    <label class="display-block">Estado</label>
-
-                    <div class="form-check form-check-inline">
-                        <input
-                            class="form-check-input"
-                            type="radio"
-                            name="status"
-                            id="patient_active"
-                            value="active"
-                            checked
-                        >
-
-                        <label class="form-check-label" for="patient_active">
-                            Activo
-                        </label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input
-                            class="form-check-input"
-                            type="radio"
-                            name="status"
-                            id="patient_inactive"
-                            value="inactive"
-                        >
-
-                        <label class="form-check-label" for="patient_inactive">
-                            Inactivo
-                        </label>
-                    </div>
-
-                </div>
-
-                {{-- Botão --}}
-                <div class="m-t-20 text-center">
-                    <button type="submit" class="btn btn-primary submit-btn">
-                        Criar Paciente
-                    </button>
-                </div>
-
-            </form>
-
+            </div>
         </div>
     </div>
-
 </div>
 
 @endsection

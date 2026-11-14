@@ -7,181 +7,243 @@
 
 <div class="content">
 
-    {{-- Título da página --}}
     <div class="row">
         <div class="col-sm-12">
             <h4 class="page-title">Editar Paciente</h4>
         </div>
     </div>
 
-    {{-- Formulário --}}
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
 
             <div class="card-box">
                 <h4 class="card-title">Informações do Paciente</h4>
 
-                <form action="#" method="POST">
+                <form action="{{ route('patients.update', $patient->id) }}"
+                      method="POST"
+                      enctype="multipart/form-data">
 
                     @csrf
+                    @method('PUT')
 
                     <div class="row">
 
-                        {{-- Nome --}}
-                        <div class="col-md-6">
+                        <!-- Nome Completo -->
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label>Nome Completo</label>
+                                <label>Nome Completo *</label>
                                 <input type="text"
                                        class="form-control"
                                        name="name"
-                                       value="Terry Baker">
+                                       value="{{ old('name', $patient->name) }}"
+                                       required>
+                                @error('name')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                         </div>
 
-                        {{-- Apelido --}}
-                        <div class="col-md-6">
+                        <!-- Sexo -->
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label>Apelido</label>
-                                <input type="text"
-                                       class="form-control"
-                                       name="surname"
-                                       value="Baker">
-                            </div>
-                        </div>
-
-                        {{-- Data de nascimento --}}
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Data de Nascimento</label>
-                                <input type="text"
-                                       class="form-control"
-                                       name="birth_date"
-                                       value="15/05/1990">
-                            </div>
-                        </div>
-
-                        {{-- Idade --}}
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Idade</label>
-                                <input type="number"
-                                       class="form-control"
-                                       name="age"
-                                       value="35">
-                            </div>
-                        </div>
-
-                        {{-- Género --}}
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Género</label>
+                                <label>Sexo</label>
                                 <select class="form-control" name="gender">
-                                    <option value="Masculino">Masculino</option>
-                                    <option value="Feminino">Feminino</option>
+                                    <option value="">Selecionar</option>
+                                    <option value="Masculino" {{ old('gender', $patient->gender) == 'Masculino' ? 'selected' : '' }}>Masculino</option>
+                                    <option value="Feminino" {{ old('gender', $patient->gender) == 'Feminino' ? 'selected' : '' }}>Feminino</option>
                                 </select>
                             </div>
                         </div>
 
-                        {{-- Telefone --}}
+                        <!-- BI -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Bilhete de Identidade</label>
+                                <input type="text"
+                                       class="form-control"
+                                       name="BI"
+                                       value="{{ old('BI', $patient->BI) }}">
+                            </div>
+                        </div>
+
+                        <!-- Estado Civil -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Estado Civil</label>
+                                <select class="form-control" name="marital_status">
+                                    <option value="">Selecionar</option>
+                                    @foreach(['Solteiro(a)', 'Casado(a)', 'Divorciado(a)', 'Viúvo(a)'] as $estado)
+                                        <option value="{{ $estado }}"
+                                            {{ old('marital_status', $patient->marital_status) == $estado ? 'selected' : '' }}>
+                                            {{ $estado }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Data de Nascimento -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Data de Nascimento</label>
+                                <input type="date"
+                                       class="form-control"
+                                       name="birth_date"
+                                       value="{{ old('birth_date', $patient->birth_date ? \Illuminate\Support\Carbon::parse($patient->birth_date)->format('Y-m-d') : '') }}">
+                            </div>
+                        </div>
+
+                        <!-- Nacionalidade -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Nacionalidade</label>
+                                <input type="text"
+                                       class="form-control"
+                                       name="nationality"
+                                       value="{{ old('nationality', $patient->nationality) }}">
+                            </div>
+                        </div>
+
+                        <!-- Telefone -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Telefone</label>
                                 <input type="text"
                                        class="form-control"
                                        name="phone"
-                                       value="+244 923 000 000">
+                                       value="{{ old('phone', $patient->phone) }}">
                             </div>
                         </div>
 
-                        {{-- Email --}}
+                        <!-- Email -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Email</label>
                                 <input type="email"
                                        class="form-control"
                                        name="email"
-                                       value="terry@example.com">
+                                       value="{{ old('email', $patient->email) }}">
                             </div>
                         </div>
 
-                        {{-- País --}}
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>País</label>
-                                <select class="form-control" name="country">
-                                    <option value="Angola" selected>Angola</option>
-                                    <option value="Portugal">Portugal</option>
-                                    <option value="Brasil">Brasil</option>
-                                    <option value="Outro">Outro</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        {{-- Província --}}
+                        <!-- Província -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Província</label>
                                 <select class="form-control" name="province">
-                                    <option value="">Seleccione a Província</option>
-                                    <option>Luanda</option>
-                                    <option>Benguela</option>
-                                    <option>Huambo</option>
-                                    <option>Bié</option>
-                                    <option>Cabinda</option>
-                                    <option>Cuando</option>
-                                    <option>Cuanza Norte</option>
-                                    <option>Cuanza Sul</option>
-                                    <option>Cunene</option>
-                                    <option>Huíla</option>
-                                    <option>Malanje</option>
-                                    <option>Moxico</option>
-                                    <option>Namibe</option>
-                                    <option>Uíge</option>
-                                    <option>Zaire</option>
-                                    <option>Lunda Norte</option>
-                                    <option>Lunda Sul</option>
-                                    <option>Bengo</option>
-                                    <option>Cubango</option>
-                                    <option>Icolo e Bengo</option>
-                                    <option>Moxico Leste</option>
+                                    <option value="">Selecione a Província</option>
+                                    @foreach([
+                                        'Bengo', 'Benguela', 'Bié', 'Cabinda',
+                                        'Cuando', 'Cubango', 'Cuanza Norte',
+                                        'Cuanza Sul', 'Cunene', 'Huambo', 'Huíla',
+                                        'Icolo e Bengo', 'Luanda', 'Lunda Norte',
+                                        'Lunda Sul', 'Malanje', 'Moxico',
+                                        'Moxico Leste', 'Namibe', 'Uíge', 'Zaire'
+                                    ] as $provincia)
+                                        <option value="{{ $provincia }}"
+                                            {{ old('province', $patient->province) == $provincia ? 'selected' : '' }}>
+                                            {{ $provincia }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
 
-                        {{-- Endereço --}}
+                        <!-- Morada -->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Endereço</label>
+                                <label>Morada</label>
                                 <input type="text"
                                        class="form-control"
                                        name="address"
-                                       value="Luanda, Angola">
+                                       value="{{ old('address', $patient->address) }}">
                             </div>
                         </div>
 
-                        {{-- Grupo sanguíneo --}}
+                        <!-- Grupo Sanguíneo -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Grupo Sanguíneo</label>
-                                <select class="form-control" name="blood_group">
-                                    <option value="">Seleccione</option>
-                                    <option>A+</option>
-                                    <option>A-</option>
-                                    <option>B+</option>
-                                    <option>B-</option>
-                                    <option>AB+</option>
-                                    <option>AB-</option>
-                                    <option>O+</option>
-                                    <option>O-</option>
+                                <select class="form-control" name="blood_type">
+                                    <option value="">Selecione</option>
+                                    @foreach(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'] as $grupo)
+                                        <option value="{{ $grupo }}"
+                                            {{ old('blood_type', $patient->blood_type) == $grupo ? 'selected' : '' }}>
+                                            {{ $grupo }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Alergias -->
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Alergias</label>
+                                <textarea class="form-control"
+                                          name="allergies"
+                                          rows="3">{{ old('allergies', $patient->allergies) }}</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Doenças -->
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Doenças</label>
+                                <textarea class="form-control"
+                                          name="diseases"
+                                          rows="3">{{ old('diseases', $patient->diseases) }}</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Medicamentos -->
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Medicamentos em Uso</label>
+                                <textarea class="form-control"
+                                          name="medications"
+                                          rows="3">{{ old('medications', $patient->medications) }}</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Fotografia -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Fotografia</label>
+                                <input type="file"
+                                       class="form-control"
+                                       name="foto"
+                                       accept="image/*">
+
+                                @if($patient->foto)
+                                    <div class="mt-2">
+                                        <img src="{{ asset('storage/'.$patient->foto) }}"
+                                             alt="Fotografia do paciente"
+                                             width="100"
+                                             height="100"
+                                             style="object-fit: cover; border-radius: 8px;">
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- Estado -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Estado</label>
+                                <select class="form-control" name="status">
+                                    <option value="active" {{ old('status', $patient->status) == 'active' ? 'selected' : '' }}>Ativo</option>
+                                    <option value="inactive" {{ old('status', $patient->status) == 'inactive' ? 'selected' : '' }}>Inativo</option>
                                 </select>
                             </div>
                         </div>
 
                     </div>
 
-                    {{-- Botões --}}
+                    <!-- Botões -->
                     <div class="text-center m-t-20">
-                        <a href="{{ url('/patients') }}"
+
+                        <a href="{{ route('patients.index') }}"
                            class="btn btn-secondary">
                             Cancelar
                         </a>
@@ -190,6 +252,7 @@
                             <i class="fa fa-save"></i>
                             Guardar Alterações
                         </button>
+
                     </div>
 
                 </form>

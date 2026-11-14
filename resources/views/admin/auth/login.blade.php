@@ -26,7 +26,7 @@
                     <form action="{{ route('login.submit') }}" method="POST" class="form-signin">
                         @csrf
 
-                        {{-- Logótipo --}}
+                       
                         <div class="account-logo">
                             <a href="{{ route('login') }}">
                                 <img
@@ -35,16 +35,16 @@
                             </a>
                         </div>
 
-                        {{-- Mensagem de erro --}}
+                        
                         @if ($errors->any())
                         <div class="alert alert-danger">
                             {{ $errors->first() }}
                         </div>
                         @endif
 
-                        {{-- Email --}}
+                       
                         <div class="form-group">
-                            <label>Email ou Nome de Utilizador</label>
+                            <label>Email or Username</label>
                             <input
                                 type="text"
                                 name="login"
@@ -54,9 +54,9 @@
                                 required>
                         </div>
 
-                        {{-- Palavra-passe --}}
+                       
                         <div class="form-group">
-                            <label>Palavra-passe</label>
+                            <label>Password</label>
                             <input
                                 type="password"
                                 name="password"
@@ -64,17 +64,17 @@
                                 required>
                         </div>
 
-                        {{-- Recuperar palavra-passe --}}
+                       
                         <div class="form-group text-right">
                             <a href="{{ route('password.forgot') }}">
-                                Esqueceu-se da palavra-passe?
+                                Forgot your password?
                             </a>
                         </div>
 
-                        {{-- Botão --}}
+                     
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-primary account-btn">
-                                Entrar
+                                Login
                             </button>
                         </div>
 
