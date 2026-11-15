@@ -17,7 +17,7 @@ class PatientController extends Controller
 
 
 
-    // Mostrar formulário de cadastro
+    // mostrar formulario de criação de paciente
     public function create()
     {
         return view('admin.patients.create');
@@ -44,10 +44,10 @@ class PatientController extends Controller
 
         Patient::create($validated);
 
-        return redirect()
-            ->route('patients.index')
-            ->with('success', 'Paciente cadastrado com sucesso!');
+        return redirect()->route('patients.index')->with('success', 'Paciente cadastrado com sucesso!');
     }
+
+    
 
     public function edit(Patient $patient)
     {
@@ -57,7 +57,7 @@ class PatientController extends Controller
 
 
 
-    // Atualizar paciente
+    // atualiza paciente
     public function update(Request $request, Patient $patient)
     {
         $validated = $request->validate([
@@ -76,28 +76,19 @@ class PatientController extends Controller
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
 
-        if ($request->hasFile('foto')) {
-            if ($patient->foto) {
-                \Illuminate\Support\Facades\Storage::disk('public')->delete($patient->foto);
-            }
-
-            $validated['foto'] = $request->file('foto')->store('patients', 'public');
-        }
 
         $patient->update($validated);
 
-        return redirect()
-            ->route('patients.index')
-            ->with('success', 'Paciente atualizado com sucesso!');
+        return redirect()->route('patients.index')->with('success', 'Paciente atualizado com sucesso!');
     }
+
+
 
     public function destroy(Patient $patient)
     {
-        // Eliminar o paciente
+        // apagar  paciente
         $patient->delete();
 
-        return redirect()
-            ->route('patients.index')
-            ->with('success', 'Paciente eliminado com sucesso!');
+        return redirect()->route('patients.index')->with('success', 'Paciente eliminado com sucesso!');
     }
 }
