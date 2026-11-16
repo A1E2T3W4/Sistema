@@ -14,13 +14,9 @@ class Patient extends Model
         'gender',
         'phone',
         'address',
-        'province',
-        'nationality',
         'BI',
-        'email',
+        'blood_type',
         'allergies',
         'diseases',
-        'medications',
-        'foto',
     ];
 }

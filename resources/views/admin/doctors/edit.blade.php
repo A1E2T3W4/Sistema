@@ -2,204 +2,208 @@
 @extends('layouts.main')
 
 @section('title', 'Editar Médico')
+@section('page-title', 'Editar Médico')
 
 @section('content')
 
-<div class="content">
+<div class="app-body">
 
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-            <h4 class="page-title">Edit Doctor</h4>
-        </div>
-    </div>
+    <div class="row gx-3">
+        <div class="col-12">
 
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Editar Dados do Médico</h5>
+                    <p class="text-muted mb-0 mt-1">
+                        Actualize as informações pessoais e profissionais do médico.
+                    </p>
+                </div>
 
-            <form>
+                <div class="card-body">
 
-                <div class="row">
+                    <form>
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>First Name <span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" value="Justin">
-                        </div>
-                    </div>
+                        {{-- Dados pessoais --}}
+                        <div class="mb-4">
+                            <h6 class="mb-3">Dados Pessoais</h6>
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Last Name</label>
-                            <input class="form-control" type="text" value="Parker">
-                        </div>
-                    </div>
+                            <div class="row gx-3">
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Username <span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" value="justinparker">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Email <span class="text-danger">*</span></label>
-                            <input class="form-control" type="email" value="justinparker@example.com">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input class="form-control" type="password">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Confirm Password</label>
-                            <input class="form-control" type="password">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Date of Birth</label>
-                            <div class="cal-icon">
-                                <input type="text" class="form-control datetimepicker">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group gender-select">
-                            <label class="gen-label">Gender:</label>
-
-                            <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" name="gender" class="form-check-input" checked>
-                                    Male
-                                </label>
-                            </div>
-
-                            <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" name="gender" class="form-check-input">
-                                    Female
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12">
-                        <div class="row">
-
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <input type="text" class="form-control">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Nome <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" value="Justin" placeholder="Nome">
                                 </div>
-                            </div>
 
-                            <div class="col-sm-6 col-md-6 col-lg-3">
-                                <div class="form-group">
-                                    <label>Country</label>
-                                    <select class="form-control select">
-                                        <option>USA</option>
-                                        <option>United Kingdom</option>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Apelido</label>
+                                    <input type="text" class="form-control" value="Parker" placeholder="Apelido">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Nome de Utilizador <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" value="justinparker" placeholder="Nome de utilizador">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">E-mail <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" value="justinparker@example.com" placeholder="E-mail">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Palavra-passe</label>
+                                    <input type="password" class="form-control" placeholder="Nova palavra-passe">
+                                    <small class="text-muted">Deixe vazio para manter a palavra-passe actual.</small>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Confirmar Palavra-passe</label>
+                                    <input type="password" class="form-control" placeholder="Confirmar nova palavra-passe">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Data de Nascimento</label>
+                                    <input type="date" class="form-control" value="1985-06-15">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Sexo</label>
+                                    <select class="form-select">
+                                        <option value="masculino" selected>Masculino</option>
+                                        <option value="feminino">Feminino</option>
                                     </select>
                                 </div>
-                            </div>
 
-                            <div class="col-sm-6 col-md-6 col-lg-3">
-                                <div class="form-group">
-                                    <label>City</label>
-                                    <input type="text" class="form-control">
+                                <div class="col-12 mb-3">
+                                    <label class="form-label">Morada</label>
+                                    <input type="text" class="form-control" placeholder="Morada completa">
                                 </div>
-                            </div>
 
-                            <div class="col-sm-6 col-md-6 col-lg-3">
-                                <div class="form-group">
-                                    <label>State/Province</label>
-                                    <select class="form-control select">
-                                        <option>California</option>
-                                        <option>Alaska</option>
-                                        <option>Alabama</option>
+                                <div class="col-md-3 col-sm-6 mb-3">
+                                    <label class="form-label">País</label>
+                                    <select class="form-select">
+                                        <option value="angola" selected>Angola</option>
+                                        <option value="portugal">Portugal</option>
+                                        <option value="brasil">Brasil</option>
                                     </select>
                                 </div>
-                            </div>
 
-                            <div class="col-sm-6 col-md-6 col-lg-3">
-                                <div class="form-group">
-                                    <label>Postal Code</label>
-                                    <input type="text" value="91403" class="form-control">
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input class="form-control" type="text">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Your avatar:</label>
-
-                            <div class="profile-upload">
-                                <div class="upload-img">
-                                    <img alt="" src="{{ asset('assets/img/user.jpg') }}">
+                                <div class="col-md-3 col-sm-6 mb-3">
+                                    <label class="form-label">Município</label>
+                                    <input type="text" class="form-control" placeholder="Município">
                                 </div>
 
-                                <div class="upload-input">
-                                    <input type="file" class="form-control">
+                                <div class="col-md-3 col-sm-6 mb-3">
+                                    <label class="form-label">Província</label>
+                                    <select class="form-select">
+                                        <option value="">Seleccione a província</option>
+                                        <option>Luanda</option>
+                                        <option>Benguela</option>
+                                        <option>Huambo</option>
+                                        <option>Huíla</option>
+                                    </select>
                                 </div>
+
+                                <div class="col-md-3 col-sm-6 mb-3">
+                                    <label class="form-label">Código Postal</label>
+                                    <input type="text" class="form-control" placeholder="Código postal">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Telefone</label>
+                                    <input type="tel" class="form-control" placeholder="+244 900 000 000">
+                                </div>
+
                             </div>
                         </div>
-                    </div>
+
+                        <hr class="my-4">
+
+                        {{-- Fotografia e biografia --}}
+                        <div class="mb-4">
+                            <h6 class="mb-3">Perfil e Biografia</h6>
+
+                            <div class="row gx-3">
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Fotografia do Médico</label>
+
+                                    <div class="d-flex align-items-center gap-3">
+                                        <img
+                                            src="{{ asset('assets/images/user6.png') }}"
+                                            alt="Fotografia do médico"
+                                            width="75"
+                                            height="75"
+                                            class="rounded-circle object-fit-cover"
+                                        >
+
+                                        <input type="file" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-3">
+                                    <label class="form-label">Biografia</label>
+                                    <textarea class="form-control" rows="4" placeholder="Escreva uma breve biografia do médico..."></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        {{-- Estado --}}
+                        <div class="mb-4">
+                            <h6 class="mb-3">Estado da Conta</h6>
+
+                            <div class="d-flex flex-wrap gap-4">
+
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="status"
+                                        id="doctor_active"
+                                        value="active"
+                                        checked
+                                    >
+                                    <label class="form-check-label" for="doctor_active">
+                                        Activo
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="status"
+                                        id="doctor_inactive"
+                                        value="inactive"
+                                    >
+                                    <label class="form-check-label" for="doctor_inactive">
+                                        Inactivo
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        {{-- Botões --}}
+                        <div class="d-flex justify-content-end gap-2">
+                            <a href="{{ url()->previous() }}" class="btn btn-light">
+                                Cancelar
+                            </a>
+
+                            <button type="button" class="btn btn-primary">
+                                <i class="ri-save-line me-1"></i>
+                                Guardar Alterações
+                            </button>
+                        </div>
+
+                    </form>
 
                 </div>
-
-                <div class="form-group">
-                    <label>Short Biography</label>
-                    <textarea class="form-control" rows="3" cols="30"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="display-block">Status</label>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio"
-                               name="status" id="doctor_active"
-                               value="option1" checked>
-
-                        <label class="form-check-label" for="doctor_active">
-                            Active
-                        </label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio"
-                               name="status" id="doctor_inactive"
-                               value="option2">
-
-                        <label class="form-check-label" for="doctor_inactive">
-                            Inactive
-                        </label>
-                    </div>
-                </div>
-
-                <div class="m-t-20 text-center">
-                    <button class="btn btn-primary submit-btn">
-                        Save
-                    </button>
-                </div>
-
-            </form>
+            </div>
 
         </div>
     </div>

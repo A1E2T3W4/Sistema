@@ -1,95 +1,181 @@
+
 <!DOCTYPE html>
 <html lang="pt">
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="shortcut icon" type="image/x-icon"
-        href="{{ asset('assets/img/favicon.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Login | Sistema de Gestão Hospitalar</title>
 
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <meta name="description" content="Sistema de Gestão Hospitalar">
+
+    {{-- Favicon --}}
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg') }}">
+
+    {{-- CSS Medflex --}}
+    <link rel="stylesheet" href="{{ asset('assets/fonts/remix/remixicon.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.min.css') }}">
+
 </head>
 
-<body>
+<body class="login-bg">
 
-    <div class="main-wrapper account-wrapper">
-        <div class="account-page">
-            <div class="account-center">
-                <div class="account-box">
+    {{-- Container --}}
+    <div class="container">
 
+        {{-- Auth wrapper --}}
+        <div class="auth-wrapper">
 
-                    <form action="{{ route('login.submit') }}" method="POST" class="form-signin">
-                        @csrf
+            {{-- Formulário --}}
+            <form action="{{ route('login.submit') }}" method="POST">
 
-                       
-                        <div class="account-logo">
-                            <a href="{{ route('login') }}">
-                                <img
-                                    src="{{ asset('assets/img/logo-dark.png') }}"
-                                    alt="Logótipo do hospital">
-                            </a>
-                        </div>
+                @csrf
 
-                        
-                        @if ($errors->any())
+                <div class="auth-box">
+
+                    {{-- Logótipo --}}
+                    <a href="{{ route('login') }}" class="auth-logo mb-4">
+                        <img
+                            src="{{ asset('assets/images/logo-dark.svg') }}"
+                            alt="Logótipo do hospital">
+                    </a>
+
+                    <h4 class="mb-2">Bem-vindo de volta!</h4>
+
+                    <p class="text-muted mb-4">
+                        Entre na sua conta para aceder ao sistema hospitalar.
+                    </p>
+
+                    {{-- Mensagens de erro --}}
+                    @if ($errors->any())
                         <div class="alert alert-danger">
+                            <i class="ri-error-warning-line me-1"></i>
                             {{ $errors->first() }}
                         </div>
-                        @endif
+                    @endif
 
-                       
-                        <div class="form-group">
-                            <label>Email or Username</label>
-                            <input
-                                type="text"
-                                name="login"
-                                class="form-control"
-                                value="{{ old('login') }}"
-                                autofocus
-                                required>
-                        </div>
+                    {{-- Login --}}
+                    <div class="mb-3">
 
-                       
-                        <div class="form-group">
-                            <label>Password</label>
+                        <label class="form-label" for="login">
+                            E-mail ou nome de utilizador
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="login"
+                            name="login"
+                            class="form-control @error('login') is-invalid @enderror"
+                            placeholder="Introduza o seu e-mail ou utilizador"
+                            value="{{ old('login') }}"
+                            autocomplete="username"
+                            autofocus
+                            required>
+
+                        @error('login')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+
+                    </div>
+
+                    {{-- Palavra-passe --}}
+                    <div class="mb-2">
+
+                        <label class="form-label" for="password">
+                            Palavra-passe
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <div class="input-group">
+
                             <input
                                 type="password"
+                                id="password"
                                 name="password"
                                 class="form-control"
+                                placeholder="Introduza a sua palavra-passe"
+                                autocomplete="current-password"
                                 required>
-                        </div>
 
-                       
-                        <div class="form-group text-right">
-                            <a href="{{ route('password.forgot') }}">
-                                Forgot your password?
-                            </a>
-                        </div>
+                            <button
+                                class="btn btn-outline-secondary"
+                                type="button"
+                                id="togglePassword"
+                                aria-label="Mostrar palavra-passe">
 
-                     
-                        <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary account-btn">
-                                Login
+                                <i class="ri-eye-line text-primary" id="passwordIcon"></i>
+
                             </button>
+
                         </div>
 
-                    </form>
+                        @error('password')
+                            <div class="text-danger small mt-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
+
+                    </div>
+
+                    {{-- Recuperar palavra-passe --}}
+                    <div class="d-flex justify-content-end mb-4">
+
+                        <a href="{{ route('password.forgot') }}"
+                           class="text-decoration-underline">
+
+                            Esqueceu-se da palavra-passe?
+
+                        </a>
+
+                    </div>
+
+                    {{-- Botão de login --}}
+                    <div class="mb-3 d-grid">
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="ri-login-box-line me-1"></i>
+                            Entrar no Sistema
+                        </button>
+
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <small class="text-muted">
+                            Sistema de Gestão Hospitalar
+                        </small>
+                    </div>
 
                 </div>
-            </div>
+
+            </form>
+
         </div>
+
     </div>
 
-    <script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/app.js') }}"></script>
+    {{-- Mostrar / ocultar palavra-passe --}}
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+
+            const password = document.getElementById('password');
+            const icon = document.getElementById('passwordIcon');
+
+            if (password.type === 'password') {
+                password.type = 'text';
+                icon.classList.remove('ri-eye-line');
+                icon.classList.add('ri-eye-off-line');
+            } else {
+                password.type = 'password';
+                icon.classList.remove('ri-eye-off-line');
+                icon.classList.add('ri-eye-line');
+            }
+
+        });
+    </script>
 
 </body>
-
 </html>

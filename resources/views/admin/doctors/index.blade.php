@@ -1,125 +1,128 @@
+
 @extends('layouts.main')
 
-@section('title', 'Médicos')
+@section('title', 'Lista de Médicos')
+
+@section('page-title', 'Lista de Médicos')
 
 @section('content')
 
-<div class="content">
+<div class="app-body">
 
-    <div class="row">
-        <div class="col-sm-4 col-3">
-            <h4 class="page-title">Doctors</h4>
-        </div>
-
-        <div class="col-sm-8 col-9 text-right m-b-20">
-            <a href="{{ route('doctors.create') }}" class="btn btn-primary btn-rounded float-right">
-                <i class="fa fa-plus"></i> Add Doctor
-            </a>
-        </div>
-    </div>
-
-    <div class="row doctor-grid">
-
-        @php
-        $doctors = [
-        ['Cristina Groves', 'Gynecologist', 'doctor-thumb-03.jpg'],
-        ['Marie Wells', 'Psychiatrist', 'doctor-thumb-07.jpg'],
-        ['Henry Daniels', 'Cardiologist', 'doctor-thumb-04.jpg'],
-        ['Mark Hunter', 'Urologist', 'doctor-thumb-11.jpg'],
-        ['Michael Sullivan', 'Ophthalmologist', 'doctor-thumb-12.jpg'],
-        ['Linda Barrett', 'Dentist', 'doctor-thumb-02.jpg'],
-        ['Ronald Jacobs', 'Oncologist', 'doctor-thumb-09.jpg'],
-        ['Albert Sandoval', 'Neurologist', 'doctor-thumb-01.jpg'],
-        ['Diana Bailey', 'General Surgery', 'doctor-thumb-05.jpg'],
-        ['Shirley Willis', 'Radiologist', 'doctor-thumb-10.jpg'],
-        ['Pamela Curtis', 'Pediatrics', 'doctor-thumb-08.jpg'],
-        ['Justin Parker', 'Physical Therapist', 'doctor-thumb-06.jpg'],
-        ];
-        @endphp
-
-        @foreach ($doctors as $doctor)
-
-        <div class="col-md-4 col-sm-4 col-lg-3">
-            <div class="profile-widget">
-
-                <div class="doctor-img">
-                    <a class="avatar" href="#">
-                        <img alt="" src="{{ asset('assets/img/' . $doctor[2]) }}">
-                    </a>
-                </div>
-
-                <div class="dropdown profile-action">
-                    <a href="#" class="action-icon dropdown-toggle"
-                        data-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-ellipsis-v"></i>
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="{{ route('doctors.edit') }}">
-                            <i class="fa fa-pencil m-r-5"></i> Edit
-                        </a>
-
-                        <a class="dropdown-item" href="#"
-                            data-toggle="modal" data-target="#delete_doctor">
-                            <i class="fa fa-trash-o m-r-5"></i> Delete
-                        </a>
-                    </div>
-                </div>
-
-                <h4 class="doctor-name text-ellipsis">
-                    <a href="#">{{ $doctor[0] }}</a>
-                </h4>
-
-                <div class="doc-prof">{{ $doctor[1] }}</div>
-
-                <div class="user-country">
-                    <i class="fa fa-map-marker"></i>
-                    United States, San Francisco
-                </div>
-
-            </div>
-        </div>
-
-        @endforeach
-
-    </div>
-
-    <div class="row">
+    <div class="row gx-3">
         <div class="col-sm-12">
-            <div class="see-all">
-                <a class="see-all-btn" href="javascript:void(0);">
-                    Load More
-                </a>
-            </div>
-        </div>
-    </div>
 
-</div>
+            <div class="card">
 
-{{-- Modal de confirmação de eliminação --}}
-<div id="delete_doctor" class="modal fade delete-modal" role="dialog">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body text-center">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title">Lista de Médicos</h5>
 
-                <img src="{{ asset('assets/img/sent.png') }}"
-                    alt="" width="50" height="46">
-
-                <h3>Are you sure want to delete this Doctor?</h3>
-
-                <div class="m-t-20">
-                    <a href="#" class="btn btn-white" data-dismiss="modal">
-                        Close
+                    <a href="#" class="btn btn-primary ms-auto">
+                        <i class="ri-add-line me-1"></i>
+                        Adicionar Médico
                     </a>
-
-                    <button type="submit" class="btn btn-danger">
-                        Delete
-                    </button>
                 </div>
 
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <table class="table truncate m-0 align-middle">
+
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome do Médico</th>
+                                    <th>Especialidade</th>
+                                    <th class="text-center">Dom</th>
+                                    <th class="text-center">Seg</th>
+                                    <th class="text-center">Ter</th>
+                                    <th class="text-center">Qua</th>
+                                    <th class="text-center">Qui</th>
+                                    <th class="text-center">Sex</th>
+                                    <th class="text-center">Sáb</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @php
+                                    $doctors = [
+                                        ['id' => '0008', 'name' => 'Allan Stuart', 'specialty' => 'Oncologista', 'time' => '09h-14h', 'image' => 'user.png'],
+                                        ['id' => '0021', 'name' => 'Smith White', 'specialty' => 'Neurologista', 'time' => '15h-17h', 'image' => 'user1.png'],
+                                        ['id' => '0026', 'name' => 'Gilbert Sandoval', 'specialty' => 'Cardiologista', 'time' => '17h-21h', 'image' => 'user2.png'],
+                                        ['id' => '0039', 'name' => 'Bernardo James', 'specialty' => 'Clínico Geral', 'time' => '07h-09h', 'image' => 'user3.png'],
+                                        ['id' => '0044', 'name' => 'Ronald Sullivan', 'specialty' => 'Radiologista', 'time' => '15h-21h', 'image' => 'user4.png'],
+                                        ['id' => '0083', 'name' => 'Amelia Bruklin', 'specialty' => 'Neurologista', 'time' => '18h-20h', 'image' => 'user5.png'],
+                                        ['id' => '0067', 'name' => 'Bshton Cozei', 'specialty' => 'Pediatra', 'time' => '16h-19h', 'image' => 'user2.png'],
+                                        ['id' => '0048', 'name' => 'George Bailey', 'specialty' => 'Pediatra', 'time' => '17h-20h', 'image' => 'user3.png'],
+                                        ['id' => '0058', 'name' => 'Andrea Lalema', 'specialty' => 'Dentista', 'time' => '08h-16h', 'image' => 'user4.png'],
+                                        ['id' => '0047', 'name' => 'Taylor Melon', 'specialty' => 'Terapeuta', 'time' => '09h-15h', 'image' => 'user3.png'],
+                                    ];
+                                @endphp
+
+                                @foreach ($doctors as $doctor)
+
+                                    <tr>
+                                        <td>#{{ $doctor['id'] }}</td>
+
+                                        <td>
+                                            <img src="{{ asset('assets/images/' . $doctor['image']) }}"
+                                                class="img-shadow img-2x rounded-5 me-1"
+                                                alt="Foto do médico">
+
+                                            {{ $doctor['name'] }}
+                                        </td>
+
+                                        <td>{{ $doctor['specialty'] }}</td>
+
+                                        <td class="text-center text-danger">-</td>
+
+                                        @for ($i = 0; $i < 6; $i++)
+                                            <td class="text-center">{{ $doctor['time'] }}</td>
+                                        @endfor
+
+                                        <td>
+                                            <div class="d-inline-flex gap-1">
+
+                                                <button type="button"
+                                                    class="btn btn-outline-danger btn-sm"
+                                                    onclick="alert('Exemplo: eliminar médico')"
+                                                    title="Eliminar">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                </button>
+
+                                                <a href="#"
+                                                    class="btn btn-outline-success btn-sm"
+                                                    title="Editar">
+                                                    <i class="ri-edit-box-line"></i>
+                                                </a>
+
+                                                <a href="#"
+                                                    class="btn btn-outline-info btn-sm"
+                                                    title="Ver perfil">
+                                                    <i class="ri-eye-line"></i>
+                                                </a>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                @endforeach
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
             </div>
+
         </div>
     </div>
+
 </div>
 
 @endsection

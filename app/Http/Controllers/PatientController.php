@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class PatientController extends Controller
 {
+    // Listar pacientes
     public function index()
     {
         $patients = Patient::latest()->paginate(10);
@@ -15,15 +16,13 @@ class PatientController extends Controller
         return view('admin.patients.index', compact('patients'));
     }
 
-
-
-    // mostrar formulario de criação de paciente
+    // Mostrar formulário de cadastro
     public function create()
     {
         return view('admin.patients.create');
     }
 
-    // guardar pacientes
+    // Guardar paciente
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -32,32 +31,26 @@ class PatientController extends Controller
             'gender' => 'nullable|string|max:20',
             'phone' => 'nullable|string|max:30',
             'address' => 'nullable|string',
-            'province' => 'nullable|string|max:100',
-            'nationality' => 'nullable|string|max:100',
             'BI' => 'nullable|string|max:20|unique:patients,BI',
-            'email' => 'nullable|string|email|max:255|unique:patients,email',
+            'blood_type' => 'nullable|string|max:5',
             'allergies' => 'nullable|string',
             'diseases' => 'nullable|string',
-            'medications' => 'nullable|string',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif'
         ]);
 
         Patient::create($validated);
 
-        return redirect()->route('patients.index')->with('success', 'Paciente cadastrado com sucesso!');
+        return redirect()
+            ->route('patients.index')
+            ->with('success', 'Paciente cadastrado com sucesso!');
     }
 
-    
-
+    // Mostrar formulário de edição
     public function edit(Patient $patient)
     {
         return view('admin.patients.edit', compact('patient'));
     }
 
-
-
-
-    // atualiza paciente
+    // Atualizar paciente
     public function update(Request $request, Patient $patient)
     {
         $validated = $request->validate([
@@ -66,29 +59,26 @@ class PatientController extends Controller
             'gender' => 'nullable|string|max:20',
             'phone' => 'nullable|string|max:30',
             'address' => 'nullable|string',
-            'province' => 'nullable|string|max:100',
-            'nationality' => 'nullable|string|max:100',
             'BI' => 'nullable|string|max:20|unique:patients,BI,' . $patient->id,
-            'email' => 'nullable|string|email|max:255|unique:patients,email,' . $patient->id,
+            'blood_type' => 'nullable|string|max:5',
             'allergies' => 'nullable|string',
             'diseases' => 'nullable|string',
-            'medications' => 'nullable|string',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
-
 
         $patient->update($validated);
 
-        return redirect()->route('patients.index')->with('success', 'Paciente atualizado com sucesso!');
+        return redirect()
+            ->route('patients.index')
+            ->with('success', 'Paciente atualizado com sucesso!');
     }
 
-
-
+    // Eliminar paciente
     public function destroy(Patient $patient)
     {
-        // apagar  paciente
         $patient->delete();
 
-        return redirect()->route('patients.index')->with('success', 'Paciente eliminado com sucesso!');
+        return redirect()
+            ->route('patients.index')
+            ->with('success', 'Paciente eliminado com sucesso!');
     }
 }

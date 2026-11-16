@@ -1,206 +1,346 @@
-<div class="sidebar" id="sidebar">
-    <div class="sidebar-inner slimscroll">
+<nav id="sidebar" class="sidebar-wrapper">
 
-        <div id="sidebar-menu" class="sidebar-menu">
-            <ul>
+    {{-- Perfil --}}
+    <div class="sidebar-profile">
+        <img src="{{ asset('assets/images/user6.png') }}"
+            class="img-shadow img-3x me-3 rounded-5"
+            alt="Utilizador">
 
-                <li class="menu-title"></li>
+        <div class="m-0">
+            <h5 class="mb-1 profile-name text-nowrap text-truncate">
+                {{ auth()->user()->name ?? 'Administrador' }}
+            </h5>
 
-                <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
-                    <a href="/dashboard">
-                        <i class="fa fa-dashboard"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-
-                <li class="{{ request()->is('doctors') ? 'active' : '' }}">
-                    <a href="/doctors">
-                        <i class="fa fa-user-md"></i>
-                        <span>Doctors</span>
-                    </a>
-                </li>
-
-                <li class="{{ request()->is('patients') ? 'active' : '' }}">
-                    <a href="/patients">
-                        <i class="fa fa-wheelchair"></i>
-                        <span>Patients</span>
-                    </a>
-                </li>
-
-                <li class="{{ request()->is('appointments') ? 'active' : '' }}">
-                    <a href="/appointments">
-                        <i class="fa fa-calendar"></i>
-                        <span>Appointments</span>
-                    </a>
-                </li>
-
-                <li class="{{ request()->is('schedule') ? 'active' : '' }}">
-                    <a href="/schedule">
-                        <i class="fa fa-calendar-check-o"></i>
-                        <span>Doctor Schedules</span>
-                    </a>
-                </li>
-
-                <li class="{{ request()->is('departments') ? 'active' : '' }}">
-                    <a href="/departments">
-                        <i class="fa fa-hospital-o"></i>
-                        <span>Departments</span>
-                    </a>
-                </li>
-
-                <li class="submenu">
-                    <a href="#">
-                        <i class="fa fa-user"></i>
-                        <span>Employees</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-
-                    <ul style="display: none;">
-                        <li class="{{ request()->is('employees') ? 'active' : '' }}">
-                            <a href="/employees">Employee List</a>
-                        </li>
-
-                        <li class="{{ request()->is('attendance') ? 'active' : '' }}">
-                            <a href="/attendance">Attendance</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="submenu">
-                    <a href="#">
-                        <i class="fa fa-money"></i>
-                        <span>Accounts</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-
-                    <ul style="display: none;">
-                        <li class="{{ request()->is('invoices') ? 'active' : '' }}">
-                            <a href="/invoices">Invoices</a>
-                        </li>
-
-                        <li class="{{ request()->is('payments') ? 'active' : '' }}">
-                            <a href="/payments">Payments</a>
-                        </li>
-
-                        <li class="{{ request()->is('expenses') ? 'active' : '' }}">
-                            <a href="/expenses">Expenses</a>
-                        </li>
-
-                        <li class="{{ request()->is('taxes') ? 'active' : '' }}">
-                            <a href="/taxes">Taxes</a>
-                        </li>
-
-                    </ul>
-                </li>
-
-
-
-                <li class="{{ request()->is('activities') ? 'active' : '' }}">
-                    <a href="/activities">
-                        <i class="fa fa-bell-o"></i>
-                        <span>Activities</span>
-                    </a>
-                </li>
-
-                <li class="submenu">
-                    <a href="#">
-                        <i class="fa fa-flag-o"></i>
-                        <span>Reports</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-
-                    <ul style="display: none;">
-                        <li><a href="/expense-reports">Expense Report</a></li>
-                        <li><a href="/invoices">Invoice Report</a></li>
-                    </ul>
-                </li>
-
-                <li class="{{ request()->is('settings') ? 'active' : '' }}">
-                    <a href="/settings">
-                        <i class="fa fa-cog"></i>
-                        <span>Settings</span>
-                    </a>
-                </li>
-
-
-
-                <li class="{{ request()->is('calendar') ? 'active' : '' }}">
-                    <a href="/calendar">
-                        <i class="fa fa-calendar"></i>
-                        <span>Calendar</span>
-                    </a>
-                </li>
-
-                <li class="menu-title">Extras</li>
-
-                <li class="submenu">
-                    <a href="#">
-                        <i class="fa fa-columns"></i>
-                        <span>Pages</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-
-                    <ul style="display: none;">
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="/forgot-password">Forgot Password</a></li>
-                        <li><a href="/change-password">Change Password</a></li>
-                        <li><a href="/lock-screen">Lock Screen</a></li>
-                        <li><a href="/profile">Profile</a></li>
-
-                    </ul>
-                </li>
-
-                <li class="submenu">
-                    <a href="javascript:void(0);">
-                        <i class="fa fa-share-alt"></i>
-                        <span>Level</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-
-                    <ul style="display: none;">
-                        <li class="submenu">
-                            <a href="javascript:void(0);">
-                                <span>Nível 1</span>
-                                <span class="menu-arrow"></span>
-                            </a>
-
-                            <ul style="display: none;">
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        <span>Nível 2</span>
-                                    </a>
-                                </li>
-
-                                <li class="submenu">
-                                    <a href="javascript:void(0);">
-                                        <span>Nível 2</span>
-                                        <span class="menu-arrow"></span>
-                                    </a>
-
-                                    <ul style="display: none;">
-                                        <li><a href="javascript:void(0);">Nível 3</a></li>
-                                        <li><a href="javascript:void(0);">Nível 3</a></li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        <span>Nível 2</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0);">
-                                <span>Nível 1</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-            </ul>
+            <p class="m-0 small profile-name text-nowrap text-truncate">
+                Administrador
+            </p>
         </div>
-
     </div>
-</div>
+
+
+    {{-- Menu --}}
+    <div class="sidebarMenuScroll">
+        <ul class="sidebar-menu">
+
+            {{-- DASHBOARD --}}
+            <li class="{{ request()->routeIs('dashboard') ? 'active current-page' : '' }}">
+                <a href="{{ route('dashboard') }}">
+                    <i class="ri-home-6-line"></i>
+                    <span class="menu-text">Painel Hospitalar</span>
+                </a>
+            </li>
+
+
+            {{-- MÉDICOS --}}
+            <li class="treeview {{ request()->routeIs('doctors.*') ? 'active open' : '' }}">
+                <a href="#!">
+                    <i class="ri-stethoscope-line"></i>
+                    <span class="menu-text">Médicos</span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('doctors.index') }}">Lista de Médicos</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('doctors.create') }}">Adicionar Médico</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('doctors.edit') }}">Editar Médico</a>
+                    </li>
+                </ul>
+            </li>
+
+
+            {{-- PACIENTES --}}
+            <li class="treeview {{ request()->routeIs('patients.*') ? 'active open' : '' }}">
+                <a href="#!">
+                    <i class="ri-heart-pulse-line"></i>
+                    <span class="menu-text">Pacientes</span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('patients.index') }}" wire:navigate>
+                            Pacientes
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('patients.create') }}" wire:navigate>
+                            Adicionar Paciente
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+            {{-- FUNCIONÁRIOS --}}
+            <li class="treeview {{ request()->routeIs('employees.*') ? 'active open' : '' }}">
+                <a href="#!">
+                    <i class="ri-nurse-line"></i>
+                    <span class="menu-text">Funcionários</span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('employees.index') }}" wire:navigate>
+                            Lista de Funcionários
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('employees.create') }}" wire:navigate>
+                            Adicionar Funcionário
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('employees.edit') }}" wire:navigate>
+                            Editar Funcionário
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('/attendance') }}" wire:navigate>
+                            Presenças
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+            {{-- CONSULTAS --}}
+            <li class="treeview {{ request()->routeIs('appointments.*') ? 'active open' : '' }}">
+                <a href="#!">
+                    <i class="ri-dossier-line"></i>
+                    <span class="menu-text">Consultas</span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('appointments.index') }}" wire:navigate>
+                            Lista de Consultas
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('appointments.create') }}" wire:navigate>
+                            Marcar Consulta
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('appointments.edit') }}" wire:navigate>
+                            Editar Consulta
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+            {{-- AGENDAMENTOS --}}
+            <li class="treeview {{ request()->routeIs('schedules.*') || request()->is('schedule') ? 'active open' : '' }}">
+                <a href="#!">
+                    <i class="ri-calendar-schedule-line"></i>
+                    <span class="menu-text">Agendamentos</span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('schedules.index') }}" wire:navigate>
+                            Lista de Agendamentos
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('schedules.create') }}" wire:navigate>
+                            Adicionar Agendamento
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('schedules.edit') }}" wire:navigate>
+                            Editar Agendamento
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+            {{-- DEPARTAMENTOS --}}
+            <li class="treeview {{ request()->routeIs('departments.*') ? 'active open' : '' }}">
+                <a href="#!">
+                    <i class="ri-building-2-line"></i>
+                    <span class="menu-text">Departamentos</span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('departments.index') }}" wire:navigate>
+                            Lista de Departamentos
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('departments.create') }}" wire:navigate>
+                            Adicionar Departamento
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('departments.edit') }}" wire:navigate>
+                            Editar Departamento
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+            {{-- FINANCEIRO --}}
+            <li class="treeview {{ request()->routeIs('invoices.*', 'payments.*', 'expenses.*', 'taxes.*') ? 'active open' : '' }}">
+                <a href="#!">
+                    <i class="ri-secure-payment-line"></i>
+                    <span class="menu-text">Financeiro</span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('invoices.index') }}" wire:navigate>
+                            Facturas
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('payments.index') }}" wire:navigate>
+                            Pagamentos
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('expenses.index') }}" wire:navigate>Despesas</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('taxes.index') }}" wire:navigate>Impostos</a>
+                    </li>
+                </ul>
+            </li>
+
+
+            {{-- ACTIVIDADES --}}
+            <li class="{{ request()->routeIs('activities.index') ? 'active' : '' }}">
+                <a href="{{ route('activities.index') }}">
+                    <i class="ri-history-line"></i>
+                    <span class="menu-text">Actividades</span>
+                </a>
+            </li>
+
+
+            {{-- RELATÓRIOS --}}
+            <li class="treeview {{ request()->routeIs('reports.*') ? 'active open' : '' }}">
+                <a href="#!">
+                    <i class="ri-bar-chart-line"></i>
+                    <span class="menu-text">Relatórios</span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('reports.expenses') }}" wire:navigate>Relatório de Despesas</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('reports.invoices') }}" wire:navigate>Relatório de Facturas</a>
+                    </li>
+                </ul>
+            </li>
+
+
+            {{-- CONFIGURAÇÕES --}}
+            <li class="treeview {{ request()->routeIs('settings.*') ? 'active open' : '' }}">
+                <a href="#!">
+                    <i class="ri-settings-5-line"></i>
+                    <span class="menu-text">Configurações</span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('settings.index') }}">Configurações Gerais</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('settings.localization.index') }}" wire:navigate>Localização</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('settings.theme.index') }}" wire:navigate>Tema</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('settings.roles.roles') }}" wire:navigate>Funções e Permissões</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('settings.roles.create-role') }}" wire:navigate>Adicionar Função</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('settings.roles.edit') }}" wire:navigate>Editar Função</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('settings.email') }}" wire:navigate>Email</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('settings.invoice-settings.index') }}" wire:navigate>Configurações de Facturas</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('settings.notification') }}" wire:navigate>Notificações</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('settings.password') }}" wire:navigate>Palavra-passe</a>
+                    </li>
+                </ul>
+            </li>
+
+
+            {{-- CALENDÁRIO --}}
+            <li class="{{ request()->routeIs('calendar.index') ? 'active' : '' }}">
+                <a href="{{ route('calendar.index') }}" wire:navigate>
+                    <i class="ri-calendar-line"></i>
+                    <span class="menu-text">Calendário</span>
+                </a>
+            </li>
+
+
+            {{-- PERFIL --}}
+            <li class="{{ request()->routeIs('profile.*') ? 'active' : '' }}">
+                <a href="{{ route('profile.index') }}" wire:navigate>
+                    <i class="ri-user-settings-line"></i>
+                    <span class="menu-text">Meu Perfil</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+
+    {{-- Contacto --}}
+    <div class="sidebar-contact">
+        <p class="fw-light mb-1 text-nowrap text-truncate">
+            Contacto de Emergência
+        </p>
+
+        <h5 class="m-0 lh-1 text-nowrap text-truncate">
+            0987654321
+        </h5>
+
+        <i class="ri-phone-line"></i>
+    </div>
+
+</nav>

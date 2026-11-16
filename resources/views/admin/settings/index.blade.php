@@ -9,151 +9,163 @@
 
 @section('content')
 
-<div class="content">
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
+<div class="row gx-3">
+    <div class="col-12">
+        <div class="card">
 
-            <form>
-                <h3 class="page-title">Configurações da Instituição</h3>
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    Configurações da Instituição
+                </h5>
+            </div>
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Nome da Instituição <span class="text-danger">*</span></label>
-                            <input class="form-control" type="text"
+            <div class="card-body p-4">
+
+                <form action="#" method="POST">
+                    @csrf
+
+                    <div class="row gx-4">
+
+                        <div class="col-12 mb-4">
+                            <h6 class="fw-semibold">Informações gerais</h6>
+                            <p class="text-muted small mb-0">
+                                Dados principais da instituição hospitalar.
+                            </p>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 mb-3">
+                            <label class="form-label">
+                                Nome da Instituição <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" name="institution_name"
+                                class="form-control"
                                 placeholder="Nome do hospital">
                         </div>
-                    </div>
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Responsável</label>
-                            <input class="form-control" type="text"
+                        <div class="col-lg-6 col-md-6 mb-3">
+                            <label class="form-label">Responsável</label>
+                            <input type="text" name="responsible"
+                                class="form-control"
                                 placeholder="Nome do responsável">
                         </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label>Endereço</label>
-                            <input class="form-control" type="text"
+                        <div class="col-12 mb-3">
+                            <label class="form-label">Endereço</label>
+                            <input type="text" name="address"
+                                class="form-control"
                                 placeholder="Endereço da instituição">
                         </div>
-                    </div>
 
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                        <div class="form-group">
-                            <label>País</label>
-                            <select class="form-control select">
-                                <option value="Angola">Angola</option>
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <label class="form-label">País</label>
+                            <select name="country" class="form-select">
+                                <option value="Angola" selected>Angola</option>
                                 <option value="Portugal">Portugal</option>
                                 <option value="Brasil">Brasil</option>
                             </select>
                         </div>
-                    </div>
 
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                        <div class="form-group">
-                            <label>Cidade</label>
-                            <input class="form-control" type="text"
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <label class="form-label">Cidade</label>
+                            <input type="text" name="city"
+                                class="form-control"
                                 placeholder="Ex.: Luanda">
                         </div>
-                    </div>
 
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                        <div class="form-group">
-                            <label>Província</label>
-                            <select class="form-control select">
-                                <option value="Luanda">Luanda</option>
-                                <option value="Benguela">Benguela</option>
-                                <option value="Huambo">Huambo</option>
-                                <option value="Huíla">Huíla</option>
-                                <option value="Bié">Bié</option>
-                                <option value="Cuanza Sul">Cuanza Sul</option>
-                                <option value="Cuanza Norte">Cuanza Norte</option>
-                                <option value="Cabinda">Cabinda</option>
-                                <option value="Uíge">Uíge</option>
-                                <option value="Malanje">Malanje</option>
-                                <option value="Zaire">Zaire</option>
-                                <option value="Lunda Norte">Lunda Norte</option>
-                                <option value="Lunda Sul">Lunda Sul</option>
-                                <option value="Moxico">Moxico</option>
-                                <option value="Cuando">Cuando</option>
-                                <option value="Cunene">Cunene</option>
-                                <option value="Namibe">Namibe</option>
-                                <option value="Bengo">Bengo</option>
-                                <option value="Cubango">Cubango</option>
-                                <option value="Icolo e Bengo">Icolo e Bengo</option>
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <label class="form-label">Província</label>
+                            <select name="province" class="form-select">
+                                <option value="">Seleccione a província</option>
+                                <option>Luanda</option>
+                                <option>Benguela</option>
+                                <option>Huambo</option>
+                                <option>Huíla</option>
+                                <option>Bié</option>
+                                <option>Cuanza Sul</option>
+                                <option>Cuanza Norte</option>
+                                <option>Cabinda</option>
+                                <option>Uíge</option>
+                                <option>Malanje</option>
+                                <option>Zaire</option>
+                                <option>Lunda Norte</option>
+                                <option>Lunda Sul</option>
+                                <option>Moxico</option>
+                                <option>Moxico Leste</option>
+                                <option>Cuando</option>
+                                <option>Cubango</option>
+                                <option>Cunene</option>
+                                <option>Namibe</option>
+                                <option>Bengo</option>
+                                <option>Icolo e Bengo</option>
                             </select>
                         </div>
-                    </div>
 
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                        <div class="form-group">
-                            <label>Código Postal</label>
-                            <input class="form-control" type="text"
+                        <div class="col-lg-3 col-md-6 mb-3">
+                            <label class="form-label">Código Postal</label>
+                            <input type="text" name="postal_code"
+                                class="form-control"
                                 placeholder="Código postal">
                         </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>E-mail</label>
-                            <input class="form-control" type="email"
+                        <div class="col-12 mt-4 mb-3">
+                            <h6 class="fw-semibold">Contactos da instituição</h6>
+                            <p class="text-muted small mb-0">
+                                Informações utilizadas para comunicação.
+                            </p>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 mb-3">
+                            <label class="form-label">E-mail</label>
+                            <input type="email" name="email"
+                                class="form-control"
                                 placeholder="instituicao@email.com">
                         </div>
-                    </div>
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Telefone</label>
-                            <input class="form-control" type="text"
+                        <div class="col-lg-6 col-md-6 mb-3">
+                            <label class="form-label">Telefone</label>
+                            <input type="text" name="phone"
+                                class="form-control"
                                 placeholder="+244 900 000 000">
                         </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Telemóvel</label>
-                            <input class="form-control" type="text"
+                        <div class="col-lg-6 col-md-6 mb-3">
+                            <label class="form-label">Telemóvel</label>
+                            <input type="text" name="mobile"
+                                class="form-control"
                                 placeholder="+244 900 000 000">
                         </div>
-                    </div>
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Fax</label>
-                            <input class="form-control" type="text"
+                        <div class="col-lg-6 col-md-6 mb-3">
+                            <label class="form-label">Fax</label>
+                            <input type="text" name="fax"
+                                class="form-control"
                                 placeholder="Número de fax">
                         </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label>Website</label>
-                            <input class="form-control" type="url"
+                        <div class="col-12 mb-4">
+                            <label class="form-label">Website</label>
+                            <input type="url" name="website"
+                                class="form-control"
                                 placeholder="https://www.instituicao.ao">
                         </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-12 text-center m-t-20">
-                        <button type="button" class="btn btn-primary submit-btn">
-                            Guardar Configurações
-                        </button>
-                    </div>
-                </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-end gap-2">
+                                <button type="reset" class="btn btn-light">
+                                    Cancelar
+                                </button>
 
-            </form>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="ri-save-line me-1"></i>
+                                    Guardar Configurações
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
         </div>
     </div>
 </div>

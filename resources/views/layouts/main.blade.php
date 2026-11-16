@@ -2,73 +2,135 @@
 <html lang="pt">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}">
-
     <title>@yield('title', 'Sistema de Gestão Hospitalar')</title>
+    <meta name="description" content="Sistema de Gestão Hospitalar">
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/remix/remixicon.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/overlay-scroll/OverlayScrollbars.min.css') }}">
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    @stack('styles')
+    @livewireStyles
 
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
 </head>
 
 <body>
 
-    <div class="main-wrapper">
+
+    <div id="loading-wrapper">
+        <div class="spin-wrapper">
+
+            <div class="spin">
+                <div class="inner"></div>
+            </div>
+
+            <div class="spin">
+                <div class="inner"></div>
+            </div>
+
+            <div class="spin">
+                <div class="inner"></div>
+            </div>
+
+            <div class="spin">
+                <div class="inner"></div>
+            </div>
+
+            <div class="spin">
+                <div class="inner"></div>
+            </div>
+
+            <div class="spin">
+                <div class="inner"></div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="page-wrapper">
+
 
         @include('layouts.header')
 
-        @hasSection('sidebar')
-        @yield('sidebar')
-        @else
-        @include('layouts.sidebar')
-        @endif
 
-        <div class="page-wrapper">
+        <div class="main-container">
 
-            @yield('content')
 
-            @include('layouts.notification-box')
+            @hasSection('sidebar')
+
+            @yield('sidebar')
+
+            @else
+
+            @include('layouts.sidebar')
+
+            @endif
+
+
+
+            <div class="app-container">
+
+
+                {{-- Cabeçalho da página --}}
+                <div class="app-hero-header d-flex align-items-center">
+
+                    <ol class="breadcrumb">
+
+                        <li class="breadcrumb-item">
+
+                            <i class="ri-home-8-line lh-1 pe-3 me-3 border-end"></i>
+
+                            <a href="{{ route('dashboard') }}">
+                                Início
+                            </a>
+
+                        </li>
+
+                        <li class="breadcrumb-item text-primary" aria-current="page">
+
+                            @yield('page-title', 'Painel de Controlo')
+
+                        </li>
+
+                    </ol>
+
+                </div>
+
+
+                {{-- Conteúdo das páginas --}}
+                @yield('content')
+
+
+
+
+            </div>
 
         </div>
 
     </div>
 
-    <div class="sidebar-overlay" data-reff=""></div>
 
 
-
-    <div class="sidebar-overlay" data-reff=""></div>
-
-    <script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-
-    <script src="{{ asset('assets/js/jquery.slimscroll.js') }}"></script>
-
-    <script src="{{ asset('assets/js/Chart.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/chart.js') }}"></script>
-
-    <script src="{{ asset('assets/js/select2.min.js') }}"></script>
-
+    <div class="sidebar-overlay"></div>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/moment.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/apex/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/overlay-scroll/custom-scrollbar.js') }}"></script>
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
 
-    <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/js/dataTables.bootstrap4.min.js') }}"></script>
 
-    <script src="{{ asset('assets/js/app.js') }}"></script>
+    {{-- Scripts específicos de cada página --}}
+    @stack('scripts')
 
-</body>
 
-</html>
+    @livewireScripts
+
 
 </body>
 

@@ -3,201 +3,458 @@
 
 @section('title', 'Adicionar Médico')
 
+@section('page-title', 'Adicionar Médico')
+
 @section('content')
 
-<div class="content">
+<div class="app-body">
 
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-            <h4 class="page-title">Add Doctor</h4>
-        </div>
-    </div>
+    <div class="row gx-3">
+        <div class="col-xl-12">
 
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body">
 
-            <form>
+                    <div class="custom-tabs-container">
 
-                <div class="row">
+                        {{-- Navegação dos separadores --}}
+                        <ul class="nav nav-tabs" id="doctorTabs" role="tablist">
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>First Name <span class="text-danger">*</span></label>
-                            <input class="form-control" type="text">
-                        </div>
-                    </div>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active"
+                                    id="personal-tab"
+                                    data-bs-toggle="tab"
+                                    data-bs-target="#personal"
+                                    type="button"
+                                    role="tab">
+                                    <i class="ri-briefcase-4-line me-1"></i>
+                                    Dados Pessoais
+                                </button>
+                            </li>
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Last Name</label>
-                            <input class="form-control" type="text">
-                        </div>
-                    </div>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link"
+                                    id="profile-tab"
+                                    data-bs-toggle="tab"
+                                    data-bs-target="#profile"
+                                    type="button"
+                                    role="tab">
+                                    <i class="ri-account-pin-circle-line me-1"></i>
+                                    Perfil e Biografia
+                                </button>
+                            </li>
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Username <span class="text-danger">*</span></label>
-                            <input class="form-control" type="text">
-                        </div>
-                    </div>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link"
+                                    id="availability-tab"
+                                    data-bs-toggle="tab"
+                                    data-bs-target="#availability"
+                                    type="button"
+                                    role="tab">
+                                    <i class="ri-calendar-check-line me-1"></i>
+                                    Disponibilidade
+                                </button>
+                            </li>
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Email <span class="text-danger">*</span></label>
-                            <input class="form-control" type="email">
-                        </div>
-                    </div>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link"
+                                    id="account-tab"
+                                    data-bs-toggle="tab"
+                                    data-bs-target="#account"
+                                    type="button"
+                                    role="tab">
+                                    <i class="ri-lock-password-line me-1"></i>
+                                    Dados da Conta
+                                </button>
+                            </li>
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input class="form-control" type="password">
-                        </div>
-                    </div>
+                        </ul>
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Confirm Password</label>
-                            <input class="form-control" type="password">
-                        </div>
-                    </div>
+                        {{-- Conteúdo dos separadores --}}
+                        <div class="tab-content pt-4">
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Date of Birth</label>
-                            <div class="cal-icon">
-                                <input type="text" class="form-control datetimepicker">
-                            </div>
-                        </div>
-                    </div>
+                            {{-- DADOS PESSOAIS --}}
+                            <div class="tab-pane fade show active"
+                                id="personal"
+                                role="tabpanel">
 
-                    <div class="col-sm-6">
-                        <div class="form-group gender-select">
-                            <label class="gen-label">Gender:</label>
+                                <div class="row gx-3">
 
-                            <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" name="gender" class="form-check-input"> Male
-                                </label>
-                            </div>
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Nome</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="ri-user-line"></i>
+                                                </span>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Introduza o nome">
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="radio" name="gender" class="form-check-input"> Female
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Apelido</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="ri-user-line"></i>
+                                                </span>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Introduza o apelido">
+                                            </div>
+                                        </div>
+                                    </div>
 
-                    <div class="col-sm-12">
-                        <div class="row">
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Data de Nascimento</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="ri-calendar-line"></i>
+                                                </span>
+                                                <input type="date" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <input type="text" class="form-control">
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Sexo</label>
+                                            <select class="form-select">
+                                                <option value="">Seleccionar sexo</option>
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Feminino">Feminino</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Número de Identificação</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="ri-secure-payment-line"></i>
+                                                </span>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Número do BI">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">E-mail</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="ri-mail-line"></i>
+                                                </span>
+                                                <input type="email" class="form-control"
+                                                    placeholder="exemplo@email.com">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Telefone</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="ri-phone-line"></i>
+                                                </span>
+                                                <input type="text" class="form-control"
+                                                    placeholder="+244 900 000 000">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Estado Civil</label>
+                                            <select class="form-select">
+                                                <option value="">Seleccionar</option>
+                                                <option>Solteiro(a)</option>
+                                                <option>Casado(a)</option>
+                                                <option>Divorciado(a)</option>
+                                                <option>Viúvo(a)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Qualificação Académica</label>
+                                            <select class="form-select">
+                                                <option value="">Seleccionar</option>
+                                                <option>Licenciatura</option>
+                                                <option>Mestrado</option>
+                                                <option>Doutoramento</option>
+                                                <option>Especialização</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Especialidade Médica</label>
+                                            <select class="form-select">
+                                                <option value="">Seleccionar especialidade</option>
+                                                <option>Clínica Geral</option>
+                                                <option>Cardiologia</option>
+                                                <option>Pediatria</option>
+                                                <option>Cirurgia Geral</option>
+                                                <option>Ginecologia</option>
+                                                <option>Ortopedia</option>
+                                                <option>Neurologia</option>
+                                                <option>Dermatologia</option>
+                                                <option>Oftalmologia</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Cargo</label>
+                                            <select class="form-select">
+                                                <option value="">Seleccionar cargo</option>
+                                                <option>Médico</option>
+                                                <option>Chefe de Departamento</option>
+                                                <option>Director Clínico</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Grupo Sanguíneo</label>
+                                            <select class="form-select">
+                                                <option value="">Seleccionar</option>
+                                                <option>A+</option>
+                                                <option>A-</option>
+                                                <option>B+</option>
+                                                <option>B-</option>
+                                                <option>O+</option>
+                                                <option>O-</option>
+                                                <option>AB+</option>
+                                                <option>AB-</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Morada</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="ri-map-pin-line"></i>
+                                                </span>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Introduza a morada completa">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">País</label>
+                                            <select class="form-select">
+                                                <option value="">Seleccionar país</option>
+                                                <option selected>Angola</option>
+                                                <option>Portugal</option>
+                                                <option>Brasil</option>
+                                                <option>Moçambique</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Província</label>
+                                            <select class="form-select">
+                                                <option value="">Seleccionar província</option>
+                                                <option>Luanda</option>
+                                                <option>Benguela</option>
+                                                <option>Huambo</option>
+                                                <option>Huíla</option>
+                                                <option>Bié</option>
+                                                <option>Cabinda</option>
+                                                <option>Cuanza Norte</option>
+                                                <option>Cuanza Sul</option>
+                                                <option>Malanje</option>
+                                                <option>Namibe</option>
+                                                <option>Uíge</option>
+                                                <option>Zaire</option>
+                                                <option>Lunda Norte</option>
+                                                <option>Lunda Sul</option>
+                                                <option>Moxico</option>
+                                                <option>Cunene</option>
+                                                <option>Cuando</option>
+                                                <option>Cubango</option>
+                                                <option>Icolo e Bengo</option>
+                                                <option>Moxico Leste</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Município</label>
+                                            <input type="text" class="form-control"
+                                                placeholder="Introduza o município">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Código Postal</label>
+                                            <input type="text" class="form-control"
+                                                placeholder="Código postal">
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
-                            <div class="col-sm-6 col-md-6 col-lg-3">
-                                <div class="form-group">
-                                    <label>Country</label>
-                                    <select class="form-control select">
-                                        <option>USA</option>
-                                        <option>United Kingdom</option>
-                                    </select>
+                            {{-- PERFIL E BIOGRAFIA --}}
+                            <div class="tab-pane fade" id="profile" role="tabpanel">
+
+                                <div class="row gx-3">
+
+                                    <div class="col-lg-3 col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Fotografia do Médico</label>
+
+                                            <div class="border rounded-3 p-3 text-center">
+                                                <img src="{{ asset('assets/images/user6.png') }}"
+                                                    class="img-fluid rounded-circle mb-3"
+                                                    style="width: 110px; height: 110px; object-fit: cover;"
+                                                    alt="Fotografia do médico">
+
+                                                <input type="file" class="form-control"
+                                                    accept="image/*">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-9 col-md-8">
+                                        <div class="mb-3">
+                                            <label class="form-label">Biografia Profissional</label>
+                                            <textarea class="form-control" rows="7"
+                                                placeholder="Descreva a experiência profissional, formação e competências do médico..."></textarea>
+                                        </div>
+                                    </div>
+
                                 </div>
+
                             </div>
 
-                            <div class="col-sm-6 col-md-6 col-lg-3">
-                                <div class="form-group">
-                                    <label>City</label>
-                                    <input type="text" class="form-control">
+                            {{-- DISPONIBILIDADE --}}
+                            <div class="tab-pane fade" id="availability" role="tabpanel">
+
+                                <div class="alert alert-info">
+                                    <i class="ri-information-line me-1"></i>
+                                    Defina os horários em que o médico estará disponível para consultas.
                                 </div>
+
+                                <div class="row gx-3">
+
+                                    @foreach([
+                                        'Segunda-feira',
+                                        'Terça-feira',
+                                        'Quarta-feira',
+                                        'Quinta-feira',
+                                        'Sexta-feira',
+                                        'Sábado',
+                                        'Domingo'
+                                    ] as $dia)
+
+                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">{{ $dia }}</label>
+
+                                            <div class="input-group">
+                                                <input type="time" class="form-control">
+                                                <span class="input-group-text">até</span>
+                                                <input type="time" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @endforeach
+
+                                </div>
+
                             </div>
 
-                            <div class="col-sm-6 col-md-6 col-lg-3">
-                                <div class="form-group">
-                                    <label>State/Province</label>
-                                    <select class="form-control select">
-                                        <option>California</option>
-                                        <option>Alaska</option>
-                                        <option>Alabama</option>
-                                    </select>
-                                </div>
-                            </div>
+                            {{-- DADOS DA CONTA --}}
+                            <div class="tab-pane fade" id="account" role="tabpanel">
 
-                            <div class="col-sm-6 col-md-6 col-lg-3">
-                                <div class="form-group">
-                                    <label>Postal Code</label>
-                                    <input type="text" class="form-control">
+                                <div class="row gx-3">
+
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Nome de Utilizador</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="ri-user-settings-line"></i>
+                                                </span>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Criar nome de utilizador">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Palavra-passe</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="ri-lock-password-line"></i>
+                                                </span>
+                                                <input type="password" class="form-control"
+                                                    placeholder="Introduza a palavra-passe">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Confirmar Palavra-passe</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="ri-lock-password-line"></i>
+                                                </span>
+                                                <input type="password" class="form-control"
+                                                    placeholder="Confirme a palavra-passe">
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
+
                             </div>
 
                         </div>
                     </div>
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input class="form-control" type="text">
-                        </div>
-                    </div>
+                    {{-- ACÇÕES --}}
+                    <div class="d-flex gap-2 justify-content-end mt-4">
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Avatar</label>
+                        <a href="{{ url()->previous() }}"
+                            class="btn btn-outline-secondary">
+                            <i class="ri-close-line me-1"></i>
+                            Cancelar
+                        </a>
 
-                            <div class="profile-upload">
-                                <div class="upload-img">
-                                    <img alt="" src="{{ asset('assets/img/user.jpg') }}">
-                                </div>
+                        <button type="button" class="btn btn-primary">
+                            <i class="ri-user-add-line me-1"></i>
+                            Criar Perfil do Médico
+                        </button>
 
-                                <div class="upload-input">
-                                    <input type="file" class="form-control">
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
-
-                <div class="form-group">
-                    <label>Short Biography</label>
-                    <textarea class="form-control" rows="3" cols="30"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="display-block">Status</label>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio"
-                               name="status" id="doctor_active"
-                               value="option1" checked>
-
-                        <label class="form-check-label" for="doctor_active">
-                            Active
-                        </label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio"
-                               name="status" id="doctor_inactive"
-                               value="option2">
-
-                        <label class="form-check-label" for="doctor_inactive">
-                            Inactive
-                        </label>
-                    </div>
-                </div>
-
-                <div class="m-t-20 text-center">
-                    <button class="btn btn-primary submit-btn">
-                        Create Doctor
-                    </button>
-                </div>
-
-            </form>
+            </div>
 
         </div>
     </div>

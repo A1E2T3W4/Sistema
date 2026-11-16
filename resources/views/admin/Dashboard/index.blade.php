@@ -1,272 +1,399 @@
-
 @extends('layouts.main')
 
-@section('title', 'Dashboard')
+@section('title', 'Painel de Controlo')
+
+@section('page-title', 'Painel de Controlo')
 
 @section('content')
 
-    <div class="content">
-        <div class="row">
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                <div class="dash-widget">
-                    <span class="dash-widget-bg1"><i class="fa fa-stethoscope" aria-hidden="true"></i></span>
-                    <div class="dash-widget-info text-right">
-                        <h3>98</h3>
-                        <span class="widget-title1">Doctors <i class="fa fa-check" aria-hidden="true"></i></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                <div class="dash-widget">
-                    <span class="dash-widget-bg2"><i class="fa fa-user-o"></i></span>
-                    <div class="dash-widget-info text-right">
-                        <h3>1072</h3>
-                        <span class="widget-title2">Patients <i class="fa fa-check" aria-hidden="true"></i></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                <div class="dash-widget">
-                    <span class="dash-widget-bg3"><i class="fa fa-user-md" aria-hidden="true"></i></span>
-                    <div class="dash-widget-info text-right">
-                        <h3>72</h3>
-                        <span class="widget-title3">Attend <i class="fa fa-check" aria-hidden="true"></i></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-                <div class="dash-widget">
-                    <span class="dash-widget-bg4"><i class="fa fa-heartbeat" aria-hidden="true"></i></span>
-                    <div class="dash-widget-info text-right">
-                        <h3>618</h3>
-                        <span class="widget-title4">Pending <i class="fa fa-check" aria-hidden="true"></i></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="chart-title">
-                            <h4>Patient Total</h4>
-                            <span class="float-right"><i class="fa fa-caret-up" aria-hidden="true"></i> 15% Higher than Last Month</span>
-                        </div>
-                        <canvas id="linegraph"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="chart-title">
-                            <h4>Patients In</h4>
-                            <div class="float-right">
-                                <ul class="chat-user-total">
-                                    <li><i class="fa fa-circle current-users" aria-hidden="true"></i>ICU</li>
-                                    <li><i class="fa fa-circle old-users" aria-hidden="true"></i> OPD</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <canvas id="bargraph"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-8 col-xl-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title d-inline-block">Upcoming Appointments</h4>
-                        <a href="appointments.html" class="btn btn-primary float-right">View all</a>
-                    </div>
-
-                    <div class="card-body p-0">
-                        <div class="table-responsive">
-                            <table class="table mb-0">
-                                <thead class="d-none">
-                                    <tr>
-                                        <th>Patient Name</th>
-                                        <th>Doctor Name</th>
-                                        <th>Timing</th>
-                                        <th class="text-right">Status</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    @for ($i = 0; $i < 5; $i++)
-                                        <tr>
-                                            <td style="min-width: 200px;">
-                                                <a class="avatar" href="profile.html">B</a>
-                                                <h2>
-                                                    <a href="profile.html">
-                                                        Bernardo Galaviz <span>New York, USA</span>
-                                                    </a>
-                                                </h2>
-                                            </td>
-
-                                            <td>
-                                                <h5 class="time-title p-0">Appointment With</h5>
-                                                <p>Dr. Cristina Groves</p>
-                                            </td>
-
-                                            <td>
-                                                <h5 class="time-title p-0">Timing</h5>
-                                                <p>7.00 PM</p>
-                                            </td>
-
-                                            <td class="text-right">
-                                                <a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
-                                            </td>
-                                        </tr>
-                                    @endfor
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-6 col-lg-4 col-xl-4">
-                <div class="card member-panel">
-                    <div class="card-header bg-white">
-                        <h4 class="card-title mb-0">Doctors</h4>
-                    </div>
-
-                    <div class="card-body">
-                        <ul class="contact-list">
-                            @foreach ([
-                                ['John Doe', 'MBBS, MD', 'online'],
-                                ['Richard Miles', 'MD', 'offline'],
-                                ['John Doe', 'BMBS', 'away'],
-                                ['Richard Miles', 'MS, MD', 'online'],
-                                ['John Doe', 'MBBS', 'offline'],
-                                ['Richard Miles', 'MBBS, MD', 'away']
-                            ] as $doctor)
-                                <li>
-                                    <div class="contact-cont">
-                                        <div class="float-left user-img m-r-10">
-                                            <a href="profile.html" title="{{ $doctor[0] }}">
-                                                <img src="{{ asset('assets/img/user.jpg') }}" alt="" class="w-40 rounded-circle">
-                                                <span class="status {{ $doctor[2] }}"></span>
-                                            </a>
-                                        </div>
-
-                                        <div class="contact-info">
-                                            <span class="contact-name text-ellipsis">{{ $doctor[0] }}</span>
-                                            <span class="contact-date">{{ $doctor[1] }}</span>
-                                        </div>
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-
-                    <div class="card-footer text-center bg-white">
-                        <a href="doctors.html" class="text-muted">View all Doctors</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-8 col-xl-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title d-inline-block">New Patients</h4>
-                        <a href="patients.html" class="btn btn-primary float-right">View all</a>
-                    </div>
-
-                    <div class="card-block">
-                        <div class="table-responsive">
-                            <table class="table mb-0 new-patient-table">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <img width="28" height="28" class="rounded-circle" src="{{ asset('assets/img/user.jpg') }}" alt="">
-                                            <h2>John Doe</h2>
-                                        </td>
-                                        <td>Johndoe21@gmail.com</td>
-                                        <td>+1-202-555-0125</td>
-                                        <td><button class="btn btn-primary btn-primary-one float-right">Fever</button></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <img width="28" height="28" class="rounded-circle" src="{{ asset('assets/img/user.jpg') }}" alt="">
-                                            <h2>Richard</h2>
-                                        </td>
-                                        <td>Richard123@yahoo.com</td>
-                                        <td>202-555-0127</td>
-                                        <td><button class="btn btn-primary btn-primary-two float-right">Cancer</button></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <img width="28" height="28" class="rounded-circle" src="{{ asset('assets/img/user.jpg') }}" alt="">
-                                            <h2>Villiam</h2>
-                                        </td>
-                                        <td>Richard123@yahoo.com</td>
-                                        <td>+1-202-555-0106</td>
-                                        <td><button class="btn btn-primary btn-primary-three float-right">Eye</button></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <img width="28" height="28" class="rounded-circle" src="{{ asset('assets/img/user.jpg') }}" alt="">
-                                            <h2>Martin</h2>
-                                        </td>
-                                        <td>Richard123@yahoo.com</td>
-                                        <td>776-2323 89562015</td>
-                                        <td><button class="btn btn-primary btn-primary-four float-right">Fever</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-6 col-lg-4 col-xl-4">
-                <div class="hospital-barchart">
-                    <h4 class="card-title d-inline-block">Hospital Management</h4>
-                </div>
-
-                <div class="bar-chart">
-                    <div class="legend">
-                        <div class="item"><h4>Level1</h4></div>
-                        <div class="item"><h4>Level2</h4></div>
-                        <div class="item text-right"><h4>Level3</h4></div>
-                        <div class="item text-right"><h4>Level4</h4></div>
-                    </div>
-
-                    <div class="chart clearfix">
-                        @foreach ([
-                            ['16%', 16, 'OPD Patient'],
-                            ['71%', 71, 'New Patient'],
-                            ['82%', 82, 'Laboratory Test'],
-                            ['67%', 67, 'Treatment'],
-                            ['30%', 30, 'Discharge']
-                        ] as $item)
-                            <div class="item">
-                                <div class="bar">
-                                    <span class="percent">{{ $item[0] }}</span>
-                                    <div class="item-progress" data-percent="{{ $item[1] }}">
-                                        <span class="title">{{ $item[2] }}</span>
-                                    </div>
+    <div class="app-body">
+        
+                    <!-- Row starts -->
+                    <div class="row gx-3">
+                      <div class="col-xxl-12 col-sm-12">
+                        <div class="card mb-3 bg-2">
+                          <div class="card-body">
+                            <div class="py-4 px-3 text-white">
+                              <h6>Good Morning,</h6>
+                              <h2>Dr. Patrick Kim</h2>
+                              <h5>Your schedule today.</h5>
+                              <div class="mt-4 d-flex gap-3">
+                                <div class="d-flex align-items-center">
+                                  <div class="icon-box lg bg-arctic rounded-3 me-3">
+                                    <i class="ri-surgical-mask-line fs-4"></i>
+                                  </div>
+                                  <div class="d-flex flex-column">
+                                    <h2 class="m-0 lh-1">9</h2>
+                                    <p class="m-0">Patients</p>
+                                  </div>
                                 </div>
+                                <div class="d-flex align-items-center">
+                                  <div class="icon-box lg bg-lime rounded-3 me-3">
+                                    <i class="ri-lungs-line fs-4"></i>
+                                  </div>
+                                  <div class="d-flex flex-column">
+                                    <h2 class="m-0 lh-1">3</h2>
+                                    <p class="m-0">Surgeries</p>
+                                  </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                  <div class="icon-box lg bg-peach rounded-3 me-3">
+                                    <i class="ri-walk-line fs-4"></i>
+                                  </div>
+                                  <div class="d-flex flex-column">
+                                    <h2 class="m-0 lh-1">2</h2>
+                                    <p class="m-0">Discharges</p>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                        @endforeach
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                    <!-- Row ends -->
+        
+                    <!-- Row starts -->
+                    <div class="row gx-3">
+                      <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <div class="d-flex align-items-center">
+                              <div class="p-2 border border-success rounded-circle me-3">
+                                <div class="icon-box md bg-success-subtle rounded-5">
+                                  <i class="ri-surgical-mask-line fs-4 text-success"></i>
+                                </div>
+                              </div>
+                              <div class="d-flex flex-column">
+                                <h2 class="lh-1">890</h2>
+                                <p class="m-0">New Patients</p>
+                              </div>
+                            </div>
+                            <div class="d-flex align-items-end justify-content-between mt-1">
+                              <a class="text-success" href="javascript:void(0);">
+                                <span>View All</span>
+                                <i class="ri-arrow-right-line text-success ms-1"></i>
+                              </a>
+                              <div class="text-end">
+                                <p class="mb-0 text-success">+40%</p>
+                                <span class="badge bg-success-subtle text-success small">this month</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <div class="d-flex align-items-center">
+                              <div class="p-2 border border-primary rounded-circle me-3">
+                                <div class="icon-box md bg-primary-subtle rounded-5">
+                                  <i class="ri-lungs-line fs-4 text-primary"></i>
+                                </div>
+                              </div>
+                              <div class="d-flex flex-column">
+                                <h2 class="lh-1">360</h2>
+                                <p class="m-0">OPD Patients</p>
+                              </div>
+                            </div>
+                            <div class="d-flex align-items-end justify-content-between mt-1">
+                              <a class="text-primary" href="javascript:void(0);">
+                                <span>View All</span>
+                                <i class="ri-arrow-right-line ms-1"></i>
+                              </a>
+                              <div class="text-end">
+                                <p class="mb-0 text-primary">+30%</p>
+                                <span class="badge bg-primary-subtle text-primary small">this month</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <div class="d-flex align-items-center">
+                              <div class="p-2 border border-danger rounded-circle me-3">
+                                <div class="icon-box md bg-danger-subtle rounded-5">
+                                  <i class="ri-microscope-line fs-4 text-danger"></i>
+                                </div>
+                              </div>
+                              <div class="d-flex flex-column">
+                                <h2 class="lh-1">980</h2>
+                                <p class="m-0">Lab tests</p>
+                              </div>
+                            </div>
+                            <div class="d-flex align-items-end justify-content-between mt-1">
+                              <a class="text-danger" href="javascript:void(0);">
+                                <span>View All</span>
+                                <i class="ri-arrow-right-line ms-1"></i>
+                              </a>
+                              <div class="text-end">
+                                <p class="mb-0 text-danger">+60%</p>
+                                <span class="badge bg-danger-subtle text-danger small">this month</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <div class="d-flex align-items-center">
+                              <div class="p-2 border border-warning rounded-circle me-3">
+                                <div class="icon-box md bg-warning-subtle rounded-5">
+                                  <i class="ri-money-dollar-circle-line fs-4 text-warning"></i>
+                                </div>
+                              </div>
+                              <div class="d-flex flex-column">
+                                <h2 class="lh-1">$98000</h2>
+                                <p class="m-0">Total Earnings</p>
+                              </div>
+                            </div>
+                            <div class="d-flex align-items-end justify-content-between mt-1">
+                              <a class="text-warning" href="javascript:void(0);">
+                                <span>View All</span>
+                                <i class="ri-arrow-right-line ms-1"></i>
+                              </a>
+                              <div class="text-end">
+                                <p class="mb-0 text-warning">+20%</p>
+                                <span class="badge bg-warning-subtle text-warning small">this month</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Row ends -->
+        
+                    <!-- Row starts -->
+                    <div class="row gx-3">
+                      <div class="col-xl-2 col-sm-6 col-12">
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <div class="d-flex flex-column align-items-center">
+                              <div class="icon-box md rounded-5 bg-primary mb-3">
+                                <i class="ri-verified-badge-line fs-4 lh-1"></i>
+                              </div>
+                              <h6>Appointments</h6>
+                              <h2 class="text-primary m-0">639</h2>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-2 col-sm-6 col-12">
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <div class="d-flex flex-column align-items-center">
+                              <div class="icon-box md rounded-5 bg-primary mb-3">
+                                <i class="ri-stethoscope-line fs-4 lh-1"></i>
+                              </div>
+                              <h6>Doctors</h6>
+                              <h2 class="text-primary m-0">83</h2>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-2 col-sm-6 col-12">
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <div class="d-flex flex-column align-items-center">
+                              <div class="icon-box md rounded-5 bg-primary mb-3">
+                                <i class="ri-psychotherapy-line fs-4 lh-1"></i>
+                              </div>
+                              <h6>Staff</h6>
+                              <h2 class="text-primary m-0">296</h2>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-2 col-sm-6 col-12">
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <div class="d-flex flex-column align-items-center">
+                              <div class="icon-box md rounded-5 bg-primary mb-3">
+                                <i class="ri-lungs-line fs-4 lh-1"></i>
+                              </div>
+                              <h6>Operations</h6>
+                              <h2 class="text-primary m-0">49</h2>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-2 col-sm-6 col-12">
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <div class="d-flex flex-column align-items-center">
+                              <div class="icon-box md rounded-5 bg-primary mb-3">
+                                <i class="ri-hotel-bed-line fs-4 lh-1"></i>
+                              </div>
+                              <h6>Admitted</h6>
+                              <h2 class="text-primary m-0">372</h2>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-2 col-sm-6 col-12">
+                        <div class="card mb-3">
+                          <div class="card-body">
+                            <div class="d-flex flex-column align-items-center">
+                              <div class="icon-box md rounded-5 bg-primary mb-3">
+                                <i class="ri-walk-line fs-4 lh-1"></i>
+                              </div>
+                              <h6>Discharged</h6>
+                              <h2 class="text-primary m-0">253</h2>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Row ends -->
+        
+                    <!-- Row starts -->
+                    <div class="row gx-3">
+                      <div class="col-xxl-12 col-sm-12">
+                        <div class="card mb-3">
+                          <div class="card-header">
+                            <h5 class="card-title">Available Beds</h5>
+                          </div>
+                          <div class="card-body">
+                            <div id="availableBeds"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xxl-6 col-sm-12">
+                        <div class="card mb-3">
+                          <div class="card-header">
+                            <h5 class="card-title">Patients</h5>
+                          </div>
+                          <div class="card-body">
+                            <div id="patients"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xxl-6 col-sm-12">
+                        <div class="card mb-3">
+                          <div class="card-header">
+                            <h5 class="card-title">Treatment Type</h5>
+                          </div>
+                          <div class="card-body">
+                            <div id="treatment"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xxl-6 col-sm-12">
+                        <div class="card mb-3">
+                          <div class="card-header">
+                            <h5 class="card-title">Hospital Earnings</h5>
+                          </div>
+                          <div class="card-body">
+        
+                            <!-- Row start -->
+                            <div class="row g-3">
+                              <div class="col-sm-6 col-12">
+                                <div class="border rounded-2 d-flex align-items-center flex-row p-2">
+                                  <div class="me-2">
+                                    <div id="sparkline1"></div>
+                                  </div>
+                                  <div class="m-0">
+                                    <div class="d-flex align-items-center">
+                                      <h4 class="m-0 fw-bold">$4900</h4>
+                                      <div class="ms-2 text-primary d-flex">
+                                        <small>20%</small> <i class="ri-arrow-right-up-line ms-1 fw-bold"></i>
+                                      </div>
+                                    </div>
+                                    <small>Online Consultation</small>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-6 col-12">
+                                <div class="border rounded-2 d-flex align-items-center flex-row p-2">
+                                  <div class="me-2">
+                                    <div id="sparkline2"></div>
+                                  </div>
+                                  <div class="m-0">
+                                    <div class="d-flex align-items-center">
+                                      <div class="fs-4 fw-bold">$750</div>
+                                      <div class="ms-2 text-danger d-flex">
+                                        <small>26%</small> <i class="ri-arrow-right-down-line ms-1 fw-bold"></i>
+                                      </div>
+                                    </div>
+                                    <small class="text-dark">Overall Purchases</small>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-6 col-12">
+                                <div class="border rounded-2 d-flex align-items-center flex-row p-2">
+                                  <div class="me-2">
+                                    <div id="sparkline3"></div>
+                                  </div>
+                                  <div class="m-0">
+                                    <div class="d-flex align-items-center">
+                                      <div class="fs-4 fw-bold">$560</div>
+                                      <div class="ms-2 text-primary d-flex">
+                                        <small>28%</small> <i class="ri-arrow-right-up-line ms-1 fw-bold"></i>
+                                      </div>
+                                    </div>
+                                    <small class="text-dark">Pending Invoices</small>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-6 col-12">
+                                <div class="border rounded-2 d-flex align-items-center flex-row p-2">
+                                  <div class="me-2">
+                                    <div id="sparkline4"></div>
+                                  </div>
+                                  <div class="m-0">
+                                    <div class="d-flex align-items-center">
+                                      <div class="fs-4 fw-bold">$390</div>
+                                      <div class="ms-2 text-primary d-flex">
+                                        <small>30%</small> <i class="ri-arrow-right-up-line ms-1 fw-bold"></i>
+                                      </div>
+                                    </div>
+                                    <small class="text-dark">Monthly Billing</small>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Row ends -->
+        
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xxl-3 col-sm-6">
+                        <div class="card mb-3">
+                          <div class="card-header">
+                            <h5 class="card-title">Insurance Claims</h5>
+                          </div>
+                          <div class="card-body">
+                            <div id="claims"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xxl-3 col-sm-6">
+                        <div class="card mb-3">
+                          <div class="card-header">
+                            <h5 class="card-title">Patients by Gender</h5>
+                          </div>
+                          <div class="card-body">
+                            <div class="auto-align-graph">
+                              <div id="genderAge"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Row ends -->
+        
+                  </div>
 
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('assets/vendor/apex/custom/home/available-beds.js') }}"></script>
+    <script src="{{ asset('assets/vendor/apex/custom/home/claims.js') }}"></script>
+    <script src="{{ asset('assets/vendor/apex/custom/home/earnings.js') }}"></script>
+    <script src="{{ asset('assets/vendor/apex/custom/home/gender-age.js') }}"></script>
+    <script src="{{ asset('assets/vendor/apex/custom/home/patients.js') }}"></script>
+    <script src="{{ asset('assets/vendor/apex/custom/home/treatment.js') }}"></script>
+@endpush
