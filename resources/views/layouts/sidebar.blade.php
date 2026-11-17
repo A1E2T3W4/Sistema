@@ -1,21 +1,27 @@
 <nav id="sidebar" class="sidebar-wrapper">
 
+<style>
+    
+</style>
+
     {{-- Perfil --}}
-    <div class="sidebar-profile">
-        <img src="{{ asset('assets/images/user6.png') }}"
-            class="img-shadow img-3x me-3 rounded-5"
-            alt="Utilizador">
-
-        <div class="m-0">
-            <h5 class="mb-1 profile-name text-nowrap text-truncate">
-                {{ auth()->user()->name ?? 'Administrador' }}
-            </h5>
-
-            <p class="m-0 small profile-name text-nowrap text-truncate">
-                Administrador
-            </p>
+     <a href="{{ route('profile.index') }}" wire:navigate>
+        <div class="sidebar-profile">
+        
+                <img src="{{ url('assets/images/user6.png') }}"
+                    class="img-shadow img-3x me-3 rounded-5"
+                    alt="Utilizador">
+        
+            <div class="m-0">
+                <h5 class="mb-1 profile-name text-nowrap text-truncate">
+                    {{ auth()->user()->name ?? 'Administrador' }}
+                </h5>
+                <p class="m-0 small profile-name text-nowrap text-truncate">
+                    Administrador
+                </p>
+            </div>
         </div>
-    </div>
+    </a>
 
 
     {{-- Menu --}}

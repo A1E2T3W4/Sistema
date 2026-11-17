@@ -13,11 +13,11 @@
 
       <!-- App brand starts -->
       <div class="app-brand ms-3">
-        <a href="index.html" class="d-lg-block d-none">
+        <a href="{{ route('dashboard') }}" class="d-lg-block d-none">
           <img src="{{ url('assets/images/logo.svg') }}" class="logo" alt="Medicare Admin Template">
         </a>
 
-        
+
        
       </div>
       <!-- App brand ends -->
@@ -39,24 +39,24 @@
           <div class="dropdown">
             <a class="dropdown-toggle header-icon" href="#!" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
-              <img src="assets/images/flags/1x1/fr.svg" class="header-country-flag" alt="Bootstrap Dashboards">
+              <img src="{{ url('assets/images/flags/1x1/fr.svg') }}" class="header-country-flag" alt="Bootstrap Dashboards">
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-mini">
               <div class="country-container">
-                <a href="index.html" class="py-2">
-                  <img src="assets/images/flags/1x1/us.svg" alt="Admin Panel">
+                <a href="{{ route('dashboard') }}" class="py-2">
+                  <img src="{{ url('assets/images/flags/1x1/us.svg') }}" alt="Admin Panel">
                 </a>
                 <a href="index.html" class="py-2">
-                  <img src="assets/images/flags/1x1/in.svg" alt="Admin Panels">
+                  <img src="{{ url('assets/images/flags/1x1/in.svg') }}" alt="Admin Panels">
                 </a>
                 <a href="index.html" class="py-2">
-                  <img src="assets/images/flags/1x1/br.svg" alt="Admin Dashboards">
+                  <img src="{{ url('assets/images/flags/1x1/br.svg') }}" alt="Admin Dashboards">
                 </a>
                 <a href="index.html" class="py-2">
-                  <img src="assets/images/flags/1x1/tr.svg" alt="Admin Templatess">
+                  <img src="{{ url('assets/images/flags/1x1/tr.svg') }}" alt="Admin Templatess">
                 </a>
                 <a href="index.html" class="py-2">
-                  <img src="assets/images/flags/1x1/gb.svg" alt="Google Admin">
+                  <img src="{{ url('assets/images/flags/1x1/gb.svg') }}" alt="Google Admin">
                 </a>
               </div>
             </div>
@@ -108,7 +108,7 @@
                         <div class="ps-3 ms-2 border-start">
                           <div class="d-flex align-items-center mb-2">
                             <div class="flex-shrink-0">
-                              <img src="assets/images/products/2.jpg" class="img-shadow img-3x rounded-1"
+                              <img src="{{ url('assets/images/products/2.jpg') }}" class="img-shadow img-3x rounded-1"
                                 alt="Hospital Admin Templates">
                             </div>
                             <div class="flex-grow-1 ms-3">
@@ -128,7 +128,7 @@
                         <div class="ps-3 ms-2 border-start">
                           <div class="d-flex align-items-center mb-2">
                             <div class="flex-shrink-0">
-                              <img src="assets/images/products/8.jpg" class="img-shadow img-3x rounded-1"
+                              <img src="{{ url('assets/images/products/8.jpg') }}" class="img-shadow img-3x rounded-1"
                                 alt="Hospital Admin Templates">
                             </div>
                             <div class="flex-grow-1 ms-3">
@@ -148,7 +148,7 @@
                         <div class="ps-3 ms-2 border-start">
                           <div class="d-flex align-items-center mb-2">
                             <div class="flex-shrink-0">
-                              <img src="assets/images/products/9.jpg" class="img-shadow img-3x rounded-1"
+                              <img src="{{ url('assets/images/products/9.jpg') }}" class="img-shadow img-3x rounded-1"
                                 alt="Hospital Admin Templates">
                             </div>
                             <div class="flex-grow-1 ms-3">
@@ -259,7 +259,7 @@
                 <!-- Messages list starts -->
                 <div class="p-3">
                   <div class="d-flex py-2">
-                    <img src="assets/images/user3.png" class="img-shadow img-3x me-3 rounded-5"
+                    <img src="{{ url('assets/images/user3.png') }}" class="img-shadow img-3x me-3 rounded-5"
                       alt="Hospital Admin Templates">
                     <div class="m-0">
                       <h6 class="mb-1 fw-semibold">Nick Gonzalez</h6>
@@ -270,7 +270,7 @@
                     </div>
                   </div>
                   <div class="d-flex py-2">
-                    <img src="assets/images/user1.png" class="img-shadow img-3x me-3 rounded-5"
+                    <img src="{{ url('assets/images/user1.png') }}" class="img-shadow img-3x me-3 rounded-5"
                       alt="Hospital Admin Templates">
                     <div class="m-0">
                       <h6 class="mb-1 fw-semibold">Clyde Fowler</h6>
@@ -281,7 +281,7 @@
                     </div>
                   </div>
                   <div class="d-flex py-2">
-                    <img src="assets/images/user4.png" class="img-shadow img-3x me-3 rounded-5"
+                    <img src="{{ url('assets/images/user4.png') }}" class="img-shadow img-3x me-3 rounded-5"
                       alt="Hospital Admin Templates">
                     <div class="m-0">
                       <h6 class="mb-1 fw-semibold">Sophie Michiels</h6>
