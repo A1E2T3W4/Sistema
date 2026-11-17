@@ -15,22 +15,14 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string("name");
-            $table->string("email")->unique();
             $table->string("address");
             $table->string("BI")->unique();
-            $table->string("province");
             $table->string("phone")->nullable();
-            $table->string("nationality")->default("Angolana");
-            $table->date("birth_date");
-            $table->enum("gender", ["Masculino", "Feminino"]);
-            $table->enum("status", ["Ativo", "Inativo"])->default("Ativo");
-            $table->enum("marital_status", ["Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viúvo(a)"]);
-            $table->enum("blood_type", ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]);
-            $table->text("allergies")->nullable();
-            $table->text("diseases")->nullable();
-            $table->text("medications")->nullable();
-            $table->string("foto")->nullable();
-
+            $table->date("birthDate");
+            $table->string("gender");
+            $table->string("bloodType");
+            $table->text("observation")->nullable();
+           
         });
     }
 

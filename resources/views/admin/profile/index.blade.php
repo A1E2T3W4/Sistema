@@ -2,263 +2,355 @@
 @extends('layouts.main')
 
 @section('title', 'Meu Perfil')
+@section('page-title', 'Meu Perfil')
 
 @section('content')
 
-<div class="content">
-
-    {{-- Título e botão --}}
-    <div class="row">
-        <div class="col-sm-7 col-6">
-            <h4 class="page-title">Meu Perfil</h4>
-        </div>
-
-        <div class="col-sm-5 col-6 text-right m-b-30">
-            <a href="{{ route('profile.edit') }}" class="btn btn-primary btn-rounded">
-                <i class="fa fa-pencil"></i> Editar Perfil
-            </a>
-        </div>
-    </div>
+<div class="app-body">
 
     {{-- Cabeçalho do perfil --}}
-    <div class="card-box profile-header">
-        <div class="row">
-            <div class="col-md-12">
+    <div class="row gx-3">
 
-                <div class="profile-view">
+        <div class="col-12">
 
-                    {{-- Fotografia --}}
-                    <div class="profile-img-wrap">
-                        <div class="profile-img">
-                            <a href="#">
-                                <img
-                                    class="avatar"
-                                    src="{{ asset('assets/img/user.jpg') }}"
-                                    alt="Fotografia do utilizador">
-                            </a>
+            <div class="card mb-3">
+
+                <div class="card-body">
+
+                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+
+                        <div>
+                            <h5 class="card-title mb-1">Meu Perfil</h5>
+                            <p class="text-muted mb-0">
+                                Consulte as suas informações pessoais e profissionais.
+                            </p>
                         </div>
+
+                        <a href="{{ route('profile.edit') }}" class="btn btn-primary">
+                            <i class="ri-edit-line me-1"></i>
+                            Editar Perfil
+                        </a>
+
                     </div>
 
-                    {{-- Informações principais --}}
-                    <div class="profile-basic">
-                        <div class="row">
+                    <div class="d-flex flex-wrap align-items-center gap-4">
 
-                            <div class="col-md-5">
-                                <div class="profile-info-left">
+                        {{-- Fotografia --}}
+                        <div>
+                            <img
+                                src="{{ asset('assets/images/user6.png') }}"
+                                alt="Fotografia do utilizador"
+                                width="110"
+                                height="110"
+                                class="rounded-circle object-fit-cover border"
+                            >
+                        </div>
 
-                                    <h3 class="user-name m-t-0 mb-0">
-                                        {{ auth()->user()->name ?? 'Utilizador' }}
-                                    </h3>
+                        {{-- Informações principais --}}
+                        <div class="flex-grow-1">
 
-                                    <small class="text-muted">
-                                        Utilizador do Sistema
-                                    </small>
+                            <h4 class="mb-1">
+                                {{ auth()->user()->name ?? 'Utilizador' }}
+                            </h4>
 
-                                    <div class="staff-id">
-                                        Perfil de Utilizador
+                            <p class="text-muted mb-2">
+                                <i class="ri-user-line me-1"></i>
+                                Utilizador do Sistema
+                            </p>
+
+                            <span class="badge bg-primary-subtle text-primary">
+                                Perfil de Utilizador
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <hr class="my-4">
+
+                    {{-- Informações pessoais --}}
+                    <div class="row gx-3">
+
+                        <div class="col-md-4 mb-3">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="ri-phone-line fs-4 text-primary"></i>
+                                <div>
+                                    <small class="text-muted">Telefone</small>
+                                    <h6 class="mb-0">
+                                        {{ auth()->user()->phone ?? 'Não informado' }}
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="ri-mail-line fs-4 text-primary"></i>
+                                <div>
+                                    <small class="text-muted">E-mail</small>
+                                    <h6 class="mb-0">
+                                        {{ auth()->user()->email ?? 'Não informado' }}
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="ri-calendar-line fs-4 text-primary"></i>
+                                <div>
+                                    <small class="text-muted">Data de Nascimento</small>
+                                    <h6 class="mb-0">Não informado</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="ri-map-pin-line fs-4 text-primary"></i>
+                                <div>
+                                    <small class="text-muted">Endereço</small>
+                                    <h6 class="mb-0">Não informado</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="ri-user-3-line fs-4 text-primary"></i>
+                                <div>
+                                    <small class="text-muted">Género</small>
+                                    <h6 class="mb-0">Não informado</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{-- Separadores --}}
+    <div class="row gx-3">
+
+        <div class="col-12">
+
+            <div class="card">
+
+                <div class="card-body">
+
+                    <ul class="nav nav-tabs mb-4" id="profileTabs" role="tablist">
+
+                        <li class="nav-item" role="presentation">
+                            <button
+                                class="nav-link active"
+                                id="about-tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#about-cont"
+                                type="button"
+                                role="tab">
+                                <i class="ri-information-line me-1"></i>
+                                Sobre
+                            </button>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <button
+                                class="nav-link"
+                                id="profile-tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#profile-cont"
+                                type="button"
+                                role="tab">
+                                <i class="ri-user-settings-line me-1"></i>
+                                Perfil
+                            </button>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <button
+                                class="nav-link"
+                                id="messages-tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#messages-cont"
+                                type="button"
+                                role="tab">
+                                <i class="ri-message-2-line me-1"></i>
+                                Mensagens
+                            </button>
+                        </li>
+
+                    </ul>
+
+                    <div class="tab-content">
+
+                        {{-- Sobre --}}
+                        <div
+                            class="tab-pane fade show active"
+                            id="about-cont"
+                            role="tabpanel"
+                            aria-labelledby="about-tab">
+
+                            <div class="card mb-3">
+
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">
+                                        Informações Profissionais
+                                    </h5>
+                                </div>
+
+                                <div class="card-body">
+
+                                    <div class="d-flex align-items-start gap-3">
+
+                                        <div class="avatar avatar-md bg-primary-subtle rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="ri-briefcase-line fs-4 text-primary"></i>
+                                        </div>
+
+                                        <div>
+                                            <h6 class="mb-1">Dados Profissionais</h6>
+                                            <p class="text-muted mb-0">
+                                                As informações profissionais
+                                                do utilizador serão apresentadas aqui.
+                                            </p>
+                                        </div>
+
                                     </div>
 
                                 </div>
+
                             </div>
 
-                            <div class="col-md-7">
-                                <ul class="personal-info">
+                            {{-- Experiência --}}
+                            <div class="card mb-0">
 
-                                    <li>
-                                        <span class="title">Telefone:</span>
-                                        <span class="text">
-                                            {{ auth()->user()->phone ?? 'Não informado' }}
-                                        </span>
-                                    </li>
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">
+                                        Experiência Profissional
+                                    </h5>
+                                </div>
 
-                                    <li>
-                                        <span class="title">Email:</span>
-                                        <span class="text">
-                                            {{ auth()->user()->email ?? 'Não informado' }}
-                                        </span>
-                                    </li>
+                                <div class="card-body">
 
-                                    <li>
-                                        <span class="title">Data de nascimento:</span>
-                                        <span class="text">Não informado</span>
-                                    </li>
+                                    <div class="d-flex align-items-start gap-3">
 
-                                    <li>
-                                        <span class="title">Endereço:</span>
-                                        <span class="text">Não informado</span>
-                                    </li>
+                                        <div class="avatar avatar-md bg-primary-subtle rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="ri-history-line fs-4 text-primary"></i>
+                                        </div>
 
-                                    <li>
-                                        <span class="title">Género:</span>
-                                        <span class="text">Não informado</span>
-                                    </li>
+                                        <div>
+                                            <h6 class="mb-1">Histórico Profissional</h6>
+                                            <p class="text-muted mb-0">
+                                                Nenhuma experiência profissional registada.
+                                            </p>
+                                        </div>
 
-                                </ul>
+                                    </div>
+
+                                </div>
+
                             </div>
 
                         </div>
-                    </div>
 
-                </div>
+                        {{-- Perfil --}}
+                        <div
+                            class="tab-pane fade"
+                            id="profile-cont"
+                            role="tabpanel"
+                            aria-labelledby="profile-tab">
 
-            </div>
-        </div>
-    </div>
+                            <div class="card mb-0">
 
-    {{-- Separadores do perfil --}}
-    <div class="profile-tabs">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Dados da Conta</h5>
+                                </div>
 
-        <ul class="nav nav-tabs nav-tabs-bottom">
+                                <div class="card-body">
 
-            <li class="nav-item">
-                <a class="nav-link active"
-                   href="#about-cont"
-                   data-toggle="tab">
-                    Sobre
-                </a>
-            </li>
+                                    <div class="row gx-3">
 
-            <li class="nav-item">
-                <a class="nav-link"
-                   href="#profile-cont"
-                   data-toggle="tab">
-                    Perfil
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link"
-                   href="#messages-cont"
-                   data-toggle="tab">
-                    Mensagens
-                </a>
-            </li>
-
-        </ul>
-
-        <div class="tab-content">
-
-            {{-- Separador Sobre --}}
-            <div class="tab-pane show active" id="about-cont">
-
-                <div class="row">
-                    <div class="col-md-12">
-
-                        {{-- Informações profissionais --}}
-                        <div class="card-box">
-                            <h3 class="card-title">
-                                Informações Profissionais
-                            </h3>
-
-                            <div class="experience-box">
-                                <ul class="experience-list">
-                                    <li>
-                                        <div class="experience-user">
-                                            <div class="before-circle"></div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Nome Completo</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                value="{{ auth()->user()->name ?? '' }}"
+                                                readonly>
                                         </div>
 
-                                        <div class="experience-content">
-                                            <div class="timeline-content">
-                                                <span class="name">
-                                                    Dados profissionais
-                                                </span>
-
-                                                <div>
-                                                    As informações profissionais
-                                                    do utilizador serão apresentadas aqui.
-                                                </div>
-                                            </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">E-mail</label>
+                                            <input
+                                                type="email"
+                                                class="form-control"
+                                                value="{{ auth()->user()->email ?? '' }}"
+                                                readonly>
                                         </div>
-                                    </li>
-                                </ul>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Telefone</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                value="{{ auth()->user()->phone ?? '' }}"
+                                                readonly>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
                             </div>
+
                         </div>
 
-                        {{-- Experiência --}}
-                        <div class="card-box mb-0">
-                            <h3 class="card-title">
-                                Experiência Profissional
-                            </h3>
+                        {{-- Mensagens --}}
+                        <div
+                            class="tab-pane fade"
+                            id="messages-cont"
+                            role="tabpanel"
+                            aria-labelledby="messages-tab">
 
-                            <div class="experience-box">
-                                <ul class="experience-list">
-                                    <li>
-                                        <div class="experience-user">
-                                            <div class="before-circle"></div>
-                                        </div>
+                            <div class="card mb-0">
 
-                                        <div class="experience-content">
-                                            <div class="timeline-content">
-                                                <span class="name">
-                                                    Histórico profissional
-                                                </span>
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Mensagens</h5>
+                                </div>
 
-                                                <div>
-                                                    Nenhuma experiência profissional
-                                                    registada.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                <div class="card-body">
+
+                                    <div class="text-center py-4">
+
+                                        <i class="ri-message-3-line fs-1 text-muted"></i>
+
+                                        <h6 class="mt-3">Nenhuma mensagem</h6>
+
+                                        <p class="text-muted mb-0">
+                                            As mensagens do utilizador serão apresentadas nesta área.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
                             </div>
+
                         </div>
 
                     </div>
-                </div>
 
-            </div>
-
-            {{-- Separador Perfil --}}
-            <div class="tab-pane" id="profile-cont">
-
-                <div class="card-box">
-                    <h3 class="card-title">
-                        Dados da Conta
-                    </h3>
-
-                    <div class="row">
-                        <div class="col-md-6">
-
-                            <div class="form-group">
-                                <label>Nome completo</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    value="{{ auth()->user()->name ?? '' }}"
-                                    readonly>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input
-                                    type="email"
-                                    class="form-control"
-                                    value="{{ auth()->user()->email ?? '' }}"
-                                    readonly>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            {{-- Separador Mensagens --}}
-            <div class="tab-pane" id="messages-cont">
-
-                <div class="card-box">
-                    <h3 class="card-title">Mensagens</h3>
-
-                    <p>
-                        As mensagens do utilizador serão apresentadas
-                        nesta área.
-                    </p>
                 </div>
 
             </div>
 
         </div>
+
     </div>
 
 </div>

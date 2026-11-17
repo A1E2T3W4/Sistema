@@ -48,9 +48,9 @@
                                 <label class="form-label">Data de Nascimento</label>
                                 <input
                                     type="date"
-                                    name="birth_date"
+                                    name="birthDate"
                                     class="form-control"
-                                    value="{{ old('birth_date', $patient->birth_date ? \Illuminate\Support\Carbon::parse($patient->birth_date)->format('Y-m-d') : '') }}"
+                                    value="{{ old('birthDate', $patient->birthDate ? \Illuminate\Support\Carbon::parse($patient->birthDate)->format('Y-m-d') : '') }}"
                                 >
                             </div>
                         </div>
@@ -103,12 +103,12 @@
                         <div class="col-xxl-4 col-lg-4 col-sm-6">
                             <div class="mb-3">
                                 <label class="form-label">Grupo Sanguíneo</label>
-                                <select name="blood_type" class="form-select">
+                                <select name="bloodType" class="form-select">
                                     <option value="">Selecionar grupo sanguíneo</option>
 
                                     @foreach(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'] as $grupo)
                                         <option value="{{ $grupo }}"
-                                            {{ old('blood_type', $patient->blood_type) == $grupo ? 'selected' : '' }}>
+                                            {{ old('bloodType', $patient->bloodType) == $grupo ? 'selected' : '' }}>
                                             {{ $grupo }}
                                         </option>
                                     @endforeach
@@ -130,31 +130,20 @@
                             </div>
                         </div>
 
-                        {{-- Alergias --}}
+                        {{-- Observações --}}
                         <div class="col-sm-12">
                             <div class="mb-3">
-                                <label class="form-label">Alergias</label>
+                                <label class="form-label">Observações</label>
                                 <textarea
-                                    name="allergies"
+                                    name="observation"
                                     class="form-control"
                                     rows="3"
-                                    placeholder="Descreva as alergias do paciente"
-                                >{{ old('allergies', $patient->allergies) }}</textarea>
+                                    placeholder="Descreva as observações do paciente"
+                                >{{ old('observation', $patient->observation) }}</textarea>
                             </div>
                         </div>
 
-                        {{-- Doenças --}}
-                        <div class="col-sm-12">
-                            <div class="mb-3">
-                                <label class="form-label">Doenças</label>
-                                <textarea
-                                    name="diseases"
-                                    class="form-control"
-                                    rows="3"
-                                    placeholder="Doenças conhecidas do paciente"
-                                >{{ old('diseases', $patient->diseases) }}</textarea>
-                            </div>
-                        </div>
+                       
 
                         {{-- Botões --}}
                         <div class="col-sm-12">

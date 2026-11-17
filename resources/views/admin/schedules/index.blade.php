@@ -2,136 +2,221 @@
 @extends('layouts.main')
 
 @section('title', 'Horário dos Médicos')
+@section('page-title', 'Horário dos Médicos')
 
 @section('content')
 
-<div class="content">
+<div class="app-body">
 
     {{-- Título e botão de adicionar --}}
-    <div class="row">
-        <div class="col-sm-4 col-3">
-            <h4 class="page-title">Horário dos Médicos</h4>
-        </div>
+    <div class="row gx-3">
+        <div class="col-12">
 
-        <div class="col-sm-8 col-9 text-right m-b-20">
-            <a href="{{ url('/schedules/create') }}"
-               class="btn btn-primary btn-rounded float-right">
-                <i class="fa fa-plus"></i> Adicionar Horário
-            </a>
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3">
+
+                <div>
+                    <h5 class="mb-1">Horário dos Médicos</h5>
+                    <p class="text-muted mb-0">
+                        Consulte e faça a gestão dos horários e da disponibilidade dos médicos.
+                    </p>
+                </div>
+
+                <a href="{{ url('/schedules/create') }}" class="btn btn-primary">
+                    <i class="ri-add-line me-1"></i>
+                    Adicionar Horário
+                </a>
+
+            </div>
+
         </div>
     </div>
 
     {{-- Tabela de horários --}}
-    <div class="row">
-        <div class="col-md-12">
-            <div class="table-responsive">
+    <div class="row gx-3">
+        <div class="col-12">
 
-                <table class="table table-border table-striped custom-table mb-0">
+            <div class="card">
 
-                    <thead>
-                        <tr>
-                            <th>Nome do Médico</th>
-                            <th>Departamento</th>
-                            <th>Dias Disponíveis</th>
-                            <th>Horário Disponível</th>
-                            <th>Estado</th>
-                            <th class="text-right">Acção</th>
-                        </tr>
-                    </thead>
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Lista de Horários</h5>
+                </div>
 
-                    <tbody>
+                <div class="card-body">
 
-                        {{-- Horário 1 --}}
-                        <tr>
-                            <td>
-                                <img width="28"
-                                     height="28"
-                                     src="{{ asset('assets/img/user.jpg') }}"
-                                     class="rounded-circle m-r-5"
-                                     alt="">
-                                Henry Daniels
-                            </td>
+                    <div class="table-responsive">
 
-                            <td>Cardiologia</td>
+                        <table class="table table-hover align-middle">
 
-                            <td>Domingo, Segunda-feira, Terça-feira</td>
+                            <thead>
+                                <tr>
+                                    <th>Médico</th>
+                                    <th>Departamento</th>
+                                    <th>Dias Disponíveis</th>
+                                    <th>Horário Disponível</th>
+                                    <th>Estado</th>
+                                    <th class="text-end">Acção</th>
+                                </tr>
+                            </thead>
 
-                            <td>10:00 - 19:00</td>
+                            <tbody>
 
-                            <td>
-                                <span class="custom-badge status-green">
-                                    Activo
-                                </span>
-                            </td>
+                                {{-- Horário 1 --}}
+                                <tr>
 
-                            <td class="text-right">
-                                <div class="dropdown dropdown-action">
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
 
-                                    <a href="#"
-                                       class="action-icon dropdown-toggle"
-                                       data-toggle="dropdown"
-                                       aria-expanded="false">
-                                        <i class="fa fa-ellipsis-v"></i>
-                                    </a>
+                                            <img
+                                                src="{{ asset('assets/images/user6.png') }}"
+                                                width="38"
+                                                height="38"
+                                                class="rounded-circle object-fit-cover"
+                                                alt="Fotografia do médico"
+                                            >
 
-                                    <div class="dropdown-menu dropdown-menu-right">
+                                            <div>
+                                                <h6 class="mb-0">Henry Daniels</h6>
+                                                <small class="text-muted">Médico</small>
+                                            </div>
 
-                                        <a class="dropdown-item"
-                                           href="{{ url('/schedules/edit') }}">
-                                            <i class="fa fa-pencil m-r-5"></i>
-                                            Editar
-                                        </a>
+                                        </div>
+                                    </td>
 
-                                        <a class="dropdown-item"
-                                           href="#"
-                                           data-toggle="modal"
-                                           data-target="#delete_schedule">
-                                            <i class="fa fa-trash-o m-r-5"></i>
-                                            Eliminar
-                                        </a>
+                                    <td>Cardiologia</td>
 
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                                    <td>
+                                        <span class="text-muted">
+                                            Domingo, Segunda-feira, Terça-feira
+                                        </span>
+                                    </td>
 
-                    </tbody>
+                                    <td>
+                                        <i class="ri-time-line text-primary me-1"></i>
+                                        10:00 - 19:00
+                                    </td>
 
-                </table>
+                                    <td>
+                                        <span class="badge bg-success-subtle text-success">
+                                            Activo
+                                        </span>
+                                    </td>
+
+                                    <td class="text-end">
+
+                                        <div class="dropdown">
+
+                                            <button
+                                                class="btn btn-light btn-sm"
+                                                type="button"
+                                                data-bs-toggle="dropdown"
+                                                aria-expanded="false"
+                                                aria-label="Acções do horário">
+
+                                                <i class="ri-more-2-fill"></i>
+
+                                            </button>
+
+                                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                                <li>
+                                                    <a
+                                                        class="dropdown-item"
+                                                        href="{{ url('/schedules/edit') }}">
+
+                                                        <i class="ri-edit-line me-2"></i>
+                                                        Editar
+
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <button
+                                                        class="dropdown-item text-danger"
+                                                        type="button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#delete_schedule">
+
+                                                        <i class="ri-delete-bin-line me-2"></i>
+                                                        Eliminar
+
+                                                    </button>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                                {{-- Quando não existirem horários, apresentar esta linha --}}
+                                {{-- 
+                                <tr>
+                                    <td colspan="6" class="text-center py-4">
+                                        <i class="ri-calendar-close-line fs-1 text-muted"></i>
+                                        <p class="text-muted mb-0 mt-2">
+                                            Nenhum horário registado.
+                                        </p>
+                                    </td>
+                                </tr>
+                                --}}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
 
             </div>
+
         </div>
     </div>
 
 </div>
 
 {{-- Modal de confirmação de eliminação --}}
-<div id="delete_schedule"
-     class="modal fade delete-modal"
-     role="dialog">
+<div
+    class="modal fade"
+    id="delete_schedule"
+    tabindex="-1"
+    aria-labelledby="deleteScheduleLabel"
+    aria-hidden="true">
 
     <div class="modal-dialog modal-dialog-centered">
 
         <div class="modal-content">
 
-            <div class="modal-body text-center">
+            <div class="modal-body text-center p-4">
 
-                <img src="{{ asset('assets/img/sent.png') }}"
-                     alt=""
-                     width="50"
-                     height="46">
+                <div class="mb-3">
+                    <div class="avatar avatar-xl bg-danger-subtle rounded-circle d-inline-flex align-items-center justify-content-center">
+                        <i class="ri-delete-bin-line fs-2 text-danger"></i>
+                    </div>
+                </div>
 
-                <h3>Tem a certeza de que deseja eliminar este horário?</h3>
+                <h5 id="deleteScheduleLabel" class="mb-2">
+                    Eliminar Horário?
+                </h5>
 
-                <div class="m-t-20">
+                <p class="text-muted mb-4">
+                    Tem a certeza de que deseja eliminar este horário?
+                    Esta acção não poderá ser desfeita.
+                </p>
 
-                    <a href="#"
-                       class="btn btn-white"
-                       data-dismiss="modal">
-                        Fechar
-                    </a>
+                <div class="d-flex justify-content-center gap-2">
+
+                    <button
+                        type="button"
+                        class="btn btn-light"
+                        data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
 
                     <button type="button" class="btn btn-danger">
+                        <i class="ri-delete-bin-line me-1"></i>
                         Eliminar
                     </button>
 
@@ -142,6 +227,7 @@
         </div>
 
     </div>
+
 </div>
 
 @endsection

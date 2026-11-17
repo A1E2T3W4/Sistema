@@ -10,13 +10,13 @@ class Patient extends Model
 
     protected $fillable = [
         'name',
-        'birth_date',
+        'birthDate',
         'gender',
         'phone',
         'address',
         'BI',
-        'blood_type',
-        'allergies',
-        'diseases',
+        'bloodType',
+        'observation',
+        
     ];
 }

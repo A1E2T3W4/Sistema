@@ -3,81 +3,125 @@
 
 @section('title', 'Folha de Presenças')
 
+@section('page-title', 'Folha de Presenças')
+
 @section('content')
 
-<div class="content">
-
-    {{-- Título --}}
-    <div class="row">
-        <div class="col-sm-12">
-            <h4 class="page-title">Folha de Presenças</h4>
-        </div>
-    </div>
+<div class="app-body">
 
     {{-- Filtros --}}
-    <div class="row filter-row">
+    <div class="card mb-3">
 
-        <div class="col-sm-6 col-md-3">
-            <div class="form-group form-focus">
-                <label class="focus-label">Nome do Funcionário</label>
-                <input type="text" class="form-control floating">
-            </div>
+        <div class="card-header">
+            <h5 class="card-title mb-1">
+                <i class="ri-filter-3-line me-2"></i>
+                Filtrar Presenças
+            </h5>
+
+            <p class="text-muted mb-0">
+                Pesquise as presenças dos funcionários por mês e ano.
+            </p>
         </div>
 
-        <div class="col-sm-6 col-md-3">
-            <div class="form-group form-focus select-focus">
-                <label class="focus-label">Seleccionar Mês</label>
-                <select class="select floating">
-                    <option value="">-</option>
-                    <option>Janeiro</option>
-                    <option>Fevereiro</option>
-                    <option>Março</option>
-                    <option>Abril</option>
-                    <option>Maio</option>
-                    <option>Junho</option>
-                    <option>Julho</option>
-                    <option>Agosto</option>
-                    <option>Setembro</option>
-                    <option>Outubro</option>
-                    <option>Novembro</option>
-                    <option>Dezembro</option>
-                </select>
-            </div>
-        </div>
+        <div class="card-body">
 
-        <div class="col-sm-6 col-md-3">
-            <div class="form-group form-focus select-focus">
-                <label class="focus-label">Seleccionar Ano</label>
-                <select class="select floating">
-                    <option value="">-</option>
-                    <option>2026</option>
-                    <option>2025</option>
-                    <option>2024</option>
-                    <option>2023</option>
-                    <option>2022</option>
-                </select>
-            </div>
-        </div>
+            <form action="#" method="GET">
 
-        <div class="col-sm-6 col-md-3">
-            <a href="#" class="btn btn-success btn-block">
-                Pesquisar
-            </a>
-        </div>
+                <div class="row gx-3 align-items-end">
 
+                    {{-- Nome do Funcionário --}}
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">
+                            Nome do Funcionário
+                        </label>
+
+                        <input
+                            type="text"
+                            name="employee"
+                            class="form-control"
+                            placeholder="Pesquisar funcionário..."
+                        >
+                    </div>
+
+                    {{-- Mês --}}
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">
+                            Seleccionar Mês
+                        </label>
+
+                        <select name="month" class="form-select">
+                            <option value="">Todos os meses</option>
+                            <option value="1">Janeiro</option>
+                            <option value="2">Fevereiro</option>
+                            <option value="3">Março</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Maio</option>
+                            <option value="6">Junho</option>
+                            <option value="7">Julho</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Setembro</option>
+                            <option value="10">Outubro</option>
+                            <option value="11">Novembro</option>
+                            <option value="12">Dezembro</option>
+                        </select>
+                    </div>
+
+                    {{-- Ano --}}
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">
+                            Seleccionar Ano
+                        </label>
+
+                        <select name="year" class="form-select">
+                            <option value="">Seleccionar ano</option>
+                            <option value="2026" selected>2026</option>
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                        </select>
+                    </div>
+
+                    {{-- Botão Pesquisar --}}
+                    <div class="col-md-2 mb-3">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="ri-search-line me-1"></i>
+                            Pesquisar
+                        </button>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
     </div>
 
     {{-- Tabela de Presenças --}}
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="card mb-3">
+
+        <div class="card-header">
+            <h5 class="card-title mb-1">
+                <i class="ri-calendar-check-line me-2"></i>
+                Registo de Presenças
+            </h5>
+
+            <p class="text-muted mb-0">
+                Consulte o registo diário de presença dos funcionários.
+            </p>
+        </div>
+
+        <div class="card-body">
 
             <div class="table-responsive">
 
-                <table class="table table-striped custom-table mb-0">
+                <table class="table table-bordered table-hover align-middle text-center mb-0">
 
-                    <thead>
+                    <thead class="table-light">
                         <tr>
-                            <th>Funcionário</th>
+                            <th class="text-start text-nowrap">
+                                Funcionário
+                            </th>
 
                             @for ($dia = 1; $dia <= 31; $dia++)
                                 <th>{{ $dia }}</th>
@@ -102,8 +146,12 @@
                         @endphp
 
                         @foreach ($funcionarios as $funcionario)
+
                             <tr>
-                                <td>{{ $funcionario }}</td>
+
+                                <td class="text-start text-nowrap fw-semibold">
+                                    {{ $funcionario }}
+                                </td>
 
                                 @for ($dia = 1; $dia <= 31; $dia++)
 
@@ -113,16 +161,21 @@
                                     @endphp
 
                                     <td>
+
                                         @if ($presente)
-                                            <i class="fa fa-check text-success"></i>
+                                            <i class="ri-check-line text-success fs-5"
+                                               title="Presente"></i>
                                         @else
-                                            <i class="fa fa-close text-danger"></i>
+                                            <i class="ri-close-line text-danger fs-5"
+                                               title="Ausente"></i>
                                         @endif
+
                                     </td>
 
                                 @endfor
 
                             </tr>
+
                         @endforeach
 
                     </tbody>
@@ -131,20 +184,22 @@
 
             </div>
 
+            {{-- Legenda --}}
+            <div class="d-flex flex-wrap align-items-center gap-4 mt-3">
+
+                <div class="d-flex align-items-center gap-2">
+                    <i class="ri-check-line text-success fs-5"></i>
+                    <span class="text-muted">Presente</span>
+                </div>
+
+                <div class="d-flex align-items-center gap-2">
+                    <i class="ri-close-line text-danger fs-5"></i>
+                    <span class="text-muted">Ausente</span>
+                </div>
+
+            </div>
+
         </div>
-    </div>
-
-    {{-- Legenda --}}
-    <div class="mt-3">
-        <span class="mr-3">
-            <i class="fa fa-check text-success"></i>
-            Presente
-        </span>
-
-        <span class="mr-3">
-            <i class="fa fa-close text-danger"></i>
-            Ausente
-        </span>
     </div>
 
 </div>

@@ -3,152 +3,169 @@
 
 @section('title', 'Editar Horário')
 
+@section('page-title', 'Editar Horário')
+
 @section('content')
 
-<div class="content">
+<div class="app-body">
 
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-            <h4 class="page-title">Editar Horário</h4>
-        </div>
-    </div>
+    <div class="row gx-3">
+        <div class="col-12">
 
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
 
-            <form>
-
-                {{-- Médico e dias disponíveis --}}
-                <div class="row">
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Nome do Médico</label>
-
-                            <select class="select">
-                                <option>Selecionar</option>
-                                <option selected>Cristina Groves</option>
-                                <option>Marie Wells</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Dias Disponíveis</label>
-
-                            <select class="select" multiple>
-                                <option>Selecionar Dias</option>
-                                <option selected>Domingo</option>
-                                <option selected>Segunda-feira</option>
-                                <option>Terça-feira</option>
-                                <option>Quarta-feira</option>
-                                <option>Quinta-feira</option>
-                                <option>Sexta-feira</option>
-                                <option>Sábado</option>
-                            </select>
-                        </div>
-                    </div>
-
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <i class="ri-calendar-schedule-line me-2"></i>
+                        Informações do Horário
+                    </h5>
                 </div>
 
-                {{-- Horários --}}
-                <div class="row">
+                <div class="card-body">
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Hora de Início</label>
+                    <form action="#" method="POST">
+                        @csrf
+                        @method('PUT')
 
-                            <div class="time-icon">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="datetimepicker3"
-                                    value="08:00 AM"
-                                >
+                        <div class="row gx-3">
+
+                            {{-- Médico --}}
+                            <div class="col-md-6 mb-3">
+                                <label for="doctor" class="form-label">
+                                    Nome do Médico
+                                </label>
+
+                                <select name="doctor" id="doctor" class="form-select">
+                                    <option value="">Seleccione o Médico</option>
+                                    <option value="1">Cristina Groves</option>
+                                    <option value="2">Marie Wells</option>
+                                </select>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Hora de Término</label>
+                            {{-- Dias disponíveis --}}
+                            <div class="col-md-6 mb-3">
+                                <label for="available_days" class="form-label">
+                                    Dias Disponíveis
+                                </label>
 
-                            <div class="time-icon">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="datetimepicker4"
-                                    value="05:00 PM"
-                                >
+                                <select name="available_days[]"
+                                        id="available_days"
+                                        class="form-select"
+                                        multiple
+                                        size="4">
+
+                                    <option value="domingo" selected>Domingo</option>
+                                    <option value="segunda" selected>Segunda-feira</option>
+                                    <option value="terca">Terça-feira</option>
+                                    <option value="quarta">Quarta-feira</option>
+                                    <option value="quinta">Quinta-feira</option>
+                                    <option value="sexta">Sexta-feira</option>
+                                    <option value="sabado">Sábado</option>
+
+                                </select>
+
+                                <small class="text-muted">
+                                    Pode seleccionar vários dias.
+                                </small>
                             </div>
+
+                            {{-- Hora de início --}}
+                            <div class="col-md-6 mb-3">
+                                <label for="start_time" class="form-label">
+                                    Hora de Início
+                                </label>
+
+                                <input type="time"
+                                       name="start_time"
+                                       id="start_time"
+                                       class="form-control"
+                                       value="08:00">
+                            </div>
+
+                            {{-- Hora de término --}}
+                            <div class="col-md-6 mb-3">
+                                <label for="end_time" class="form-label">
+                                    Hora de Término
+                                </label>
+
+                                <input type="time"
+                                       name="end_time"
+                                       id="end_time"
+                                       class="form-control"
+                                       value="17:00">
+                            </div>
+
+                            {{-- Mensagem --}}
+                            <div class="col-12 mb-3">
+                                <label for="message" class="form-label">
+                                    Observações
+                                </label>
+
+                                <textarea name="message"
+                                          id="message"
+                                          rows="4"
+                                          class="form-control"
+                                          placeholder="Escreva alguma observação sobre o horário...">Horário de atendimento do médico.</textarea>
+                            </div>
+
+                            {{-- Estado --}}
+                            <div class="col-12 mb-4">
+
+                                <label class="form-label d-block">
+                                    Estado do Horário
+                                </label>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input"
+                                           type="radio"
+                                           name="status"
+                                           id="schedule_active"
+                                           value="activo"
+                                           checked>
+
+                                    <label class="form-check-label"
+                                           for="schedule_active">
+                                        Activo
+                                    </label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input"
+                                           type="radio"
+                                           name="status"
+                                           id="schedule_inactive"
+                                           value="inactivo">
+
+                                    <label class="form-check-label"
+                                           for="schedule_inactive">
+                                        Inactivo
+                                    </label>
+                                </div>
+
+                            </div>
+
                         </div>
-                    </div>
+
+                        {{-- Botões --}}
+                        <div class="d-flex justify-content-end gap-2 border-top pt-3">
+
+                            <a href="{{ route('schedules.index') }}"
+                               class="btn btn-outline-secondary">
+                                <i class="ri-close-line me-1"></i>
+                                Cancelar
+                            </a>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="ri-save-line me-1"></i>
+                                Guardar Alterações
+                            </button>
+
+                        </div>
+
+                    </form>
 
                 </div>
-
-                {{-- Mensagem --}}
-                <div class="form-group">
-                    <label>Mensagem</label>
-
-                    <textarea
-                        cols="30"
-                        rows="4"
-                        class="form-control"
-                    >Horário de atendimento do médico.</textarea>
-                </div>
-
-                {{-- Estado do horário --}}
-                <div class="form-group">
-
-                    <label class="display-block">Estado do Horário</label>
-
-                    <div class="form-check form-check-inline">
-                        <input
-                            class="form-check-input"
-                            type="radio"
-                            name="status"
-                            id="product_active"
-                            value="active"
-                            checked
-                        >
-
-                        <label class="form-check-label" for="product_active">
-                            Ativo
-                        </label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input
-                            class="form-check-input"
-                            type="radio"
-                            name="status"
-                            id="product_inactive"
-                            value="inactive"
-                        >
-
-                        <label class="form-check-label" for="product_inactive">
-                            Inativo
-                        </label>
-                    </div>
-
-                </div>
-
-                {{-- Botões --}}
-                <div class="m-t-20 text-center">
-
-                    <a href="{{ route('schedules.index') }}"
-                       class="btn btn-secondary submit-btn">
-                        Cancelar
-                    </a>
-
-                    <button type="submit" class="btn btn-primary submit-btn">
-                        Guardar Alterações
-                    </button>
-
-                </div>
-
-            </form>
+            </div>
 
         </div>
     </div>

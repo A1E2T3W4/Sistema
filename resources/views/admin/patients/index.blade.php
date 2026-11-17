@@ -1,4 +1,3 @@
-
 @extends('layouts.main')
 
 @section('title', 'Lista de Pacientes')
@@ -28,15 +27,15 @@
 
                 {{-- Mensagem de sucesso --}}
                 @if(session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
 
-                        {{ session('success') }}
+                    {{ session('success') }}
 
-                        <button type="button" class="btn-close"
-                            data-bs-dismiss="alert" aria-label="Fechar">
-                        </button>
+                    <button type="button" class="btn-close"
+                        data-bs-dismiss="alert" aria-label="Fechar">
+                    </button>
 
-                    </div>
+                </div>
                 @endif
 
                 {{-- Tabela de pacientes --}}
@@ -50,7 +49,6 @@
                                 <th>Idade</th>
                                 <th>Endereço</th>
                                 <th>Telefone</th>
-                                <th>Email</th>
                                 <th class="text-end">Acções</th>
                             </tr>
                         </thead>
@@ -59,92 +57,81 @@
 
                             @forelse($patients as $patient)
 
-                                <tr>
+                            <tr>
 
-                                    {{-- Nome e fotografia --}}
-                                    <td>
-                                        <div class="d-flex align-items-center">
+                                {{-- Nome --}}
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span>{{ $patient->name }}</span>
+                                    </div>
+                                </td>
 
-                                            <img
-                                                src="{{ $patient->foto
-                                                    ? asset('storage/'.$patient->foto)
-                                                    : asset('assets/img/user.jpg') }}"
-                                                class="img-shadow img-2x rounded-5 me-2"
-                                                alt="Foto do paciente">
+                                {{-- Idade calculada com Carbon --}}
+                                {{-- Idade --}}
+                                <td>
+                                    @if($patient->birthDate)
+                                    {{ \Carbon\Carbon::parse($patient->birthDate)->age }} anos
+                                    @else
+                                    Não informado
+                                    @endif
+                                </td>
 
-                                            <span>{{ $patient->name }}</span>
+                                {{-- Endereço --}}
+                                <td>
+                                    {{ $patient->address ?? 'Não informado' }}
+                                </td>
 
-                                        </div>
-                                    </td>
+                                {{-- Telefone --}}
+                                <td>
+                                    {{ $patient->phone ?? 'Não informado' }}
+                                </td>
 
-                                    {{-- Idade --}}
-                                    <td>
-                                        {{ $patient->birth_date
-                                            ? \Carbon\Carbon::parse($patient->birth_date)->age
-                                            : 'Não informado' }}
-                                    </td>
+                                {{-- Acções --}}
+                                <td class="text-end">
 
-                                    {{-- Endereço --}}
-                                    <td>
-                                        {{ $patient->address ?? 'Não informado' }}
-                                    </td>
+                                    <div class="d-inline-flex gap-1">
 
-                                    {{-- Telefone --}}
-                                    <td>
-                                        {{ $patient->phone ?? 'Não informado' }}
-                                    </td>
+                                        {{-- Editar --}}
+                                        <a href="{{ route('patients.edit', $patient->id) }}"
+                                            class="btn btn-outline-success btn-sm"
+                                            title="Editar paciente">
 
-                                    {{-- Email --}}
-                                    <td>
-                                        {{ $patient->email ?? 'Não informado' }}
-                                    </td>
+                                            <i class="ri-edit-box-line"></i>
 
-                                    {{-- Acções --}}
-                                    <td class="text-end">
+                                        </a>
 
-                                        <div class="d-inline-flex gap-1">
+                                        {{-- Eliminar --}}
+                                        <form
+                                            action="{{ route('patients.destroy', $patient->id) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('Tem a certeza de que deseja eliminar este paciente?')">
 
-                                            {{-- Editar --}}
-                                            <a href="{{ route('patients.edit', $patient->id) }}"
-                                                class="btn btn-outline-success btn-sm"
-                                                title="Editar paciente">
+                                            @csrf
+                                            @method('DELETE')
 
-                                                <i class="ri-edit-box-line"></i>
+                                            <button type="submit"
+                                                class="btn btn-outline-danger btn-sm"
+                                                title="Eliminar paciente">
 
-                                            </a>
+                                                <i class="ri-delete-bin-line"></i>
 
-                                            {{-- Eliminar --}}
-                                            <form
-                                                action="{{ route('patients.destroy', $patient->id) }}"
-                                                method="POST"
-                                                onsubmit="return confirm('Tem a certeza de que deseja eliminar este paciente?')">
+                                            </button>
 
-                                                @csrf
-                                                @method('DELETE')
+                                        </form>
 
-                                                <button type="submit"
-                                                    class="btn btn-outline-danger btn-sm"
-                                                    title="Eliminar paciente">
+                                    </div>
 
-                                                    <i class="ri-delete-bin-line"></i>
+                                </td>
 
-                                                </button>
-
-                                            </form>
-
-                                        </div>
-
-                                    </td>
-
-                                </tr>
+                            </tr>
 
                             @empty
 
-                                <tr>
-                                    <td colspan="6" class="text-center py-4">
-                                        Nenhum paciente registado.
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td colspan="5" class="text-center py-4">
+                                    Nenhum paciente registado.
+                                </td>
+                            </tr>
 
                             @endforelse
 

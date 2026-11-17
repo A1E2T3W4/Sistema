@@ -27,14 +27,14 @@ class PatientController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'birth_date' => 'nullable|date',
+            'birthDate' => 'nullable|date',
             'gender' => 'nullable|string|max:20',
             'phone' => 'nullable|string|max:30',
             'address' => 'nullable|string',
             'BI' => 'nullable|string|max:20|unique:patients,BI',
-            'blood_type' => 'nullable|string|max:5',
-            'allergies' => 'nullable|string',
-            'diseases' => 'nullable|string',
+            'bloodType' => 'nullable|string|max:5',
+            'observation' => 'nullable|string',
+            
         ]);
 
         Patient::create($validated);
@@ -55,14 +55,14 @@ class PatientController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'birth_date' => 'nullable|date',
+            'birthDate' => 'nullable|date',
             'gender' => 'nullable|string|max:20',
             'phone' => 'nullable|string|max:30',
             'address' => 'nullable|string',
             'BI' => 'nullable|string|max:20|unique:patients,BI,' . $patient->id,
-            'blood_type' => 'nullable|string|max:5',
-            'allergies' => 'nullable|string',
-            'diseases' => 'nullable|string',
+            'bloodType' => 'nullable|string|max:5',
+            'obsevation' => 'nullable|string',
+            
         ]);
 
         $patient->update($validated);

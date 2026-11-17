@@ -63,9 +63,9 @@
                             <label class="form-label">Data de Nascimento</label>
                             <input
                                 type="date"
-                                name="birth_date"
+                                name="birthDate"
                                 class="form-control"
-                                value="{{ old('birth_date') }}"
+                                value="{{ old('birthDate') }}"
                             >
                         </div>
 
@@ -96,37 +96,27 @@
                         {{-- Grupo Sanguíneo --}}
                         <div class="col-md-12 mb-3">
                             <label class="form-label">Grupo Sanguíneo</label>
-                            <select name="blood_type" class="form-select">
+                            <select name="bloodType" class="form-select">
                                 <option value="">Selecionar grupo sanguíneo</option>
                                 @foreach(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'] as $grupo)
-                                    <option value="{{ $grupo }}" {{ old('blood_type') == $grupo ? 'selected' : '' }}>
+                                    <option value="{{ $grupo }}" {{ old('bloodType') == $grupo ? 'selected' : '' }}>
                                         {{ $grupo }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
 
-                        {{-- Alergias --}}
+                        {{-- Observações --}}
                         <div class="col-md-12 mb-3">
-                            <label class="form-label">Alergias</label>
+                            <label class="form-label">Observações</label>
                             <textarea
-                                name="allergies"
+                                name="observation"
                                 rows="3"
                                 class="form-control"
-                                placeholder="Descreva as alergias do paciente"
-                            >{{ old('allergies') }}</textarea>
+                                placeholder="Descreva as observações do paciente"
+                            >{{ old('observation') }}</textarea>
                         </div>
 
-                        {{-- Doenças --}}
-                        <div class="col-md-12 mb-3">
-                            <label class="form-label">Doenças</label>
-                            <textarea
-                                name="diseases"
-                                rows="3"
-                                class="form-control"
-                                placeholder="Doenças conhecidas"
-                            >{{ old('diseases') }}</textarea>
-                        </div>
 
                     </div>
 
