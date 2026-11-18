@@ -49,37 +49,14 @@
 
                         <form action="{{ route('patients.index') }}" method="GET">
 
-                            <div class="input-group">
-
-                                <span class="input-group-text">
-                                    <i class="ri-search-line"></i>
-                                </span>
-
-                                <input
+                             <input
                                     type="text"
+                                    id="search"
                                     name="search"
                                     class="form-control"
                                     placeholder="Pesquisar paciente..."
                                     value="{{ $search ?? '' }}"
                                 >
-
-                                <button type="submit" class="btn btn-primary">
-                                    Pesquisar
-                                </button>
-
-                                @if(!empty($search))
-
-                                    <a href="{{ route('patients.index') }}"
-                                        class="btn btn-outline-secondary"
-                                        title="Limpar pesquisa">
-
-                                        <i class="ri-close-line"></i>
-
-                                    </a>
-
-                                @endif
-
-                            </div>
 
                         </form>
 

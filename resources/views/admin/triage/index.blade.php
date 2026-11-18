@@ -17,7 +17,7 @@
                     <p class="text-muted mb-0">Gestão e acompanhamento das triagens dos pacientes.</p>
                 </div>
 
-                <a href="#" class="btn btn-primary">
+                <a href="{{ route('triage.create') }}" class="btn btn-primary">
                     <i class="ri-add-line me-1"></i>
                     Nova Triagem
                 </a>

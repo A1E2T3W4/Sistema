@@ -9,12 +9,24 @@ use Illuminate\Support\Facades\Storage;
 class PatientController extends Controller
 {
     // Listar pacientes
+
     public function index()
     {
-        $patients = Patient::latest()->paginate(10);
+        $search = request('search');
 
-        return view('admin.patients.index', compact('patients'));
+        if ($search) {
+
+            $patients = Patient::where('name', 'like', '%' . $search . '%')
+                ->latest()
+                ->paginate(10);
+        } else {
+
+            $patients = Patient::latest()->paginate(10);
+        }
+
+        return view('admin.patients.index', compact('patients', 'search'));
     }
+
 
     // Mostrar formulário de cadastro
     public function create()
@@ -33,15 +45,13 @@ class PatientController extends Controller
             'address' => 'nullable|string',
             'BI' => 'nullable|string|max:20|unique:patients,BI',
             'bloodType' => 'nullable|string|max:5',
-            
-            
+
+
         ]);
 
         Patient::create($validated);
 
-        return redirect()
-            ->route('patients.index')
-            ->with('success', 'Paciente cadastrado com sucesso!');
+        return redirect()->route('patients.index')->with('success', 'Paciente cadastrado com sucesso!');
     }
 
     // Mostrar formulário de edição
@@ -61,8 +71,8 @@ class PatientController extends Controller
             'address' => 'nullable|string',
             'BI' => 'nullable|string|max:20|unique:patients,BI,' . $patient->id,
             'bloodType' => 'nullable|string|max:5',
-           
-            
+
+
         ]);
 
         $patient->update($validated);
@@ -81,8 +91,4 @@ class PatientController extends Controller
             ->route('patients.index')
             ->with('success', 'Paciente eliminado com sucesso!');
     }
-
-
-
-
 }
