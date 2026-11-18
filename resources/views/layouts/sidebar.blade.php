@@ -83,6 +83,30 @@
             </li>
 
 
+
+             {{-- TRIAGEM --}}
+            <li class="treeview {{ request()->routeIs('doctors.*') ? 'active open' : '' }}">
+                <a href="#!">
+                    <i class="ri-stethoscope-line"></i>
+                    <span class="menu-text">Triagem</span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('triage.index') }}">Lista de Triagem</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('triage.create') }}">Nova Triagem</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('triage.history') }}">Historico de Triagem</a>
+                    </li>
+                </ul>
+            </li>
+
+
             {{-- FUNCIONÁRIOS --}}
             <li class="treeview {{ request()->routeIs('employees.*') ? 'active open' : '' }}">
                 <a href="#!">

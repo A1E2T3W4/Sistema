@@ -24,6 +24,12 @@ Route::view('/doctors', 'admin.doctors.index')->name('doctors.index');
 Route::view('/doctors/create', 'admin.doctors.create')->name('doctors.create');
 Route::view('/doctors/edit', 'admin.doctors.edit')->name('doctors.edit');
 
+// TRIAGE
+Route::view('/triage', 'admin.triage.index')->name('triage.index');
+Route::view('/triage/create', 'admin.triage.create')->name('triage.create');
+Route::view('/triage/history', 'admin.triage.history')->name('triage.history');
+Route::view('/triage/detalhe', 'admin.triage.detalhe')->name('triage.detalhe');
+
 
 
 // CONSULTAS

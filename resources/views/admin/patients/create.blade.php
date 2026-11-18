@@ -106,16 +106,7 @@
                             </select>
                         </div>
 
-                        {{-- Observações --}}
-                        <div class="col-md-12 mb-3">
-                            <label class="form-label">Observações</label>
-                            <textarea
-                                name="observation"
-                                rows="3"
-                                class="form-control"
-                                placeholder="Descreva as observações do paciente"
-                            >{{ old('observation') }}</textarea>
-                        </div>
+                       
 
 
                     </div>

@@ -130,18 +130,7 @@
                             </div>
                         </div>
 
-                        {{-- Observações --}}
-                        <div class="col-sm-12">
-                            <div class="mb-3">
-                                <label class="form-label">Observações</label>
-                                <textarea
-                                    name="observation"
-                                    class="form-control"
-                                    rows="3"
-                                    placeholder="Descreva as observações do paciente"
-                                >{{ old('observation', $patient->observation) }}</textarea>
-                            </div>
-                        </div>
+                      
 
                        
 

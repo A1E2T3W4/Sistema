@@ -1,7 +1,7 @@
+
 @extends('layouts.main')
 
 @section('title', 'Lista de Pacientes')
-
 @section('page-title', 'Lista de Pacientes')
 
 @section('content')
@@ -11,13 +11,15 @@
 
         <div class="card">
 
-            {{-- Cabeçalho da tabela --}}
-            <div class="card-header d-flex align-items-center justify-content-between">
+            {{-- Cabeçalho --}}
+            <div class="card-header d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
 
-                <h5 class="card-title mb-0">Lista de Pacientes</h5>
+                <h5 class="card-title mb-0">
+                    Lista de Pacientes
+                </h5>
 
-                <a href="{{ route('patients.create') }}" class="btn btn-primary ms-auto">
-                    <i class="ri-add-line"></i>
+                <a href="{{ route('patients.create') }}" class="btn btn-primary">
+                    <i class="ri-add-line me-1"></i>
                     Adicionar Paciente
                 </a>
 
@@ -27,21 +29,68 @@
 
                 {{-- Mensagem de sucesso --}}
                 @if(session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
 
-                    {{ session('success') }}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
 
-                    <button type="button" class="btn-close"
-                        data-bs-dismiss="alert" aria-label="Fechar">
-                    </button>
+                        {{ session('success') }}
 
-                </div>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="alert" aria-label="Fechar">
+                        </button>
+
+                    </div>
+
                 @endif
 
-                {{-- Tabela de pacientes --}}
+                {{-- Barra de pesquisa --}}
+                <div class="row mb-4">
+
+                    <div class="col-md-6 col-lg-5">
+
+                        <form action="{{ route('patients.index') }}" method="GET">
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+                                    <i class="ri-search-line"></i>
+                                </span>
+
+                                <input
+                                    type="text"
+                                    name="search"
+                                    class="form-control"
+                                    placeholder="Pesquisar paciente..."
+                                    value="{{ $search ?? '' }}"
+                                >
+
+                                <button type="submit" class="btn btn-primary">
+                                    Pesquisar
+                                </button>
+
+                                @if(!empty($search))
+
+                                    <a href="{{ route('patients.index') }}"
+                                        class="btn btn-outline-secondary"
+                                        title="Limpar pesquisa">
+
+                                        <i class="ri-close-line"></i>
+
+                                    </a>
+
+                                @endif
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+                {{-- Tabela --}}
                 <div class="table-responsive">
 
-                    <table class="table truncate m-0 align-middle">
+                    <table class="table table-hover align-middle">
 
                         <thead>
                             <tr>
@@ -57,81 +106,92 @@
 
                             @forelse($patients as $patient)
 
-                            <tr>
+                                <tr>
 
-                                {{-- Nome --}}
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <span>{{ $patient->name }}</span>
-                                    </div>
-                                </td>
+                                    {{-- Nome --}}
+                                    <td>
+                                        <span class="fw-medium">
+                                            {{ $patient->name }}
+                                        </span>
+                                    </td>
 
-                                {{-- Idade calculada com Carbon --}}
-                                {{-- Idade --}}
-                                <td>
-                                    @if($patient->birthDate)
-                                    {{ \Carbon\Carbon::parse($patient->birthDate)->age }} anos
-                                    @else
-                                    Não informado
-                                    @endif
-                                </td>
+                                    {{-- Idade --}}
+                                    <td>
+                                        @if($patient->birthDate)
+                                            {{ \Carbon\Carbon::parse($patient->birthDate)->age }} anos
+                                        @else
+                                            <span class="text-muted">Não informado</span>
+                                        @endif
+                                    </td>
 
-                                {{-- Endereço --}}
-                                <td>
-                                    {{ $patient->address ?? 'Não informado' }}
-                                </td>
+                                    {{-- Endereço --}}
+                                    <td>
+                                        {{ $patient->address ?? 'Não informado' }}
+                                    </td>
 
-                                {{-- Telefone --}}
-                                <td>
-                                    {{ $patient->phone ?? 'Não informado' }}
-                                </td>
+                                    {{-- Telefone --}}
+                                    <td>
+                                        {{ $patient->phone ?? 'Não informado' }}
+                                    </td>
 
-                                {{-- Acções --}}
-                                <td class="text-end">
+                                    {{-- Acções --}}
+                                    <td class="text-end">
 
-                                    <div class="d-inline-flex gap-1">
+                                        <div class="d-inline-flex gap-1">
 
-                                        {{-- Editar --}}
-                                        <a href="{{ route('patients.edit', $patient->id) }}"
-                                            class="btn btn-outline-success btn-sm"
-                                            title="Editar paciente">
+                                            {{-- Editar --}}
+                                            <a href="{{ route('patients.edit', $patient->id) }}"
+                                                class="btn btn-outline-success btn-sm"
+                                                title="Editar paciente">
 
-                                            <i class="ri-edit-box-line"></i>
+                                                <i class="ri-edit-box-line"></i>
 
-                                        </a>
+                                            </a>
 
-                                        {{-- Eliminar --}}
-                                        <form
-                                            action="{{ route('patients.destroy', $patient->id) }}"
-                                            method="POST"
-                                            onsubmit="return confirm('Tem a certeza de que deseja eliminar este paciente?')">
+                                            {{-- Eliminar --}}
+                                            <form
+                                                action="{{ route('patients.destroy', $patient->id) }}"
+                                                method="POST"
+                                                onsubmit="return confirm('Tem a certeza de que deseja eliminar este paciente?')">
 
-                                            @csrf
-                                            @method('DELETE')
+                                                @csrf
+                                                @method('DELETE')
 
-                                            <button type="submit"
-                                                class="btn btn-outline-danger btn-sm"
-                                                title="Eliminar paciente">
+                                                <button type="submit"
+                                                    class="btn btn-outline-danger btn-sm"
+                                                    title="Eliminar paciente">
 
-                                                <i class="ri-delete-bin-line"></i>
+                                                    <i class="ri-delete-bin-line"></i>
 
-                                            </button>
+                                                </button>
 
-                                        </form>
+                                            </form>
 
-                                    </div>
+                                        </div>
 
-                                </td>
+                                    </td>
 
-                            </tr>
+                                </tr>
 
                             @empty
 
-                            <tr>
-                                <td colspan="5" class="text-center py-4">
-                                    Nenhum paciente registado.
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td colspan="5" class="text-center py-5">
+
+                                        <i class="ri-user-search-line fs-1 text-muted"></i>
+
+                                        <p class="text-muted mb-0 mt-2">
+
+                                            @if(!empty($search))
+                                                Nenhum paciente encontrado para "{{ $search }}".
+                                            @else
+                                                Nenhum paciente registado.
+                                            @endif
+
+                                        </p>
+
+                                    </td>
+                                </tr>
 
                             @endforelse
 
@@ -141,10 +201,40 @@
 
                 </div>
 
-                {{-- Paginação --}}
-                <div class="mt-3">
-                    {{ $patients->links() }}
-                </div>
+                {{-- Rodapé e paginação --}}
+                @if($patients->total() > 0)
+
+                    <div class="d-flex flex-column flex-md-row
+                                align-items-center justify-content-between
+                                gap-3 mt-3 pt-3 border-top">
+
+                        {{-- Informação dos registos --}}
+                        <div class="text-muted small">
+
+                            A mostrar
+
+                            <strong>{{ $patients->firstItem() }}</strong>
+
+                            a
+
+                            <strong>{{ $patients->lastItem() }}</strong>
+
+                            de
+
+                            <strong>{{ $patients->total() }}</strong>
+
+                            pacientes
+
+                        </div>
+
+                        {{-- Navegação --}}
+                        <div>
+                            {{ $patients->links('pagination::bootstrap-5') }}
+                        </div>
+
+                    </div>
+
+                @endif
 
             </div>
 
