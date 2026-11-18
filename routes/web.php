@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\TriageController;
 
 Route::redirect('/', '/login');
 
@@ -25,10 +26,13 @@ Route::view('/doctors/create', 'admin.doctors.create')->name('doctors.create');
 Route::view('/doctors/edit', 'admin.doctors.edit')->name('doctors.edit');
 
 // TRIAGE
-Route::view('/triage', 'admin.triage.index')->name('triage.index');
-Route::view('/triage/create', 'admin.triage.create')->name('triage.create');
+Route::get('/triage', [TriageController::class, 'index'])->name('triage.index');
+Route::get('/triage/create', [TriageController::class, 'create'])->name('triage.create');
+Route::post('/triage', [TriageController::class, 'store'])->name('triage.store');
 Route::view('/triage/history', 'admin.triage.history')->name('triage.history');
-Route::view('/triage/detalhe', 'admin.triage.detalhe')->name('triage.detalhe');
+Route::get('/triage/{id}', [TriageController::class, 'show'])->name('triage.show');
+Route::delete('/triage/{id}', [TriageController::class, 'destroy'])->name('triage.destroy');
+
 
 
 
@@ -105,27 +109,10 @@ Route::view('/calendar', 'admin.calendar.index')->name('calendar.index');
 
 
 
-// mostrar lista
-Route::get('/patients', [PatientController::class, 'index'])
-    ->name('patients.index');
-
-// oostrar formulár de cadast
-Route::get('/patients/create', [PatientController::class, 'create'])
-    ->name('patients.create');
-
-// guardar paciente
-Route::post('/patients', [PatientController::class, 'store'])
-    ->name('patients.store');
-
-
-
-Route::get('/patients/{patient}/edit', [PatientController::class, 'edit'])
-    ->name('patients.edit');
-
-// Atualizar paciente
-Route::put('/patients/{patient}', [PatientController::class, 'update'])
-    ->name('patients.update');
-
-// Eliminar paciente
-Route::delete('/patients/{patient}', [PatientController::class, 'destroy'])
-    ->name('patients.destroy');
+// Pcientes methods
+Route::get('/patients', [PatientController::class, 'index'])->name('patients.index');
+Route::get('/patients/create', [PatientController::class, 'create'])->name('patients.create');
+Route::post('/patients', [PatientController::class, 'store']) ->name('patients.store');
+Route::get('/patients/{patient}/edit', [PatientController::class, 'edit'])->name('patients.edit');
+Route::put('/patients/{patient}', [PatientController::class, 'update']) ->name('patients.update');
+Route::delete('/patients/{patient}', [PatientController::class, 'destroy'])->name('patients.destroy');

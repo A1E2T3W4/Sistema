@@ -7,7 +7,6 @@
 @section('content')
 
 <div class="app-body">
-
     <div class="row gx-3">
         <div class="col-sm-12">
 
@@ -19,10 +18,24 @@
 
                 <div class="card-body p-4">
 
-                    <form action="#" method="POST">
+                    {{-- Erros de validação --}}
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <strong>Verifica os seguintes campos:</strong>
+                            <ul class="mb-0 mt-2">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form action="{{ route('triage.store') }}" method="POST">
+                        @csrf
 
                         {{-- Identificação do Paciente --}}
                         <div class="mb-4">
+
                             <h6 class="mb-3">
                                 <i class="ri-user-line me-2 text-primary"></i>
                                 Identificação do Paciente
@@ -36,35 +49,42 @@
                                             Nome do Paciente
                                         </label>
 
-                                        <select name="patient_id" id="patient_id"
-                                            class="form-select">
+                                        <select name="patient_id" id="patient_id" class="form-select">
                                             <option value="">Seleccionar Paciente</option>
-                                            <option value="1">Maria José</option>
-                                            <option value="2">João Manuel</option>
-                                            <option value="3">Ana Paula</option>
+                                            <option value="1" {{ old('patient_id') == '1' ? 'selected' : '' }}>Maria José</option>
+                                            <option value="2" {{ old('patient_id') == '2' ? 'selected' : '' }}>João Manuel</option>
+                                            <option value="3" {{ old('patient_id') == '3' ? 'selected' : '' }}>Ana Paula</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="col-xxl-4 col-lg-4 col-sm-6">
                                     <div class="mb-3">
-                                        <label for="triage_date" class="form-label">
+                                        <label for="triageDate" class="form-label">
                                             Data da Triagem
                                         </label>
 
-                                        <input type="date" name="triage_date"
-                                            id="triage_date" class="form-control">
+                                        <input type="date"
+                                            name="triageDate"
+                                            id="triageDate"
+                                            class="form-control"
+                                            value="{{ old('triageDate', date('Y-m-d')) }}"
+                                            required>
                                     </div>
                                 </div>
 
                                 <div class="col-xxl-4 col-lg-4 col-sm-6">
                                     <div class="mb-3">
-                                        <label for="triage_time" class="form-label">
+                                        <label for="triagetime" class="form-label">
                                             Hora da Triagem
                                         </label>
 
-                                        <input type="time" name="triage_time"
-                                            id="triage_time" class="form-control">
+                                        <input type="time"
+                                            name="triagetime"
+                                            id="triagetime"
+                                            class="form-control"
+                                            value="{{ old('triagetime', date('H:i')) }}"
+                                            required>
                                     </div>
                                 </div>
 
@@ -75,6 +95,7 @@
 
                         {{-- Sinais Vitais --}}
                         <div class="mb-4">
+
                             <h6 class="mb-3">
                                 <i class="ri-heart-pulse-line me-2 text-danger"></i>
                                 Sinais Vitais
@@ -89,56 +110,71 @@
                                         </label>
 
                                         <input type="number" step="0.1"
-                                            name="temperature" id="temperature"
-                                            class="form-control" placeholder="Ex.: 36.5">
+                                            name="temperature"
+                                            id="temperature"
+                                            class="form-control"
+                                            placeholder="Ex.: 36.5"
+                                            value="{{ old('temperature') }}">
                                     </div>
                                 </div>
 
                                 <div class="col-xxl-3 col-lg-4 col-sm-6">
                                     <div class="mb-3">
-                                        <label for="blood_pressure" class="form-label">
+                                        <label for="bloodPressure" class="form-label">
                                             Pressão Arterial (mmHg)
                                         </label>
 
-                                        <input type="text" name="blood_pressure"
-                                            id="blood_pressure" class="form-control"
-                                            placeholder="Ex.: 120/80">
+                                        <input type="text"
+                                            name="bloodPressure"
+                                            id="bloodPressure"
+                                            class="form-control"
+                                            placeholder="Ex.: 120/80"
+                                            value="{{ old('bloodPressure') }}">
                                     </div>
                                 </div>
 
                                 <div class="col-xxl-3 col-lg-4 col-sm-6">
                                     <div class="mb-3">
-                                        <label for="heart_rate" class="form-label">
+                                        <label for="heartRate" class="form-label">
                                             Frequência Cardíaca (bpm)
                                         </label>
 
-                                        <input type="number" name="heart_rate"
-                                            id="heart_rate" class="form-control"
-                                            placeholder="Ex.: 80">
+                                        <input type="number"
+                                            name="heartRate"
+                                            id="heartRate"
+                                            class="form-control"
+                                            placeholder="Ex.: 80"
+                                            value="{{ old('heartRate') }}">
                                     </div>
                                 </div>
 
                                 <div class="col-xxl-3 col-lg-4 col-sm-6">
                                     <div class="mb-3">
-                                        <label for="respiratory_rate" class="form-label">
+                                        <label for="respiratoryRate" class="form-label">
                                             Frequência Respiratória (rpm)
                                         </label>
 
-                                        <input type="number" name="respiratory_rate"
-                                            id="respiratory_rate" class="form-control"
-                                            placeholder="Ex.: 18">
+                                        <input type="number"
+                                            name="respiratoryRate"
+                                            id="respiratoryRate"
+                                            class="form-control"
+                                            placeholder="Ex.: 18"
+                                            value="{{ old('respiratoryRate') }}">
                                     </div>
                                 </div>
 
                                 <div class="col-xxl-3 col-lg-4 col-sm-6">
                                     <div class="mb-3">
-                                        <label for="oxygen_saturation" class="form-label">
+                                        <label for="oxygenSaturation" class="form-label">
                                             Saturação de Oxigénio (%)
                                         </label>
 
-                                        <input type="number" name="oxygen_saturation"
-                                            id="oxygen_saturation" class="form-control"
-                                            placeholder="Ex.: 98">
+                                        <input type="number" step="0.01"
+                                            name="oxygenSaturation"
+                                            id="oxygenSaturation"
+                                            class="form-control"
+                                            placeholder="Ex.: 98"
+                                            value="{{ old('oxygenSaturation') }}">
                                     </div>
                                 </div>
 
@@ -149,8 +185,11 @@
                                         </label>
 
                                         <input type="number" step="0.1"
-                                            name="weight" id="weight"
-                                            class="form-control" placeholder="Ex.: 70">
+                                            name="weight"
+                                            id="weight"
+                                            class="form-control"
+                                            placeholder="Ex.: 70"
+                                            value="{{ old('weight') }}">
                                     </div>
                                 </div>
 
@@ -161,20 +200,26 @@
                                         </label>
 
                                         <input type="number" step="0.1"
-                                            name="height" id="height"
-                                            class="form-control" placeholder="Ex.: 170">
+                                            name="height"
+                                            id="height"
+                                            class="form-control"
+                                            placeholder="Ex.: 170"
+                                            value="{{ old('height') }}">
                                     </div>
                                 </div>
 
                                 <div class="col-xxl-3 col-lg-4 col-sm-6">
                                     <div class="mb-3">
-                                        <label for="blood_glucose" class="form-label">
+                                        <label for="bloodGlucose" class="form-label">
                                             Glicemia (mg/dL)
                                         </label>
 
                                         <input type="number" step="0.1"
-                                            name="blood_glucose" id="blood_glucose"
-                                            class="form-control" placeholder="Opcional">
+                                            name="bloodGlucose"
+                                            id="bloodGlucose"
+                                            class="form-control"
+                                            placeholder="Opcional"
+                                            value="{{ old('bloodGlucose') }}">
                                     </div>
                                 </div>
 
@@ -185,6 +230,7 @@
 
                         {{-- Avaliação Inicial --}}
                         <div class="mb-4">
+
                             <h6 class="mb-3">
                                 <i class="ri-file-text-line me-2 text-primary"></i>
                                 Avaliação Inicial
@@ -194,50 +240,53 @@
 
                                 <div class="col-sm-12">
                                     <div class="mb-3">
-                                        <label for="main_complaint" class="form-label">
+                                        <label for="mainComplaint" class="form-label">
                                             Queixa Principal
                                         </label>
 
-                                        <textarea name="main_complaint"
-                                            id="main_complaint"
-                                            class="form-control" rows="3"
-                                            placeholder="Descreva o motivo principal da procura pelo atendimento"></textarea>
+                                        <textarea name="mainComplaint"
+                                            id="mainComplaint"
+                                            class="form-control"
+                                            rows="3"
+                                            placeholder="Descreva o motivo principal da procura pelo atendimento"
+                                            required>{{ old('mainComplaint') }}</textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-xxl-4 col-lg-4 col-sm-6">
                                     <div class="mb-3">
-                                        <label for="symptoms_duration" class="form-label">
+                                        <label for="symptomsDuration" class="form-label">
                                             Duração dos Sintomas
                                         </label>
 
-                                        <input type="text" name="symptoms_duration"
-                                            id="symptoms_duration"
+                                        <input type="text"
+                                            name="symptomsDuration"
+                                            id="symptomsDuration"
                                             class="form-control"
-                                            placeholder="Ex.: 2 dias">
+                                            placeholder="Ex.: 2 dias"
+                                            value="{{ old('symptomsDuration') }}">
                                     </div>
                                 </div>
 
                                 <div class="col-xxl-4 col-lg-4 col-sm-6">
                                     <div class="mb-3">
-                                        <label for="pain_level" class="form-label">
+                                        <label for="painLevel" class="form-label">
                                             Intensidade da Dor (0 a 10)
                                         </label>
 
-                                        <select name="pain_level" id="pain_level"
-                                            class="form-select">
+                                        <select name="painLevel" id="painLevel" class="form-select">
                                             <option value="">Seleccionar Intensidade</option>
-                                            <option value="0">0 - Sem dor</option>
-                                            <option value="1">1 - Muito ligeira</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3 - Ligeira</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5 - Moderada</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7 - Intensa</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10 - Dor máxima</option>
+                                            <option value="0" {{ old('painLevel') == '0' ? 'selected' : '' }}>0 - Sem dor</option>
+                                            <option value="1" {{ old('painLevel') == '1' ? 'selected' : '' }}>1 - Muito ligeira</option>
+                                            <option value="2" {{ old('painLevel') == '2' ? 'selected' : '' }}>2</option>
+                                            <option value="3" {{ old('painLevel') == '3' ? 'selected' : '' }}>3 - Ligeira</option>
+                                            <option value="4" {{ old('painLevel') == '4' ? 'selected' : '' }}>4</option>
+                                            <option value="5" {{ old('painLevel') == '5' ? 'selected' : '' }}>5 - Moderada</option>
+                                            <option value="6" {{ old('painLevel') == '6' ? 'selected' : '' }}>6</option>
+                                            <option value="7" {{ old('painLevel') == '7' ? 'selected' : '' }}>7 - Intensa</option>
+                                            <option value="8" {{ old('painLevel') == '8' ? 'selected' : '' }}>8</option>
+                                            <option value="9" {{ old('painLevel') == '9' ? 'selected' : '' }}>9</option>
+                                            <option value="10" {{ old('painLevel') == '10' ? 'selected' : '' }}>10 - Dor máxima</option>
                                         </select>
                                     </div>
                                 </div>
@@ -248,22 +297,26 @@
                                             Alergias Conhecidas
                                         </label>
 
-                                        <input type="text" name="allergies"
-                                            id="allergies" class="form-control"
-                                            placeholder="Indicar alergias ou nenhuma conhecida">
+                                        <input type="text"
+                                            name="allergies"
+                                            id="allergies"
+                                            class="form-control"
+                                            placeholder="Indicar alergias ou nenhuma conhecida"
+                                            value="{{ old('allergies') }}">
                                     </div>
                                 </div>
 
                                 <div class="col-sm-12">
                                     <div class="mb-3">
-                                        <label for="initial_observation" class="form-label">
+                                        <label for="observations" class="form-label">
                                             Observações da Avaliação
                                         </label>
 
-                                        <textarea name="initial_observation"
-                                            id="initial_observation"
-                                            class="form-control" rows="3"
-                                            placeholder="Outras informações relevantes da avaliação inicial"></textarea>
+                                        <textarea name="observations"
+                                            id="observations"
+                                            class="form-control"
+                                            rows="3"
+                                            placeholder="Outras informações relevantes da avaliação inicial">{{ old('observations') }}</textarea>
                                     </div>
                                 </div>
 
@@ -274,6 +327,7 @@
 
                         {{-- Classificação de Risco --}}
                         <div class="mb-4">
+
                             <h6 class="mb-3">
                                 <i class="ri-alarm-warning-line me-2 text-warning"></i>
                                 Classificação de Risco
@@ -283,18 +337,17 @@
 
                                 <div class="col-xxl-4 col-lg-4 col-sm-6">
                                     <div class="mb-3">
-                                        <label for="risk_level" class="form-label">
+                                        <label for="riskClassification" class="form-label">
                                             Nível de Prioridade
                                         </label>
 
-                                        <select name="risk_level" id="risk_level"
-                                            class="form-select">
+                                        <select name="riskClassification" id="riskClassification" class="form-select">
                                             <option value="">Seleccionar Classificação</option>
-                                            <option value="emergency">Emergência</option>
-                                            <option value="very_urgent">Muito Urgente</option>
-                                            <option value="urgent">Urgente</option>
-                                            <option value="less_urgent">Pouco Urgente</option>
-                                            <option value="non_urgent">Não Urgente</option>
+                                            <option value="emergency" {{ old('riskClassification') == 'emergency' ? 'selected' : '' }}>Emergência</option>
+                                            <option value="very_urgent" {{ old('riskClassification') == 'very_urgent' ? 'selected' : '' }}>Muito Urgente</option>
+                                            <option value="urgent" {{ old('riskClassification') == 'urgent' ? 'selected' : '' }}>Urgente</option>
+                                            <option value="less_urgent" {{ old('riskClassification') == 'less_urgent' ? 'selected' : '' }}>Pouco Urgente</option>
+                                            <option value="non_urgent" {{ old('riskClassification') == 'non_urgent' ? 'selected' : '' }}>Não Urgente</option>
                                         </select>
                                     </div>
                                 </div>
@@ -305,14 +358,13 @@
                                             Departamento de Encaminhamento
                                         </label>
 
-                                        <select name="department_id" id="department_id"
-                                            class="form-select">
+                                        <select name="department_id" id="department_id" class="form-select">
                                             <option value="">Seleccionar Departamento</option>
-                                            <option value="1">Urgência</option>
-                                            <option value="2">Medicina Geral</option>
-                                            <option value="3">Cardiologia</option>
-                                            <option value="4">Pediatria</option>
-                                            <option value="5">Ortopedia</option>
+                                            <option value="1" {{ old('department_id') == '1' ? 'selected' : '' }}>Urgência</option>
+                                            <option value="2" {{ old('department_id') == '2' ? 'selected' : '' }}>Medicina Geral</option>
+                                            <option value="3" {{ old('department_id') == '3' ? 'selected' : '' }}>Cardiologia</option>
+                                            <option value="4" {{ old('department_id') == '4' ? 'selected' : '' }}>Pediatria</option>
+                                            <option value="5" {{ old('department_id') == '5' ? 'selected' : '' }}>Ortopedia</option>
                                         </select>
                                     </div>
                                 </div>
@@ -323,11 +375,10 @@
                                             Estado da Triagem
                                         </label>
 
-                                        <select name="triage_status" id="triage_status"
-                                            class="form-select">
-                                            <option value="pending">Pendente</option>
-                                            <option value="in_progress">Em Avaliação</option>
-                                            <option value="completed">Concluída</option>
+                                        <select name="triage_status" id="triage_status" class="form-select">
+                                            <option value="pending" {{ old('triage_status', 'pending') == 'pending' ? 'selected' : '' }}>Pendente</option>
+                                            <option value="in_progress" {{ old('triage_status') == 'in_progress' ? 'selected' : '' }}>Em Avaliação</option>
+                                            <option value="completed" {{ old('triage_status') == 'completed' ? 'selected' : '' }}>Concluída</option>
                                         </select>
                                     </div>
                                 </div>
@@ -337,8 +388,9 @@
 
                         <hr>
 
-                        {{-- Responsável --}}
+                        {{-- Responsável pela Triagem --}}
                         <div class="mb-4">
+
                             <h6 class="mb-3">
                                 <i class="ri-user-heart-line me-2 text-primary"></i>
                                 Responsável pela Triagem
@@ -352,10 +404,12 @@
                                             Enfermeiro / Técnico Responsável
                                         </label>
 
-                                        <input type="text" name="professional_name"
+                                        <input type="text"
+                                            name="professional_name"
                                             id="professional_name"
                                             class="form-control"
-                                            placeholder="Nome do profissional">
+                                            placeholder="Nome do profissional"
+                                            value="{{ old('professional_name') }}">
                                     </div>
                                 </div>
 
@@ -365,7 +419,7 @@
                         {{-- Botões --}}
                         <div class="d-flex gap-2 justify-content-end">
 
-                            <a href="#" class="btn btn-outline-secondary">
+                            <a href="{{ route('triage.index') }}" class="btn btn-outline-secondary">
                                 <i class="ri-close-line me-1"></i>
                                 Cancelar
                             </a>
@@ -384,7 +438,6 @@
 
         </div>
     </div>
-
 </div>
 
 @endsection
