@@ -116,6 +116,16 @@
 
                                         <div class="d-inline-flex gap-1">
 
+                                            {{-- Visualizar --}}
+                                            <a
+                                                href="{{ route('patients.show', $patient->id) }}"
+                                                class="btn btn-sm btn-outline-primary"
+                                                title="Visualizar"
+                                            >
+                                                <i class="ri-eye-line"></i>
+                                            </a>
+                                       
+
                                             {{-- Editar --}}
                                             <a href="{{ route('patients.edit', $patient->id) }}"
                                                 class="btn btn-outline-success btn-sm"

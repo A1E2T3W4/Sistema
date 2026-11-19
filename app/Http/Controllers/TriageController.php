@@ -8,39 +8,23 @@ use App\Models\Triage;
 class TriageController extends Controller
 {
     // Listar triagens
-    public function index()
+       public function index()
     {
-        // Total de triagens registadas
-        $totalTriages = Triage::count();
+        $search = request('search');
 
-        // Consulta principal
-        $query = Triage::query();
+        if ($search) {
 
-        // Pesquisa por queixa principal
-        if (request('search')) {
-            $query->where(
-                'mainComplaint',
-                'like',
-                '%' . request('search') . '%'
-            );
+            $triages = Triage::where('id', 'like', '%' . $search . '%')
+                ->latest()
+                ->paginate(10);
+        } else {
+
+            $triages = Triage::latest()->paginate(10);
         }
 
-        // Filtro por classificação de risco
-        if (request('risk_level')) {
-            $query->where(
-                'riskClassification',
-                request('risk_level')
-            );
-        }
-
-        // Listagem com paginação
-        $triages = $query->latest()->paginate(10);
-
-        return view('admin.triage.index', compact(
-            'triages',
-            'totalTriages'
-        ));
+        return view('admin.triage.index', compact('triages', 'search'));
     }
+
 
     // Mostrar formulário de cadastro
     public function create()
@@ -60,12 +44,8 @@ class TriageController extends Controller
             'weight' => 'nullable|numeric|min:0',
             'height' => 'nullable|numeric|min:0',
             'bloodGlucose' => 'nullable|numeric|min:0',
-            'mainComplaint' => 'required|string',
-            'symptomsDuration' => 'nullable|string|max:255',
-            'painLevel' => 'nullable|integer|min:0|max:10',
-            'allergies' => 'nullable|string',
             'observations' => 'nullable|string',
-            'riskClassification' => 'nullable|in:emergency,very_urgent,urgent,less_urgent,non_urgent',
+            'riskClassification' => 'nullable|string|max:255',
             'triageDate' => 'required|date',
             'triagetime' => 'required',
         ]);

@@ -1,4 +1,3 @@
-
 @extends('layouts.main')
 
 @section('title', 'Cadastrar Paciente')
@@ -29,10 +28,9 @@
                                 class="form-control"
                                 value="{{ old('name') }}"
                                 placeholder="Nome completo do paciente"
-                                required
-                            >
+                                required>
                             @error('name')
-                                <small class="text-danger">{{ $message }}</small>
+                            <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
 
@@ -48,14 +46,13 @@
 
                         {{-- BI --}}
                         <div class="col-md-4 mb-3">
-                            <label class="form-label">Bilhete de Identidade</label>
+                            <label class="form-label">Identidade</label>
                             <input
                                 type="text"
                                 name="BI"
                                 class="form-control"
                                 value="{{ old('BI') }}"
-                                placeholder="Número do BI"
-                            >
+                                placeholder="Número do BI">
                         </div>
 
                         {{-- Data de Nascimento --}}
@@ -65,20 +62,18 @@
                                 type="date"
                                 name="birthDate"
                                 class="form-control"
-                                value="{{ old('birthDate') }}"
-                            >
+                                value="{{ old('birthDate') }}">
                         </div>
 
                         {{-- Telefone --}}
                         <div class="col-md-6 mb-3">
                             <label class="form-label">Telefone</label>
                             <input
-                                type="text"
+                                type="number"
                                 name="phone"
                                 class="form-control"
                                 value="{{ old('phone') }}"
-                                placeholder="Ex: 923 000 000"
-                            >
+                                placeholder="Ex: 923 000 000">
                         </div>
 
                         {{-- Morada --}}
@@ -89,8 +84,7 @@
                                 name="address"
                                 class="form-control"
                                 value="{{ old('address') }}"
-                                placeholder="Endereço do paciente"
-                            >
+                                placeholder="Endereço do paciente">
                         </div>
 
                         {{-- Grupo Sanguíneo --}}
@@ -99,23 +93,36 @@
                             <select name="bloodType" class="form-select">
                                 <option value="">Selecionar grupo sanguíneo</option>
                                 @foreach(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'] as $grupo)
-                                    <option value="{{ $grupo }}" {{ old('bloodType') == $grupo ? 'selected' : '' }}>
-                                        {{ $grupo }}
-                                    </option>
+                                <option value="{{ $grupo }}" {{ old('bloodType') == $grupo ? 'selected' : '' }}>
+                                    {{ $grupo }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
 
-                       
+                        <div class="row gx-3">
 
+                            <div class="col-sm-12">
+                                <div class="mb-3">
+                                    <label for="observation" class="form-label">
+                                        Observações do Paciente
+                                    </label>
+
+                                    <textarea name="observation"
+                                        id="observation"
+                                        class="form-control"
+                                        rows="3"
+                                        placeholder="Descreva as observações do paciente"
+                                        required>{{ old('observation') }}</textarea>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
 
                     {{-- Botões --}}
                     <div class="d-flex justify-content-end gap-2 mt-4">
-                        <a href="{{ route('patients.index') }}" class="btn btn-outline-secondary">
-                            Cancelar
-                        </a>
+
 
                         <button type="submit" class="btn btn-primary">
                             <i class="ri-save-line me-1"></i>

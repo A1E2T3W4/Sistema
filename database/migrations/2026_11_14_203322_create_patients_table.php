@@ -21,8 +21,7 @@ return new class extends Migration
             $table->date("birthDate");
             $table->string("gender");
             $table->string("bloodType");
-           
-           
+            $table->text("observation")->nullable();
         });
     }
 

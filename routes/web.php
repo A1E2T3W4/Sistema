@@ -116,3 +116,4 @@ Route::post('/patients', [PatientController::class, 'store']) ->name('patients.s
 Route::get('/patients/{patient}/edit', [PatientController::class, 'edit'])->name('patients.edit');
 Route::put('/patients/{patient}', [PatientController::class, 'update']) ->name('patients.update');
 Route::delete('/patients/{patient}', [PatientController::class, 'destroy'])->name('patients.destroy');
+Route::get('/patients/{id}', [PatientController::class, 'show'])->name('patients.show');

@@ -45,8 +45,7 @@ class PatientController extends Controller
             'address' => 'nullable|string',
             'BI' => 'nullable|string|max:20|unique:patients,BI',
             'bloodType' => 'nullable|string|max:5',
-
-
+            'observation' => 'nullable|string',
         ]);
 
         Patient::create($validated);
@@ -71,6 +70,7 @@ class PatientController extends Controller
             'address' => 'nullable|string',
             'BI' => 'nullable|string|max:20|unique:patients,BI,' . $patient->id,
             'bloodType' => 'nullable|string|max:5',
+            'observation' => 'nullable|string',
 
 
         ]);
@@ -90,5 +90,12 @@ class PatientController extends Controller
         return redirect()
             ->route('patients.index')
             ->with('success', 'Paciente eliminado com sucesso!');
+    }
+
+    public function show($id)
+    {
+        $patient = Patient::findOrFail($id);
+
+        return view('admin.patients.detalhe', compact('patient'));
     }
 }

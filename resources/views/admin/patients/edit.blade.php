@@ -74,7 +74,7 @@
                         {{-- Bilhete de Identidade --}}
                         <div class="col-xxl-4 col-lg-4 col-sm-6">
                             <div class="mb-3">
-                                <label class="form-label">Bilhete de Identidade</label>
+                                <label class="form-label">Identidade</label>
                                 <input
                                     type="text"
                                     name="BI"
@@ -90,7 +90,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Telefone</label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     name="phone"
                                     class="form-control"
                                     value="{{ old('phone', $patient->phone) }}"
@@ -130,6 +130,25 @@
                             </div>
                         </div>
 
+                           <div class="row gx-3">
+
+                                    <div class="col-sm-12">
+                                        <div class="mb-3">
+                                            <label for="mainComplaint" class="form-label">
+                                                Observacões do Paciente 
+                                            </label>
+
+                                            <textarea name="mainComplaint"
+                                                id="mainComplaint"
+                                                class="form-control"
+                                                rows="3"
+                                                placeholder="Descreva as observações do paciente"
+                                                required>{{ old('observation', $patient->observation) }}</textarea>
+                                        </div>
+                                    </div>
+
+                    </div>
+
                       
 
                        
@@ -138,10 +157,7 @@
                         <div class="col-sm-12">
                             <div class="d-flex gap-2 justify-content-end">
 
-                                <a href="{{ route('patients.index') }}"
-                                   class="btn btn-outline-secondary">
-                                    Cancelar
-                                </a>
+                             
 
                                 <button type="submit" class="btn btn-primary">
                                     <i class="ri-save-line me-1"></i>

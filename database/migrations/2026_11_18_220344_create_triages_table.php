@@ -22,12 +22,8 @@ return new class extends Migration
             $table->decimal('weight', 6, 2)->nullable();
             $table->decimal('height', 5, 2)->nullable();
             $table->decimal('bloodGlucose', 6, 2)->nullable();
-            $table->text('mainComplaint')->nullable();
-            $table->string('symptomsDuration')->nullable();
-            $table->unsignedTinyInteger('painLevel')->nullable();
-            $table->text('allergies')->nullable();
             $table->text('observations')->nullable();
-            $table->string('riskClassification')->nullable();
+            $table->enum('riskClassification', ['emergency', 'very_urgent', 'urgent', 'less_urgent', 'non_urgent'])->nullable();
             $table->timestamps();
         });
     }

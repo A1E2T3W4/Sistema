@@ -13,7 +13,7 @@
         <div class="col-sm-12">
             <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
                 <div>
-                    <h5 class="mb-1">Lista de Triagens</h5>
+                    <h5 class="mb-1">Triagem</h5>
                     <p class="text-muted mb-0">
                         Gestão e acompanhamento das triagens dos pacientes.
                     </p>
@@ -35,9 +35,7 @@
 
             <div class="card">
 
-                <div class="card-header">
-                    <h5 class="card-title mb-0">Registos de Triagem</h5>
-                </div>
+              
 
                 <div class="card-body">
 
