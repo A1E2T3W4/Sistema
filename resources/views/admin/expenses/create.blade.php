@@ -1,147 +1,175 @@
 
 @extends('layouts.main')
 
-@section('title', 'Adicionar Despesa')
+@section('title', 'Criar Despesas')
+@section('page-title', 'Criar Despesas')
 
 @section('content')
 
-<div class="content">
+<div class="app-body">
 
-    {{-- Título --}}
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-            <h4 class="page-title">Nova Despesa</h4>
-        </div>
-    </div>
+    <div class="row gx-3">
+        <div class="col-sm-12">
 
-    {{-- Formulário --}}
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
 
-            <form action="#" method="POST" enctype="multipart/form-data">
-                @csrf
-
-                <div class="row">
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Nome do Item</label>
-                            <input class="form-control" type="text"
-                                   placeholder="Ex.: Maca hospitalar">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Fornecedor</label>
-                            <input class="form-control" type="text"
-                                   placeholder="Nome do fornecedor">
-                        </div>
-                    </div>
-
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Nova Despesa</h5>
                 </div>
 
-                <div class="row">
+                <div class="card-body">
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Data da Compra</label>
-                            <div class="cal-icon">
-                                <input class="form-control datetimepicker"
-                                       type="text"
-                                       placeholder="Selecionar data">
+                    <form action="#" method="POST">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="row gx-3">
+
+                            {{-- Nome da despesa --}}
+                            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="patient_id" class="form-label">
+                                        Item da Despesa
+                                    </label>
+
+                                    <input type="text"
+                                        name="item"
+                                        id="item"
+                                        class="form-control"
+                                        >
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Comprado Por</label>
-                            <select class="select">
-                                <option value="">Selecionar funcionário</option>
-                                <option>Daniel Porter</option>
-                                <option>Roger Dixon</option>
-                            </select>
+                            {{-- Email --}}
+                            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="patient_email" class="form-label">
+                                        Formecedor
+                                    </label>
+
+                                     <select name="doctor_id" id="doctor_id"
+                                        class="form-select">
+                                        <option value="">Ndala Farma</option>
+                                        <option value="1" selected>Sagrada Esperança</option>
+                                        <option value="2">Clinica Viver</option>
+                                        <option value="3">Medicar</option>
+                                    </select>
+                            </div>
+
+                           
+
+                           
+
+                            
+
+                            {{-- Data --}}
+                            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="appointment_date" class="form-label">
+                                        Data da Consulta
+                                    </label>
+
+                                    <input type="date"
+                                        name="appointment_date"
+                                        id="appointment_date"
+                                        class="form-control"
+                                        value="2026-11-17">
+                                </div>
+                            </div>
+
+                            {{-- Hora --}}
+                            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="appointment_time" class="form-label">
+                                        Hora da Consulta
+                                    </label>
+
+                                    <input type="time"
+                                        name="appointment_time"
+                                        id="appointment_time"
+                                        class="form-control"
+                                        value="10:00">
+                                </div>
+                            </div>
+
+                            {{-- Médico --}}
+                            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="doctor_id" class="form-label">
+                                        Médico Especialista
+                                    </label>
+
+                                    <select name="doctor_id" id="doctor_id"
+                                        class="form-select">
+                                        <option value="">Seleccionar Médico</option>
+                                        <option value="1" selected>Henry Daniels</option>
+                                        <option value="2">Cristina Groves</option>
+                                        <option value="3">Marie Wells</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            {{-- Departamento --}}
+                            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                <div class="mb-3">
+                                    <label for="department_id" class="form-label">
+                                        Departamento
+                                    </label>
+
+                                    <select name="department_id" id="department_id"
+                                        class="form-select">
+                                        <option value="">Seleccionar Departamento</option>
+                                        <option value="1" selected>Cardiologia</option>
+                                        <option value="2">Estomatologia</option>
+                                        <option value="3">Neurologia</option>
+                                        <option value="4">Oftalmologia</option>
+                                        <option value="5">Ortopedia</option>
+                                        <option value="6">Oncologia</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            {{-- Motivo da consulta --}}
+                            <div class="col-sm-12">
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">
+                                        Motivo da Consulta
+                                    </label>
+
+                                    <textarea name="message"
+                                        id="message"
+                                        class="form-control"
+                                        rows="3"
+                                        placeholder="Descreva o problema de saúde do paciente">Dores no peito e necessidade de avaliação médica.</textarea>
+                                </div>
+                            </div>
+
+                          
+
+                            {{-- Botões --}}
+                            <div class="col-sm-12">
+                                <div class="d-flex gap-2 justify-content-end">
+
+                                    <a href="{{ route('appointments.index') }}"
+                                        class="btn btn-outline-secondary">
+                                        <i class="ri-close-line me-1"></i>
+                                        Cancelar
+                                    </a>
+
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="ri-save-line me-1"></i>
+                                        Actualizar Consulta
+                                    </button>
+
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
+
+                    </form>
 
                 </div>
-
-                <div class="row">
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Valor</label>
-                            <input placeholder="Ex.: 50.000 Kz"
-                                   class="form-control" type="text">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Forma de Pagamento</label>
-                            <select class="select">
-                                <option value="">Selecionar forma de pagamento</option>
-                                <option>Dinheiro</option>
-                                <option>Transferência Bancária</option>
-                                <option>Multicaixa</option>
-                                <option>Cheque</option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Estado</label>
-                            <select class="select">
-                                <option value="">Selecionar estado</option>
-                                <option>Pendente</option>
-                                <option>Aprovada</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label>Anexos</label>
-                            <input class="form-control" type="file"
-                                   name="attachments[]" multiple>
-                        </div>
-                    </div>
-
-                </div>
-
-                {{-- Anexos de exemplo do template --}}
-                <div class="attach-files">
-                    <ul>
-                        <li>
-                            <img src="{{ asset('assets/img/user.jpg') }}" alt="">
-                            <a href="#" class="fa fa-close file-remove"></a>
-                        </li>
-                        <li>
-                            <img src="{{ asset('assets/img/user.jpg') }}" alt="">
-                            <a href="#" class="fa fa-close file-remove"></a>
-                        </li>
-                    </ul>
-                </div>
-
-                {{-- Botões --}}
-                <div class="m-t-20 text-center">
-                    <a href="{{ route('expenses.index') }}"
-                       class="btn btn-secondary submit-btn">
-                        Cancelar
-                    </a>
-
-                    <button type="submit" class="btn btn-primary submit-btn">
-                        Criar Despesa
-                    </button>
-                </div>
-
-            </form>
+            </div>
 
         </div>
     </div>

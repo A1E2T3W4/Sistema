@@ -229,16 +229,16 @@
 
                                     <div class="col-sm-12">
                                         <div class="mb-3">
-                                            <label for="mainComplaint" class="form-label">
+                                            <label for="observations" class="form-label">
                                                 Observacões do Paciente 
                                             </label>
 
-                                            <textarea name="mainComplaint"
-                                                id="mainComplaint"
+                                            <textarea name="ob"
+                                                id="observations"
                                                 class="form-control"
                                                 rows="3"
                                                 placeholder="Descreva as observações do paciente"
-                                                required>{{ old('mainComplaint') }}</textarea>
+                                                required>{{ old('observations') }}</textarea>
                                         </div>
                                     </div>
 

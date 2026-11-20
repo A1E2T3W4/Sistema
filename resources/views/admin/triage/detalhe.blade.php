@@ -183,7 +183,7 @@
                         <div class="col-sm-12 mb-3">
                             <small class="text-muted d-block">Queixa Principal</small>
                             <p class="mb-0">
-                                {{ $triage->mainComplaint ?: 'Não informado' }}
+                                {{ $triage->observations ?: 'Não informado' }}
                             </p>
                         </div>
 

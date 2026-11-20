@@ -1,102 +1,121 @@
+
 @extends('layouts.main')
 
-@section('title', 'Pagamentos')
+@section('title', 'Pagamento')
+
+@section('page-title', 'Pagamento')
 
 @section('content')
 
-<div class="content">
+<div class="app-body">
 
-    {{-- Título --}}
-    <div class="row">
+    <div class="row gx-3">
         <div class="col-sm-12">
-            <h4 class="page-title">Pagamentos</h4>
-        </div>
-    </div>
 
-    {{-- Tabela de pagamentos --}}
-    <div class="row">
-        <div class="col-md-12">
-            <div class="table-responsive">
+            <div class="card">
 
-                <table class="table table-striped custom-table datatable mb-0">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title">Pagamento</h5>
 
-                    <thead>
-                        <tr>
-                            <th>Nº da Factura</th>
-                            <th>Paciente</th>
-                            <th>Tipo de Pagamento</th>
-                            <th>Data do Pagamento</th>
-                            <th>Valor Pago</th>
-                        </tr>
-                    </thead>
+                    <a href="#" class="btn btn-primary ms-auto">
+                        <i class="ri-add-line me-1"></i>
+                        Novo Pagamento
+                    </a>
+                </div>
 
-                    <tbody>
+                <div class="card-body">
 
-                        <tr>
-                            <td>
-                                <a href="{{ route('invoices.show') }}">
-                                    #FAT-0001
-                                </a>
-                            </td>
+                    <div class="table-responsive">
 
-                            <td>
-                                <h2>
-                                    <a href="#">Charles Ortega</a>
-                                </h2>
-                            </td>
+                        <table class="table truncate m-0 align-middle">
+                             <div class="col-12">
+                                        <div class="mb-3">
+                                            
+                                            <div class="input-group">
+                                               
+                                                <input type="text" class="form-control"
+                                                    placeholder="Pesquisar Pagamento...">
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            <td>Transferência Bancária</td>
+                            <thead>
+                                <tr>
+                                    <th>Nº da Fatura</th>
+                                    <th>Paciente</th>
+                                    <th>Tipo de Pagamento</th>
+                                    <th>Data de Pagamento</th>
+                                    <th>Valor Pago</th>
+                                                                
+                                </tr>
+                            </thead>
 
-                            <td>08/08/2026</td>
+                            <tbody>
 
-                            <td>500.000 Kz</td>
-                        </tr>
+                                @php
+                                    $doctors = [
+                                    
+                                    ];
+                                @endphp
 
-                        <tr>
-                            <td>
-                                <a href="{{ route('invoices.show') }}">
-                                    #FAT-0002
-                                </a>
-                            </td>
+                                @foreach ($doctors as $doctor)
 
-                            <td>
-                                <h2>
-                                    <a href="#">Denise Stevens</a>
-                                </h2>
-                            </td>
+                                    <tr>
+                                        <td>#{{ $doctor['id'] }}</td>
 
-                            <td>Multicaixa</td>
+                                        <td>
+                                            <img src="{{ asset('assets/images/' . $doctor['image']) }}"
+                                                class="img-shadow img-2x rounded-5 me-1"
+                                                alt="Foto do médico">
 
-                            <td>08/08/2026</td>
+                                            {{ $doctor['name'] }}
+                                        </td>
 
-                            <td>250.000 Kz</td>
-                        </tr>
+                                        <td>{{ $doctor['specialty'] }}</td>
 
-                        <tr>
-                            <td>
-                                <a href="{{ route('invoices.show') }}">
-                                    #FAT-0003
-                                </a>
-                            </td>
+                                        <td class="text-center text-danger">-</td>
 
-                            <td>
-                                <h2>
-                                    <a href="#">Dennis Salazar</a>
-                                </h2>
-                            </td>
+                                        @for ($i = 0; $i < 6; $i++)
+                                            <td class="text-center">{{ $doctor['time'] }}</td>
+                                        @endfor
 
-                            <td>Dinheiro</td>
+                                        <td>
+                                            <div class="d-inline-flex gap-1">
 
-                            <td>08/08/2026</td>
+                                                <button type="button"
+                                                    class="btn btn-outline-danger btn-sm"
+                                                    onclick="alert('Exemplo: eliminar médico')"
+                                                    title="Eliminar">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                </button>
 
-                            <td>150.000 Kz</td>
-                        </tr>
+                                                <a href="#"
+                                                    class="btn btn-outline-success btn-sm"
+                                                    title="Editar">
+                                                    <i class="ri-edit-box-line"></i>
+                                                </a>
 
-                    </tbody>
+                                                <a href="#"
+                                                    class="btn btn-outline-info btn-sm"
+                                                    title="Ver perfil">
+                                                    <i class="ri-eye-line"></i>
+                                                </a>
 
-                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
 
+                                @endforeach
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
             </div>
+
         </div>
     </div>
 
