@@ -87,18 +87,7 @@
                                 placeholder="Endereço do paciente">
                         </div>
 
-                        {{-- Grupo Sanguíneo --}}
-                        <div class="col-md-12 mb-3">
-                            <label class="form-label">Grupo Sanguíneo</label>
-                            <select name="bloodType" class="form-select">
-                                <option value="">Selecionar grupo sanguíneo</option>
-                                @foreach(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'] as $grupo)
-                                <option value="{{ $grupo }}" {{ old('bloodType') == $grupo ? 'selected' : '' }}>
-                                    {{ $grupo }}
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
+                      
 
                         <div class="row gx-3">
 

@@ -200,20 +200,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
-                                        <div class="mb-3">
-                                            <label for="bloodGlucose" class="form-label">
-                                                Glicemia (mg/dL)
-                                            </label>
-
-                                            <input type="number" step="0.1"
-                                                name="bloodGlucose"
-                                                id="bloodGlucose"
-                                                class="form-control"
-                                                placeholder="Opcional"
-                                                value="{{ old('bloodGlucose') }}">
-                                        </div>
-                                    </div>
+                                   
 
                                 </div>
                             </div>

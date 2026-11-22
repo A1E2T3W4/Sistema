@@ -93,18 +93,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Apelido</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text">
-                                                    <i class="ri-user-line"></i>
-                                                </span>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Introduza o apelido">
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
 
                                     <div class="col-xxl-3 col-lg-4 col-sm-6">
                                         <div class="mb-3">
@@ -131,7 +120,7 @@
 
                                     <div class="col-xxl-3 col-lg-4 col-sm-6">
                                         <div class="mb-3">
-                                            <label class="form-label">Número de Identificação</label>
+                                            <label class="form-label">Identificação</label>
                                             <div class="input-group">
                                                 <span class="input-group-text">
                                                     <i class="ri-secure-payment-line"></i>
@@ -168,18 +157,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Estado Civil</label>
-                                            <select class="form-select">
-                                                <option value="">Seleccionar</option>
-                                                <option>Solteiro(a)</option>
-                                                <option>Casado(a)</option>
-                                                <option>Divorciado(a)</option>
-                                                <option>Viúvo(a)</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                   
 
                                     <div class="col-xxl-3 col-lg-4 col-sm-6">
                                         <div class="mb-3">
@@ -224,22 +202,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Grupo Sanguíneo</label>
-                                            <select class="form-select">
-                                                <option value="">Seleccionar</option>
-                                                <option>A+</option>
-                                                <option>A-</option>
-                                                <option>B+</option>
-                                                <option>B-</option>
-                                                <option>O+</option>
-                                                <option>O-</option>
-                                                <option>AB+</option>
-                                                <option>AB-</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                   
 
                                     <div class="col-12">
                                         <div class="mb-3">
@@ -304,13 +267,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xxl-3 col-lg-4 col-sm-6">
-                                        <div class="mb-3">
-                                            <label class="form-label">Código Postal</label>
-                                            <input type="text" class="form-control"
-                                                placeholder="Código postal">
-                                        </div>
-                                    </div>
+                                   
 
                                 </div>
                             </div>
@@ -439,12 +396,6 @@
 
                     {{-- ACÇÕES --}}
                     <div class="d-flex gap-2 justify-content-end mt-4">
-
-                        <a href="{{ url()->previous() }}"
-                            class="btn btn-outline-secondary">
-                            <i class="ri-close-line me-1"></i>
-                            Cancelar
-                        </a>
 
                         <button type="button" class="btn btn-primary">
                             <i class="ri-user-add-line me-1"></i>

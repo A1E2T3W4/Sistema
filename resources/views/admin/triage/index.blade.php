@@ -1,4 +1,3 @@
-
 @extends('layouts.main')
 
 @section('title', 'Lista de Triagens')
@@ -27,7 +26,7 @@
         </div>
     </div>
 
-  
+
 
     {{-- Tabela --}}
     <div class="row gx-3">
@@ -35,7 +34,7 @@
 
             <div class="card">
 
-              
+
 
                 <div class="card-body">
 
@@ -51,8 +50,7 @@
                                     name="search"
                                     class="form-control"
                                     placeholder="Pesquisar por queixa principal"
-                                    value="{{ request('search') }}"
-                                >
+                                    value="{{ request('search') }}">
                             </div>
 
                             <div class="col-lg-3 col-md-6 mb-3">
@@ -112,12 +110,12 @@
                             <thead>
                                 <tr>
                                     <th>N.º</th>
-                                    <th>Queixa Principal</th>
+
                                     <th>Data</th>
                                     <th>Temperatura</th>
                                     <th>Pressão Arterial</th>
                                     <th>Classificação</th>
-                                    <th>Estado</th>
+
                                     <th class="text-end">Acções</th>
                                 </tr>
                             </thead>
@@ -126,122 +124,58 @@
 
                                 @forelse($triages as $triage)
 
-                                    <tr>
-                                        <td>
-                                            TRI-{{ str_pad($triage->id, 4, '0', STR_PAD_LEFT) }}
-                                        </td>
+                                <tr>
+                                    <td>
+                                        TRI-{{ str_pad($triage->id, 4, '0', STR_PAD_LEFT) }}
+                                    </td>
 
-                                        <td>
-                                            <div class="fw-semibold">
-                                                {{ Str::limit($triage->main_complaint, 35) }}
-                                            </div>
-                                        </td>
 
-                                        <td>
-                                            {{ $triage->created_at?->format('d/m/Y') }}
-                                            <br>
-                                            <small class="text-muted">
-                                                {{ $triage->created_at?->format('H:i') }}
-                                            </small>
-                                        </td>
 
-                                        <td>
-                                            {{ $triage->temperature !== null ? number_format($triage->temperature, 1, ',', '.') . ' °C' : '—' }}
-                                        </td>
+                                    <td>
+                                        {{ $triage->created_at?->format('d/m/Y') }}
+                                        <br>
+                                        <small class="text-muted">
+                                            {{ $triage->created_at?->format('H:i') }}
+                                        </small>
+                                    </td>
 
-                                        <td>
-                                            {{ $triage->blood_pressure ?? '—' }}
-                                            @if($triage->blood_pressure)
-                                                mmHg
-                                            @endif
-                                        </td>
+                                    <td>
+                                        {{ $triage->temperature !== null ? number_format($triage->temperature, 1, ',', '.') . ' °C' : '—' }}
+                                    </td>
 
-                                        <td>
-                                            @switch($triage->risk_level)
+                                    <td>
+                                        {{ $triage->bloodPressure ?? '—' }}
+                                        @if($triage->bloodPressure)
+                                        mmHg
+                                        @endif
+                                    </td>
 
-                                                @case('emergency')
-                                                    <span class="badge bg-danger-subtle text-danger">
-                                                        Emergência
-                                                    </span>
-                                                    @break
+                                    <td>
+                                        {{ $triage->riskClassification ?? 'Não definido' }}
+                                    </td>
 
-                                                @case('very_urgent')
-                                                    <span class="badge bg-danger-subtle text-danger">
-                                                        Muito Urgente
-                                                    </span>
-                                                    @break
+                                
 
-                                                @case('urgent')
-                                                    <span class="badge bg-warning-subtle text-warning">
-                                                        Urgente
-                                                    </span>
-                                                    @break
-
-                                                @case('less_urgent')
-                                                    <span class="badge bg-info-subtle text-info">
-                                                        Pouco Urgente
-                                                    </span>
-                                                    @break
-
-                                                @case('non_urgent')
-                                                    <span class="badge bg-success-subtle text-success">
-                                                        Não Urgente
-                                                    </span>
-                                                    @break
-
-                                                @default
-                                                    <span class="badge bg-secondary-subtle text-secondary">
-                                                        Não definido
-                                                    </span>
-
-                                            @endswitch
-                                        </td>
-
-                                        <td>
-                                            @switch($triage->status)
-
-                                                @case('pending')
-                                                    <span class="badge bg-secondary-subtle text-secondary">
-                                                        Pendente
-                                                    </span>
-                                                    @break
-
-                                                @case('in_progress')
-                                                    <span class="badge bg-warning-subtle text-warning">
-                                                        Em Avaliação
-                                                    </span>
-                                                    @break
-
-                                                @case('completed')
-                                                    <span class="badge bg-success-subtle text-success">
-                                                        Concluída
-                                                    </span>
-                                                    @break
-
-                                            @endswitch
-                                        </td>
-
-                                        <td class="text-end">
-                                            <a
-                                                href="{{ route('triage.show', $triage->id) }}"
-                                                class="btn btn-sm btn-outline-primary"
-                                                title="Visualizar"
-                                            >
-                                                <i class="ri-eye-line"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    <td class="text-end">
+                                        <a
+                                            href="{{ route('triage.show', $triage->id) }}"
+                                            class="btn btn-sm btn-outline-primary"
+                                            title="Visualizar">
+                                            <i class="ri-eye-line"></i>
+                                        </a>
+                                    </td>
+                                </tr>
 
                                 @empty
 
-                                    <tr>
-                                        <td colspan="8" class="text-center py-4">
-                                            <i class="ri-inbox-line fs-2 text-muted"></i>
-                                            <p class="text-muted mb-0 mt-2">
-                                                Nenhuma triagem encontrada.
-                                            </p>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td colspan="8" class="text-center py-4">
+                                        <i class="ri-inbox-line fs-2 text-muted"></i>
+                                        <p class="text-muted mb-0 mt-2">
+                                            Nenhuma triagem encontrada.
+                                        </p>
+                                    </td>
+                                </tr>
 
                                 @endforelse
 

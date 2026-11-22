@@ -16,7 +16,6 @@ class Triage extends Model
         'oxygenSaturation',
         'weight',
         'height',
-        'bloodGlucose',
         'observations',
         'riskClassification',
         'triageDate',

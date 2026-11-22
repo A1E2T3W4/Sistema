@@ -99,22 +99,7 @@
                             </div>
                         </div>
 
-                        {{-- Grupo Sanguíneo --}}
-                        <div class="col-xxl-4 col-lg-4 col-sm-6">
-                            <div class="mb-3">
-                                <label class="form-label">Grupo Sanguíneo</label>
-                                <select name="bloodType" class="form-select">
-                                    <option value="">Selecionar grupo sanguíneo</option>
-
-                                    @foreach(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'] as $grupo)
-                                        <option value="{{ $grupo }}"
-                                            {{ old('bloodType', $patient->bloodType) == $grupo ? 'selected' : '' }}>
-                                            {{ $grupo }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+                       
 
                         {{-- Morada --}}
                         <div class="col-xxl-12 col-lg-12 col-sm-12">

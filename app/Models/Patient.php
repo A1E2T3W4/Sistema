@@ -15,7 +15,6 @@ class Patient extends Model
         'phone',
         'address',
         'BI',
-        'bloodType',
         'observation',
     ];
 }

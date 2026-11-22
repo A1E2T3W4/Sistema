@@ -44,7 +44,6 @@ class PatientController extends Controller
             'phone' => 'nullable|string|max:30',
             'address' => 'nullable|string',
             'BI' => 'nullable|string|max:20|unique:patients,BI',
-            'bloodType' => 'nullable|string|max:5',
             'observation' => 'nullable|string',
         ]);
 
@@ -69,7 +68,6 @@ class PatientController extends Controller
             'phone' => 'nullable|string|max:30',
             'address' => 'nullable|string',
             'BI' => 'nullable|string|max:20|unique:patients,BI,' . $patient->id,
-            'bloodType' => 'nullable|string|max:5',
             'observation' => 'nullable|string',
 
 

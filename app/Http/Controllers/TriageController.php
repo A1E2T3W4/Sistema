@@ -43,7 +43,6 @@ class TriageController extends Controller
             'oxygenSaturation' => 'nullable|numeric|min:0|max:100',
             'weight' => 'nullable|numeric|min:0',
             'height' => 'nullable|numeric|min:0',
-            'bloodGlucose' => 'nullable|numeric|min:0',
             'observations' => 'nullable|string',
             'riskClassification' => 'nullable|string|max:255',
             'triageDate' => 'required|date',

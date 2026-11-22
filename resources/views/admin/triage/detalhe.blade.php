@@ -151,12 +151,7 @@
                         </div>
 
                         <div class="col-xxl-3 col-lg-4 col-sm-6 mb-3">
-                            <div class="p-3 bg-light rounded">
-                                <small class="text-muted d-block">Glicemia</small>
-                                <h5 class="mb-0">
-                                    {{ $triage->bloodGlucose !== null ? $triage->bloodGlucose . ' mg/dL' : 'Não informado' }}
-                                </h5>
-                            </div>
+                           
                         </div>
 
                     </div>
@@ -179,37 +174,8 @@
 
                 <div class="card-body">
                     <div class="row gx-3">
-
-                        <div class="col-sm-12 mb-3">
-                            <small class="text-muted d-block">Queixa Principal</small>
-                            <p class="mb-0">
-                                {{ $triage->observations ?: 'Não informado' }}
-                            </p>
-                        </div>
-
-                        <div class="col-md-4 mb-3">
-                            <small class="text-muted d-block">Duração dos Sintomas</small>
-                            <h6 class="mb-0">
-                                {{ $triage->symptomsDuration ?: 'Não informado' }}
-                            </h6>
-                        </div>
-
-                        <div class="col-md-4 mb-3">
-                            <small class="text-muted d-block">Intensidade da Dor</small>
-                            <h6 class="mb-0">
-                                {{ $triage->painLevel !== null ? $triage->painLevel . '/10' : 'Não informado' }}
-                            </h6>
-                        </div>
-
-                        <div class="col-md-4 mb-3">
-                            <small class="text-muted d-block">Alergias Conhecidas</small>
-                            <h6 class="mb-0">
-                                {{ $triage->allergies ?: 'Não informado' }}
-                            </h6>
-                        </div>
-
                         <div class="col-sm-12">
-                            <small class="text-muted d-block">Observações da Avaliação</small>
+                            <small class="text-muted d-block">Observações</small>
                             <p class="mb-0">
                                 {{ $triage->observations ?: 'Não existem observações registadas.' }}
                             </p>

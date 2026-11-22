@@ -4,6 +4,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\TriageController;
+use App\Http\Controllers\NurseController;
+use App\Http\Controllers\SpecialtyController;
 
 Route::redirect('/', '/login');
 
@@ -25,11 +27,24 @@ Route::view('/doctors', 'admin.doctors.index')->name('doctors.index');
 Route::view('/doctors/create', 'admin.doctors.create')->name('doctors.create');
 Route::view('/doctors/edit', 'admin.doctors.edit')->name('doctors.edit');
 
+
+
+
+// ENFERMEIROS
+Route::get('/nurses', [NurseController::class, 'index'])->name('nurses.index');
+Route::get('/nurses/create', [NurseController::class, 'create'])->name('nurses.create');
+Route::post('/nurses', [NurseController::class, 'store'])->name('nurses.store');
+Route::get('/nurses/{id}/edit', [NurseController::class, 'edit'])->name('nurses.edit');
+Route::put('/nurses/{id}', [NurseController::class, 'update'])->name('nurses.update');
+Route::delete('/nurses/{id}', [NurseController::class, 'destroy'])->name('nurses.destroy');
+
+
+
+    
 // TRIAGE
 Route::get('/triage', [TriageController::class, 'index'])->name('triage.index');
 Route::get('/triage/create', [TriageController::class, 'create'])->name('triage.create');
 Route::post('/triage', [TriageController::class, 'store'])->name('triage.store');
-Route::view('/triage/history', 'admin.triage.history')->name('triage.history');
 Route::get('/triage/{id}', [TriageController::class, 'show'])->name('triage.show');
 Route::delete('/triage/{id}', [TriageController::class, 'destroy'])->name('triage.destroy');
 
@@ -49,8 +64,12 @@ Route::view('/schedule', 'admin.schedules.index');
 
 // DEPARTAMENTOS
 Route::view('/departments', 'admin.departments.index')->name('departments.index');
-Route::view('/departments/create', 'admin.departments.create')->name('departments.create');
-Route::view('/departments/edit', 'admin.departments.edit')->name('departments.edit');
+Route::view('/specialties/create', 'admin.specialties.create')->name('specialties.create');
+Route::view('/specialties/edit', 'admin.specialties.edit')->name('specialties.edit');
+Route::get('/specialties', [SpecialtyController::class, 'index'])->name('specialties.index');
+Route::get('/specialties/create', [SpecialtyController::class, 'create'])->name('specialties.create');
+Route::post('/specialties', [SpecialtyController::class, 'store'])->name('specialties.store');
+Route::delete('/specialties/{id}', [SpecialtyController::class, 'destroy'])->name('specialties.destroy');
 
 // FUNCIONÁRIOS
 Route::view('/employees', 'admin.employees.index')->name('employees.index');
@@ -104,8 +123,6 @@ Route::view('/profile/edit', 'admin.profile.edit')->name('profile.edit');
 
 // CALENDÁRIO
 Route::view('/calendar', 'admin.calendar.index')->name('calendar.index');
-
-
 
 
 

@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string("phone")->nullable();
             $table->date("birthDate");
             $table->string("gender");
-            $table->string("bloodType");
             $table->text("observation")->nullable();
         });
     }

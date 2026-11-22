@@ -195,10 +195,7 @@
                 <div class="card-body">
                     <div class="row gx-3">
 
-                        <div class="col-md-6 mb-3">
-                            <small class="text-muted d-block">Grupo Sanguíneo</small>
-                            <h6 class="mb-0">{{ $patient->bloodType ?? 'Não informado' }}</h6>
-                        </div>
+                       
 
                         <div class="col-md-6 mb-3">
                             <small class="text-muted d-block">Observações</small>
