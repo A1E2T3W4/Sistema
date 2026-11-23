@@ -96,9 +96,9 @@
 
                                         <div class="col-xxl-3 col-lg-4 col-sm-6">
                                             <div class="mb-3">
-                                                <label class="form-label">Sexo</label>
+                                                <label class="form-label">Genero</label>
                                                 <select name="gender" class="form-select">
-                                                    <option value="">Seleccionar sexo</option>
+                                                    <option value="">Seleccionar genero</option>
                                                     <option value="Masculino" {{ old('gender') == 'Masculino' ? 'selected' : '' }}>Masculino</option>
                                                     <option value="Feminino" {{ old('gender') == 'Feminino' ? 'selected' : '' }}>Feminino</option>
                                                 </select>
@@ -208,7 +208,7 @@
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Número de Inscrição Profissional</label>
-                                                        <input type="text"
+                                                        <input type="number"
                                                             name="professionalRegistration"
                                                             class="form-control"
                                                             value="{{ old('professionalRegistration') }}"

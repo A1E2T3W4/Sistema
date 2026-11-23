@@ -8,23 +8,12 @@ use App\Models\Triage;
 class TriageController extends Controller
 {
     // Listar triagens
-       public function index()
+    public function index()
     {
-        $search = request('search');
+        $triages = Triage::latest()->paginate(10);
 
-        if ($search) {
-
-            $triages = Triage::where('id', 'like', '%' . $search . '%')
-                ->latest()
-                ->paginate(10);
-        } else {
-
-            $triages = Triage::latest()->paginate(10);
-        }
-
-        return view('admin.triage.index', compact('triages', 'search'));
+        return view('admin.triage.index', compact('triages'));
     }
-
 
     // Mostrar formulário de cadastro
     public function create()
@@ -43,17 +32,18 @@ class TriageController extends Controller
             'oxygenSaturation' => 'nullable|numeric|min:0|max:100',
             'weight' => 'nullable|numeric|min:0',
             'height' => 'nullable|numeric|min:0',
-            'observations' => 'nullable|string',
-            'riskClassification' => 'nullable|string|max:255',
-            'triageDate' => 'required|date',
-            'triagetime' => 'required',
+            'observations' => 'required|string',
+            'riskClassification' => 'required|in:emergency,very_urgent,urgent,less_urgent,non_urgent',
+
         ]);
 
+        $validated['triageDate'] = now()->toDateString();
+        $validated['triagetime'] = now()->format('H:i:s');
+
+        // A data e a hora são preenchidas automaticamente pelo Laravel
         Triage::create($validated);
 
-        return redirect()
-            ->route('triage.index')
-            ->with('success', 'Triagem registada com sucesso!');
+        return redirect()->route('triage.index')->with('success', 'Triagem registada com sucesso!');
     }
 
     // Mostrar detalhes da triagem

@@ -39,9 +39,9 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Sexo</label>
+                                <label class="form-label">Genero</label>
                                 <select name="gender" class="form-select">
-                                    <option value="">Seleccionar sexo</option>
+                                    <option value="">Seleccionar genero</option>
                                     <option value="Masculino" {{ old('gender', $nurse->gender) == 'Masculino' ? 'selected' : '' }}>Masculino</option>
                                     <option value="Feminino" {{ old('gender', $nurse->gender) == 'Feminino' ? 'selected' : '' }}>Feminino</option>
                                 </select>

@@ -55,12 +55,12 @@
                             </div>
                         </div>
 
-                        {{-- Sexo --}}
+                        {{-- Genero --}}
                         <div class="col-xxl-4 col-lg-4 col-sm-6">
                             <div class="mb-3">
-                                <label class="form-label">Sexo</label>
+                                <label class="form-label">Genero</label>
                                 <select name="gender" class="form-select">
-                                    <option value="">Selecionar sexo</option>
+                                    <option value="">Selecionar genero</option>
                                     <option value="Masculino" {{ old('gender', $patient->gender) == 'Masculino' ? 'selected' : '' }}>
                                         Masculino
                                     </option>
@@ -74,7 +74,7 @@
                         {{-- Bilhete de Identidade --}}
                         <div class="col-xxl-4 col-lg-4 col-sm-6">
                             <div class="mb-3">
-                                <label class="form-label">Identidade</label>
+                                <label class="form-label">Identificação</label>
                                 <input
                                     type="text"
                                     name="BI"

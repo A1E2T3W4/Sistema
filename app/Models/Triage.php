@@ -18,7 +18,7 @@ class Triage extends Model
         'height',
         'observations',
         'riskClassification',
-        'triageDate',
+         'triageDate',
         'triagetime',
     ];
 }

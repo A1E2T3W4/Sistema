@@ -34,11 +34,11 @@
                             @enderror
                         </div>
 
-                        {{-- Sexo --}}
+                        {{-- Genero --}}
                         <div class="col-md-4 mb-3">
-                            <label class="form-label">Sexo</label>
+                            <label class="form-label">Genero</label>
                             <select name="gender" class="form-select">
-                                <option value="">Selecionar sexo</option>
+                                <option value="">Selecionar genero</option>
                                 <option value="Masculino" {{ old('gender') == 'Masculino' ? 'selected' : '' }}>Masculino</option>
                                 <option value="Feminino" {{ old('gender') == 'Feminino' ? 'selected' : '' }}>Feminino</option>
                             </select>
@@ -46,7 +46,7 @@
 
                         {{-- BI --}}
                         <div class="col-md-4 mb-3">
-                            <label class="form-label">Identidade</label>
+                            <label class="form-label">Identificação</label>
                             <input
                                 type="text"
                                 name="BI"
