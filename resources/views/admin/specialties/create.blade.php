@@ -55,45 +55,6 @@
                     @enderror
                 </div>
 
-                {{-- Estado da Especialidade --}}
-                <div class="form-group">
-                    <label class="display-block">Estado da Especialidade</label>
-
-                    <div class="form-check form-check-inline">
-                        <input
-                            class="form-check-input"
-                            type="radio"
-                            name="status"
-                            id="specialty_active"
-                            value="active"
-                            {{ old('status', 'active') == 'active' ? 'checked' : '' }}
-                        >
-
-                        <label class="form-check-label" for="specialty_active">
-                            Activa
-                        </label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input
-                            class="form-check-input"
-                            type="radio"
-                            name="status"
-                            id="specialty_inactive"
-                            value="inactive"
-                            {{ old('status') == 'inactive' ? 'checked' : '' }}
-                        >
-
-                        <label class="form-check-label" for="specialty_inactive">
-                            Inactiva
-                        </label>
-                    </div>
-
-                    @error('status')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
                 {{-- Botões --}}
                 <div class="m-t-20 text-center">
 

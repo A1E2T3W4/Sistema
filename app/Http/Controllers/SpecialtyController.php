@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Nurse;
 use Illuminate\Http\Request;
 use App\Models\Specialty;
 
@@ -10,7 +11,7 @@ class SpecialtyController extends Controller
     /**
      * Display a listing of the resource.
      */
-     // LISTAR ESPECIALIDADES
+    // LISTAR ESPECIALIDADES
     public function index()
     {
         $specialties = Specialty::latest()->paginate(10);
@@ -19,28 +20,25 @@ class SpecialtyController extends Controller
     }
 
 
-    
 
-     // FORMULÁRIO DE CADASTRO
+
+    // FORMULÁRIO DE CADASTRO
     public function create()
     {
         return view('admin.specialties.create');
     }
 
-      // GUARDAR ESPECIALIDADE
+    // GUARDAR ESPECIALIDADE
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'status' => 'required|in:active,inactive',
-        ]);
+        Specialty::create($request->only([
+            'name',
+            'description',
+        ]));
 
-        Specialty::create($validated);
 
         return redirect()
-            ->route('specialties.index')
-            ->with('success', 'Especialidade criada com sucesso!');
+            ->route('specialties.index');
     }
 
     /**
@@ -70,8 +68,16 @@ class SpecialtyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+   public function destroy(string $id)
+{
+    $specialty = Specialty::findOrFail($id);
+
+    $specialty->delete();
+
+    return redirect()
+        ->route('specialties.index')
+        ->with('success', 'Especialidade eliminada com sucesso!');
 }
+    }
+
+

@@ -6,6 +6,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\TriageController;
 use App\Http\Controllers\NurseController;
 use App\Http\Controllers\SpecialtyController;
+use App\Http\Controllers\AppointmentController;
 
 Route::redirect('/', '/login');
 
@@ -52,9 +53,7 @@ Route::delete('/triage/{id}', [TriageController::class, 'destroy'])->name('triag
 
 
 // CONSULTAS
-Route::view('/appointments', 'admin.appointments.index')->name('appointments.index');
-Route::view('/appointments/create', 'admin.appointments.create')->name('appointments.create');
-Route::view('/appointments/edit', 'admin.appointments.edit')->name('appointments.edit');
+Route::resource('appointments', AppointmentController::class);
 
 // AGENDAMENTOS
 Route::view('/schedules', 'admin.schedules.index')->name('schedules.index');

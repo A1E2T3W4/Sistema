@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -7,12 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
         Schema::create('triages', function (Blueprint $table) {
-
             $table->id();
 
+            
             // Sinais vitais
             $table->decimal('temperature', 4, 1)->nullable();
             $table->string('bloodPressure')->nullable();
@@ -24,10 +26,16 @@ return new class extends Migration
             $table->decimal('bloodGlucose', 6, 2)->nullable();
             $table->text('observations')->nullable();
             $table->enum('riskClassification', ['emergency', 'very_urgent', 'urgent', 'less_urgent', 'non_urgent'])->nullable();
+            $table->date('triageDate')->nullable();
+            $table->time('triagetime')->nullable();
+            
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
         Schema::dropIfExists('triages');

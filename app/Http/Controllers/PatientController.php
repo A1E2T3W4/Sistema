@@ -37,17 +37,15 @@ class PatientController extends Controller
     // Guardar paciente
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'birthDate' => 'nullable|date',
-            'gender' => 'nullable|string|max:20',
-            'phone' => 'nullable|string|max:30',
-            'address' => 'nullable|string',
-            'BI' => 'nullable|string|max:20|unique:patients,BI',
-            'observation' => 'nullable|string',
-        ]);
-
-        Patient::create($validated);
+        Patient::create($request->only([
+            'name',
+            'birthDate',
+            'gender',
+            'phone',
+            'address',
+            'BI',
+            'observation',
+        ]));
 
         return redirect()->route('patients.index')->with('success', 'Paciente cadastrado com sucesso!');
     }
@@ -61,19 +59,16 @@ class PatientController extends Controller
     // Atualizar paciente
     public function update(Request $request, Patient $patient)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'birthDate' => 'nullable|date',
-            'gender' => 'nullable|string|max:20',
-            'phone' => 'nullable|string|max:30',
-            'address' => 'nullable|string',
-            'BI' => 'nullable|string|max:20|unique:patients,BI,' . $patient->id,
-            'observation' => 'nullable|string',
+        $patient->update($request->only([
+            'name',
+            'birthDate',
+            'gender',
+            'phone',
+            'address',
+            'BI' . $patient->id,
+            'observation',
+        ]));    
 
-
-        ]);
-
-        $patient->update($validated);
 
         return redirect()
             ->route('patients.index')

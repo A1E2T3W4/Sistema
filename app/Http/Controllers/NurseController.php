@@ -24,20 +24,19 @@ class NurseController extends Controller
     // GUARDAR ENFERMEIRO
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'dateOfBirth' => 'nullable|date',
-            'gender' => 'nullable|string|max:255',
-            'BI' => 'nullable|string|max:255',
-            'email' => 'nullable|email|max:255',
-            'phone' => 'nullable|string|max:255',
-            'address' => 'nullable|string|max:255',
-            'specialty' => 'nullable|string|max:255',
-            'professionalRegistration' => 'nullable|string|max:255',
-            'position' => 'nullable|string|max:255',
-        ]);
-
-        Nurse::create($validated);
+        Nurse::create($request->only([
+            'name',
+            'dateOfBirth',
+            'gender',
+            'BI',
+            'email',
+            'phone',
+            'address',
+            'photo',
+            'specialty',
+            'professionalRegistration',
+            'position',
+        ]));
 
         return redirect()
             ->route('nurses.index')

@@ -1,18 +1,17 @@
-
 @extends('layouts.main')
 
 @section('title', 'Consultas')
-
 @section('page-title', 'Consultas')
 
 @section('content')
 
 <div class="app-body">
 
-    {{-- Cabeçalho e botão de adicionar --}}
-    <div class="row gx-3 mb-3">
+ 
 
-        <div class="col-12 d-flex flex-wrap justify-content-between align-items-center gap-2">
+    {{-- Cabeçalho --}}
+    <div class="row gx-3 mb-4">
+        <div class="col-12 d-flex justify-content-between align-items-center flex-wrap gap-2">
 
             <div>
                 <h5 class="mb-1">Lista de Consultas</h5>
@@ -21,127 +20,121 @@
                 </p>
             </div>
 
-            <a href="{{ route('appointments.create') }}"
-               class="btn btn-primary">
+            <a href="{{ route('appointments.create') }}" class="btn btn-primary">
                 <i class="ri-add-line me-1"></i>
                 Adicionar Consulta
             </a>
 
         </div>
-
     </div>
 
-    {{-- Tabela de Consultas --}}
+    {{-- Tabela --}}
     <div class="card">
 
-        <div class="card-header">
-            <h5 class="card-title mb-1">
-                <i class="ri-calendar-check-line me-2"></i>
-                Registo de Consultas
-            </h5>
+        <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
 
-            <p class="text-muted mb-0">
-                Lista das consultas registadas no sistema hospitalar.
-            </p>
+            <div>
+                <h5 class="card-title mb-1">Registo de Consultas</h5>
+                <p class="text-muted mb-0">
+                    Lista de todas as consultas registadas no sistema.
+                </p>
+            </div>
+
+            <span class="badge bg-light text-dark">
+                Total: {{ $appointments->total() }}
+            </span>
+
         </div>
 
-        <div class="card-body">
+        <div class="card-body p-0">
 
             <div class="table-responsive">
 
-                <table class="table table-hover align-middle">
+                <table class="table table-hover align-middle mb-0">
 
                     <thead class="table-light">
                         <tr>
-                            <th>ID da Consulta</th>
-                            <th>Nome do Paciente</th>
-                            <th>Idade</th>
-                            <th>Nome do Médico</th>
-                            <th>Departamento</th>
-                            <th>Data</th>
-                            <th>Horário</th>
+                            <th class="ps-4">N.º</th>
+                            <th>Paciente</th>
+                            <th>Médico</th>
+                            <th>Enfermeiro Responsável</th>
+                            <th>Observação da Consulta</th>
                             <th>Estado</th>
-                            <th class="text-end">Acção</th>
+                            <th class="text-end pe-4">Acções</th>
                         </tr>
                     </thead>
 
                     <tbody>
 
-                        {{-- Consulta 1 --}}
+                        @forelse($appointments as $appointment)
+
                         <tr>
 
-                            <td class="fw-semibold">APT0001</td>
-
-                            <td>
-                                <div class="d-flex align-items-center gap-2">
-
-                                    <img
-                                        src="{{ asset('assets/images/user6.png') }}"
-                                        width="35"
-                                        height="35"
-                                        class="rounded-circle object-fit-cover"
-                                        alt="Paciente"
-                                    >
-
-                                    <span>Denise Stevens</span>
-
-                                </div>
-                            </td>
-
-                            <td>35</td>
-
-                            <td>Henry Daniels</td>
-
-                            <td>Cardiologia</td>
-
-                            <td>30 Dez 2018</td>
-
-                            <td>10:00 - 11:00</td>
-
-                            <td>
-                                <span class="badge bg-danger-subtle text-danger">
-                                    Inactivo
+                            {{-- Número --}}
+                            <td class="ps-4">
+                                <span class="fw-semibold">
+                                    {{ $appointments->firstItem() + $loop->index }}
                                 </span>
                             </td>
 
-                            <td class="text-end">
+                            {{-- Paciente --}}
+                            <td>
+                                {{ $appointment->patient_id ?? 'Não informado' }}
+                            </td>
 
-                                <div class="dropdown">
+                            {{-- Médico --}}
+                            <td>
+                                {{ $appointment->doctor ?? 'Não informado' }}
+                            </td>
+
+                            {{-- Enfermeiro --}}
+                            <td>
+                                {{ $appointment->nurse ?? 'Não informado' }}
+                            </td>
+
+                            {{-- Observação --}}
+                            <td>
+                                <div style="max-width: 300px; min-width: 180px;">
+                                    {{ $appointment->message ?: 'Sem observação' }}
+                                </div>
+                            </td>
+
+                            {{-- Estado --}}
+                            <td>
+                                @if($appointment->status == 'active')
+                                <span class="badge bg-success-subtle text-success rounded-pill px-3 py-2">
+                                    Activa
+                                </span>
+                                @else
+                                <span class="badge bg-danger-subtle text-danger rounded-pill px-3 py-2">
+                                    Inactiva
+                                </span>
+                                @endif
+                            </td>
+
+                            {{-- Acções --}}
+                            <td class="text-end pe-4">
+
+                                <div class="d-inline-flex align-items-center gap-2">
+
+                                    <a href="{{ route('appointments.edit', $appointment->id) }}"
+                                        class="btn btn-light btn-sm"
+                                        title="Editar consulta">
+
+                                        <i class="ri-edit-line text-primary"></i>
+
+                                    </a>
 
                                     <button
-                                        class="btn btn-light btn-sm"
                                         type="button"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false">
+                                        class="btn btn-light btn-sm"
+                                        title="Eliminar"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#delete_appointment_{{ $appointment->id }}">
 
-                                        <i class="ri-more-2-fill"></i>
+                                        <i class="ri-delete-bin-line text-danger"></i>
 
                                     </button>
-
-                                    <ul class="dropdown-menu dropdown-menu-end">
-
-                                        <li>
-                                            <a class="dropdown-item"
-                                               href="{{ route('appointments.edit') }}">
-                                                <i class="ri-edit-line me-2"></i>
-                                                Editar
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <button
-                                                type="button"
-                                                class="dropdown-item text-danger"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#delete_appointment">
-
-                                                <i class="ri-delete-bin-line me-2"></i>
-                                                Eliminar
-
-                                            </button>
-                                        </li>
-
-                                    </ul>
 
                                 </div>
 
@@ -149,87 +142,26 @@
 
                         </tr>
 
-                        {{-- Consulta 2 --}}
+                        @empty
+
                         <tr>
+                            <td colspan="7" class="text-center py-5">
 
-                            <td class="fw-semibold">APT0002</td>
+                                <i class="ri-calendar-check-line text-muted"
+                                    style="font-size: 40px;"></i>
 
-                            <td>
-                                <div class="d-flex align-items-center gap-2">
+                                <h6 class="mt-3 mb-1">
+                                    Nenhuma consulta encontrada
+                                </h6>
 
-                                    <img
-                                        src="{{ asset('assets/images/user6.png') }}"
-                                        width="35"
-                                        height="35"
-                                        class="rounded-circle object-fit-cover"
-                                        alt="Paciente"
-                                    >
-
-                                    <span>Denise Stevens</span>
-
-                                </div>
-                            </td>
-
-                            <td>35</td>
-
-                            <td>Henry Daniels</td>
-
-                            <td>Cardiologia</td>
-
-                            <td>30 Dez 2018</td>
-
-                            <td>10:00 - 11:00</td>
-
-                            <td>
-                                <span class="badge bg-success-subtle text-success">
-                                    Activo
-                                </span>
-                            </td>
-
-                            <td class="text-end">
-
-                                <div class="dropdown">
-
-                                    <button
-                                        class="btn btn-light btn-sm"
-                                        type="button"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-
-                                        <i class="ri-more-2-fill"></i>
-
-                                    </button>
-
-                                    <ul class="dropdown-menu dropdown-menu-end">
-
-                                        <li>
-                                            <a class="dropdown-item"
-                                               href="{{ route('appointments.edit') }}">
-                                                <i class="ri-edit-line me-2"></i>
-                                                Editar
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <button
-                                                type="button"
-                                                class="dropdown-item text-danger"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#delete_appointment">
-
-                                                <i class="ri-delete-bin-line me-2"></i>
-                                                Eliminar
-
-                                            </button>
-                                        </li>
-
-                                    </ul>
-
-                                </div>
+                                <p class="text-muted mb-0">
+                                    Ainda não existem consultas registadas.
+                                </p>
 
                             </td>
-
                         </tr>
+
+                        @endforelse
 
                     </tbody>
 
@@ -238,16 +170,25 @@
             </div>
 
         </div>
+
+        {{-- Paginação --}}
+        @if($appointments->hasPages())
+        <div class="card-footer bg-white">
+            {{ $appointments->links() }}
+        </div>
+        @endif
+
     </div>
 
 </div>
 
-{{-- Modal de confirmação de eliminação --}}
+{{-- Modais de eliminação --}}
+@foreach($appointments as $appointment)
+
 <div class="modal fade"
-     id="delete_appointment"
-     tabindex="-1"
-     aria-labelledby="deleteAppointmentLabel"
-     aria-hidden="true">
+    id="delete_appointment_{{ $appointment->id }}"
+    tabindex="-1"
+    aria-hidden="true">
 
     <div class="modal-dialog modal-dialog-centered">
 
@@ -257,33 +198,38 @@
 
                 <div class="mb-3">
                     <i class="ri-delete-bin-line text-danger"
-                       style="font-size: 55px;"></i>
+                        style="font-size: 50px;"></i>
                 </div>
 
-                <h5 class="mb-2" id="deleteAppointmentLabel">
-                    Eliminar Consulta
-                </h5>
+                <h5 class="mb-2">Eliminar Consulta</h5>
 
                 <p class="text-muted mb-4">
                     Tem a certeza de que deseja eliminar esta consulta?
                     Esta acção não poderá ser desfeita.
                 </p>
 
-                <div class="d-flex justify-content-center gap-2">
+                <form action="{{ route('appointments.destroy', $appointment->id) }}"
+                    method="POST">
 
-                    <button
-                        type="button"
-                        class="btn btn-light"
-                        data-bs-dismiss="modal">
-                        Cancelar
-                    </button>
+                    @csrf
+                    @method('DELETE')
 
-                    <button type="button" class="btn btn-danger">
-                        <i class="ri-delete-bin-line me-1"></i>
-                        Eliminar
-                    </button>
+                    <div class="d-flex justify-content-center gap-2">
 
-                </div>
+                        <button type="button"
+                            class="btn btn-light"
+                            data-bs-dismiss="modal">
+                            Cancelar
+                        </button>
+
+                        <button type="submit" class="btn btn-danger">
+                            <i class="ri-delete-bin-line me-1"></i>
+                            Sim, eliminar
+                        </button>
+
+                    </div>
+
+                </form>
 
             </div>
 
@@ -292,5 +238,7 @@
     </div>
 
 </div>
+
+@endforeach
 
 @endsection

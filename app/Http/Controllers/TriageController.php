@@ -24,24 +24,23 @@ class TriageController extends Controller
     // Guardar nova triagem
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'temperature' => 'nullable|numeric',
-            'bloodPressure' => 'nullable|string|max:255',
-            'heartRate' => 'nullable|integer|min:0',
-            'respiratoryRate' => 'nullable|integer|min:0',
-            'oxygenSaturation' => 'nullable|numeric|min:0|max:100',
-            'weight' => 'nullable|numeric|min:0',
-            'height' => 'nullable|numeric|min:0',
-            'observations' => 'required|string',
-            'riskClassification' => 'required|in:emergency,very_urgent,urgent,less_urgent,non_urgent',
+      $dados = $request->only([
+        'temperature',
+        'bloodPressure',
+        'heartRate',
+        'respiratoryRate',
+        'oxygenSaturation',
+        'weight',
+        'height',
+        'observations',
+        'riskClassification',
+    ]);
 
-        ]);
+    $dados['triageDate'] = now()->toDateString();
+    $dados['triagetime'] = now()->format('H:i:s');
 
-        $validated['triageDate'] = now()->toDateString();
-        $validated['triagetime'] = now()->format('H:i:s');
+    Triage::create($dados);
 
-        // A data e a hora são preenchidas automaticamente pelo Laravel
-        Triage::create($validated);
 
         return redirect()->route('triage.index')->with('success', 'Triagem registada com sucesso!');
     }
