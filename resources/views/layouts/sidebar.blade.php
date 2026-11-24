@@ -36,33 +36,7 @@
                 </a>
             </li>
 
-            {{-- MÉDICOS --}}
-            <li class="treeview {{ request()->routeIs('doctors.*') ? 'active open' : '' }}">
-                <a href="#!">
-                    <i class="ri-stethoscope-line"></i>
-                    <span class="menu-text">Médicos</span>
-                </a>
-
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('doctors.index') }}">Lista de Médicos</a></li>
-                    <li><a href="{{ route('doctors.create') }}">Adicionar Médico</a></li>
-                </ul>
-            </li>
-
-            {{-- ENFERMEIROS --}}
-            <li class="treeview {{ request()->routeIs('nurses.*') ? 'active open' : '' }}">
-                <a href="#!">
-                    <i class="ri-stethoscope-line"></i>
-                    <span class="menu-text">Enfermeiros</span>
-                </a>
-
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('nurses.index') }}">Lista de Enfermeiros</a></li>
-                    <li><a href="{{ route('nurses.create') }}">Adicionar Enfermeiro</a></li>
-                </ul>
-            </li>
-
-            {{-- PACIENTES --}}
+             {{-- PACIENTES --}}
             <li class="treeview {{ request()->routeIs('patients.*') ? 'active open' : '' }}">
                 <a href="#!">
                     <i class="ri-heart-pulse-line"></i>
@@ -83,7 +57,8 @@
                 </ul>
             </li>
 
-            {{-- TRIAGEM --}}
+
+             {{-- TRIAGEM --}}
             <li class="treeview {{ request()->routeIs('triage.*') ? 'active open' : '' }}">
                 <a href="#!">
                     <i class="ri-stethoscope-line"></i>
@@ -95,6 +70,97 @@
                     <li><a href="{{ route('triage.create') }}">Nova Triagem</a></li>
                 </ul>
             </li>
+
+             {{-- CONSULTAS --}}
+            <li class="treeview {{ request()->routeIs('appointments.*') ? 'active open' : '' }}">
+                <a href="#!">
+                    <i class="ri-dossier-line"></i>
+                    <span class="menu-text">Consultas</span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('appointments.index') }}" wire:navigate>
+                            Lista de Consultas
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('appointments.create') }}" wire:navigate>
+                            Marcar Consulta
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+              {{-- ENFERMEIROS --}}
+            <li class="treeview {{ request()->routeIs('nurses.*') ? 'active open' : '' }}">
+                <a href="#!">
+                    <i class="ri-stethoscope-line"></i>
+                    <span class="menu-text">Enfermeiros</span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('nurses.index') }}">Lista de Enfermeiros</a></li>
+                    <li><a href="{{ route('nurses.create') }}">Adicionar Enfermeiro</a></li>
+                </ul>
+            </li>
+
+
+
+            {{-- MÉDICOS --}}
+            <li class="treeview {{ request()->routeIs('doctors.*') ? 'active open' : '' }}">
+                <a href="#!">
+                    <i class="ri-stethoscope-line"></i>
+                    <span class="menu-text">Médicos</span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('doctors.index') }}">Lista de Médicos</a></li>
+                    <li><a href="{{ route('doctors.create') }}">Adicionar Médico</a></li>
+                </ul>
+            </li>
+
+
+              {{-- Exame --}}
+            <li class="treeview {{ request()->routeIs('nurses.*') ? 'active open' : '' }}">
+                <a href="#!">
+                   <i class="ri-dossier-line"></i>
+                    <span class="menu-text">Exame</span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li><a href="#">Lista de Exames</a></li>
+                    <li><a href="#">Adicionar Exame</a></li>
+                </ul>
+            </li>
+
+             {{-- ESpecialidades --}}
+            <li class="treeview {{ request()->routeIs('specialties.*') ? 'active open' : '' }}">
+                <a href="#!">
+                    <i class="ri-building-2-line"></i>
+                    <span class="menu-text">Especialidades</span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('specialties.index') }}" wire:navigate>
+                            Lista de especialidades
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('specialties.create') }}" wire:navigate>
+                            Adicionar Especialidade
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+          
+           
+
+           
 
             {{-- FUNCIONÁRIOS --}}
             <li class="treeview {{ request()->routeIs('employees.*') ? 'active open' : '' }}">
@@ -122,27 +188,7 @@
                 </ul>
             </li>
 
-            {{-- CONSULTAS --}}
-            <li class="treeview {{ request()->routeIs('appointments.*') ? 'active open' : '' }}">
-                <a href="#!">
-                    <i class="ri-dossier-line"></i>
-                    <span class="menu-text">Consultas</span>
-                </a>
-
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="{{ route('appointments.index') }}" wire:navigate>
-                            Lista de Consultas
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('appointments.create') }}" wire:navigate>
-                            Marcar Consulta
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
+           
             {{-- AGENDAMENTOS --}}
             <li class="treeview {{ request()->routeIs('schedules.*') ? 'active open' : '' }}">
                 <a href="#!">
@@ -164,26 +210,7 @@
                 </ul>
             </li>
 
-            {{-- ESpecialidades --}}
-            <li class="treeview {{ request()->routeIs('specialties.*') ? 'active open' : '' }}">
-                <a href="#!">
-                    <i class="ri-building-2-line"></i>
-                    <span class="menu-text">Especialidades</span>
-                </a>
-
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="{{ route('specialties.index') }}" wire:navigate>
-                            Lista de especialidades
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('specialties.create') }}" wire:navigate>
-                            Adicionar Especialidade
-                        </a>
-                    </li>
-                </ul>
-            </li>
+           
 
             {{-- FINANCEIRO --}}
             <li class="treeview {{ request()->routeIs('invoices.*', 'payments.*', 'expenses.*', 'taxes.*') ? 'active open' : '' }}">

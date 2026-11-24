@@ -75,10 +75,6 @@
                 </div>
 
                 <div class="m-t-20 text-center">
-                    <a href="{{ route('departments.index') }}" class="btn btn-secondary submit-btn">
-                        Cancelar
-                    </a>
-
                     <button type="submit" class="btn btn-primary submit-btn">
                         Guardar Departamento
                     </button>

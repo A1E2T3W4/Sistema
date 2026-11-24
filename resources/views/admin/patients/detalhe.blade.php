@@ -96,11 +96,8 @@
 
                         <div class="col-md-4 col-sm-6 mb-3">
                             <small class="text-muted d-block">Data de Nascimento</small>
-                            <h6 class="mb-0">
-                                {{ $patient->birth_date
-                                    ? \Carbon\Carbon::parse($patient->birth_date)->format('d/m/Y')
-                                    : 'Não informado' }}
-                            </h6>
+                           <h6 class="mb-0">{{ $patient->birthDate ?? 'Não informado' }} </h6>
+                            
                         </div>
 
                         <div class="col-md-4 col-sm-6 mb-3">
@@ -108,15 +105,9 @@
                             <h6 class="mb-0">{{ $patient->gender ?? 'Não informado' }}</h6>
                         </div>
 
-                        <div class="col-md-4 col-sm-6 mb-3">
-                            <small class="text-muted d-block">Estado Civil</small>
-                            <h6 class="mb-0">{{ $patient->marital_status ?? 'Não informado' }}</h6>
-                        </div>
+                      
 
-                        <div class="col-md-4 col-sm-6 mb-3">
-                            <small class="text-muted d-block">Nacionalidade</small>
-                            <h6 class="mb-0">{{ $patient->nationality ?? 'Não informado' }}</h6>
-                        </div>
+                       
 
                     </div>
                 </div>

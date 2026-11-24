@@ -5,24 +5,24 @@
 
 @section('content')
 
-<div class="content">
+<div class="card" style="margin: 20px; height: 80vh;">
 
     {{-- Título --}}
     <div class="row">
-        <div class="col-lg-8 offset-lg-2">
+        <div class="col-lg-8 offset-lg-2" style="padding: 20px; margin: 5px;">
             <h4 class="page-title">Adicionar Especialidade</h4>
         </div>
     </div>
 
     {{-- Formulário --}}
     <div class="row">
-        <div class="col-lg-8 offset-lg-2">
+        <div class="col-lg-8 offset-lg-2" style="padding: 20px; margin-left:20px;">
 
-            <form action="{{ route('specialties.store') }}" method="POST">
+            <form action="{{ route('specialties.store') }}" method="POST" >
                 @csrf
 
                 {{-- Nome da Especialidade --}}
-                <div class="form-group">
+                <div class="form-group" style=" margin: 5px; width: 100vh;">
                     <label>Nome da Especialidade <span class="text-danger">*</span></label>
 
                     <input
@@ -32,7 +32,8 @@
                         placeholder="Digite o nome da especialidade"
                         value="{{ old('name') }}"
                         required
-                    >
+                        style=" margin: 5px; width: 900px;">
+                    
 
                     @error('name')
                         <span class="text-danger">{{ $message }}</span>
@@ -58,12 +59,7 @@
                 {{-- Botões --}}
                 <div class="m-t-20 text-center">
 
-                    <a href="{{ route('specialties.index') }}"
-                       class="btn btn-secondary submit-btn">
-                        Cancelar
-                    </a>
-
-                    <button type="submit" class="btn btn-primary submit-btn">
+                    <button type="submit" class="btn btn-primary submit-btn" style="margin: 20px;">
                         Criar Especialidade
                     </button>
 
@@ -75,5 +71,4 @@
     </div>
 
 </div>
-
 @endsection

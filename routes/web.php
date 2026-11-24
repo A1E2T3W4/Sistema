@@ -7,6 +7,7 @@ use App\Http\Controllers\TriageController;
 use App\Http\Controllers\NurseController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\DoctorController;
 
 Route::redirect('/', '/login');
 
@@ -24,9 +25,13 @@ Route::view('/lock-screen', 'admin.auth.lock-screen')->name('lock-screen');
 Route::view('/dashboard', 'admin.Dashboard.index')->name('dashboard');
 
 // MÉDICOS
-Route::view('/doctors', 'admin.doctors.index')->name('doctors.index');
-Route::view('/doctors/create', 'admin.doctors.create')->name('doctors.create');
-Route::view('/doctors/edit', 'admin.doctors.edit')->name('doctors.edit');
+Route::get('/doctors', [DoctorController::class, 'index'])->name('doctors.index');
+Route::get('/doctors/create', [DoctorController::class, 'create'])->name('doctors.create');
+Route::post('/doctors', [DoctorController::class, 'store'])->name('doctors.store');
+Route::get('/doctors/{id}/edit', [DoctorController::class, 'edit'])->name('doctors.edit');
+Route::put('/doctors/{id}', [DoctorController::class, 'update'])->name('doctors.update');
+Route::delete('/doctors/{id}', [DoctorController::class, 'destroy'])->name('doctors.destroy');
+
 
 
 

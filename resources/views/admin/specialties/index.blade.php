@@ -157,12 +157,6 @@
 
                 <div class="mt-4">
 
-                    <button type="button"
-                        class="btn btn-light mr-2"
-                        data-dismiss="modal">
-                        Cancelar
-                    </button>
-
                     <form action="{{ route('specialties.destroy', $specialty->id) }}"
                         method="POST"
                         class="d-inline">

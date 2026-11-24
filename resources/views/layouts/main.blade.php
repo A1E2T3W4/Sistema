@@ -57,7 +57,7 @@
         @include('layouts.header')
 
 
-        <div class="main-container">
+        <div class="main-container" >
 
 
             @hasSection('sidebar')
@@ -76,7 +76,7 @@
 
 
                 {{-- Cabeçalho da página --}}
-                <div class="app-hero-header d-flex align-items-center">
+                <div class="app-hero-header d-flex align-items-center" >
 
                     <ol class="breadcrumb">
 
