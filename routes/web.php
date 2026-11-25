@@ -8,6 +8,7 @@ use App\Http\Controllers\NurseController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\DashboardController;
 
 Route::redirect('/', '/login');
 
@@ -23,6 +24,7 @@ Route::view('/lock-screen', 'admin.auth.lock-screen')->name('lock-screen');
 
 // DASHBOARD
 Route::view('/dashboard', 'admin.Dashboard.index')->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // MÉDICOS
 Route::get('/doctors', [DoctorController::class, 'index'])->name('doctors.index');
@@ -66,14 +68,13 @@ Route::view('/schedules/create', 'admin.schedules.create')->name('schedules.crea
 Route::view('/schedules/edit', 'admin.schedules.edit')->name('schedules.edit');
 Route::view('/schedule', 'admin.schedules.index');
 
-// DEPARTAMENTOS
-Route::view('/departments', 'admin.departments.index')->name('departments.index');
-Route::view('/specialties/create', 'admin.specialties.create')->name('specialties.create');
-Route::view('/specialties/edit', 'admin.specialties.edit')->name('specialties.edit');
-Route::get('/specialties', [SpecialtyController::class, 'index'])->name('specialties.index');
+// ESPECIALIDADES
+Route::get('/specialties', [SpecialtyController::class, 'index']) ->name('specialties.index');
 Route::get('/specialties/create', [SpecialtyController::class, 'create'])->name('specialties.create');
 Route::post('/specialties', [SpecialtyController::class, 'store'])->name('specialties.store');
-Route::delete('/specialties/{id}', [SpecialtyController::class, 'destroy'])->name('specialties.destroy');
+Route::get('/specialties/{id}/edit', [SpecialtyController::class, 'edit'])->name('specialties.edit');
+Route::put('/specialties/{id}', [SpecialtyController::class, 'update']) ->name('specialties.update');
+Route::delete('/specialties/{id}', [SpecialtyController::class, 'destroy']) ->name('specialties.destroy');
 
 // FUNCIONÁRIOS
 Route::view('/employees', 'admin.employees.index')->name('employees.index');

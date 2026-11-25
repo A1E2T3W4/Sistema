@@ -18,7 +18,7 @@ var options = {
     width: [0, 4]
   },
   series: [{
-    name: 'New Patients',
+    name: 'Paciente',
     type: 'area',
     data: [400, 550, 350, 450, 300, 350, 270, 320, 330, 410, 300, 490]
   }, {

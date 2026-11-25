@@ -15,6 +15,5 @@ class Patient extends Model
         'phone',
         'address',
         'BI',
-        'observation',
     ];
 }

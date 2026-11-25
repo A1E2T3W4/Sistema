@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Nurse;
+use App\Models\Specialty;
 
 class NurseController extends Controller
 {
     // LISTAR ENFERMEIROS
     public function index()
     {
-        $nurses = Nurse::latest()->paginate(10);
+        $nurses = Nurse::with('specialty')->latest()->paginate(10);
 
         return view('admin.nurses.index', compact('nurses'));
     }
@@ -18,12 +19,16 @@ class NurseController extends Controller
     // FORMULÁRIO DE CADASTRO
     public function create()
     {
-        return view('admin.nurses.create');
+        $specialties = Specialty::all();
+
+        return view('admin.nurses.create', compact('specialties'));
     }
 
     // GUARDAR ENFERMEIRO
     public function store(Request $request)
     {
+
+
         Nurse::create($request->only([
             'name',
             'dateOfBirth',
@@ -33,7 +38,7 @@ class NurseController extends Controller
             'phone',
             'address',
             'photo',
-            'specialty',
+            'specialty_id',
             'professionalRegistration',
             'position',
         ]));
@@ -46,7 +51,7 @@ class NurseController extends Controller
     // MOSTRAR PERFIL DO ENFERMEIRO
     public function show(string $id)
     {
-        $nurse = Nurse::findOrFail($id);
+        $nurse = Nurse::with('specialty')->findOrFail($id);
 
         return view('admin.nurses.show', compact('nurse'));
     }
@@ -55,8 +60,9 @@ class NurseController extends Controller
     public function edit($id)
     {
         $nurse = Nurse::findOrFail($id);
+        $specialties = Specialty::all();
 
-        return view('admin.nurses.edit', compact('nurse'));
+        return view('admin.nurses.edit', compact('nurse', 'specialties'));
     }
 
     // ATUALIZAR ENFERMEIRO
@@ -64,20 +70,21 @@ class NurseController extends Controller
     {
         $nurse = Nurse::findOrFail($id);
 
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'dateOfBirth' => 'nullable|date',
-            'gender' => 'nullable|string|max:255',
-            'BI' => 'nullable|string|max:255',
-            'email' => 'nullable|email|max:255',
-            'phone' => 'nullable|string|max:255',
-            'address' => 'nullable|string|max:255',
-            'specialty' => 'nullable|string|max:255',
-            'professionalRegistration' => 'nullable|string|max:255',
-            'position' => 'nullable|string|max:255',
-        ]);
+         Nurse::create($request->only([
+            'name',
+            'dateOfBirth',
+            'gender',
+            'BI',
+            'email',
+            'phone',
+            'address',
+            'photo',
+            'specialty_id',
+            'professionalRegistration',
+            'position',
+        ]));
 
-        $nurse->update($validated);
+ 
 
         return redirect()
             ->route('nurses.index')

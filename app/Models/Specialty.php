@@ -12,4 +12,9 @@ class Specialty extends Model
     'name',
     'description',
 ];
+
+ public function nurses()
+    {
+        return $this->hasMany(Nurse::class, 'specialty_id');
+    }
 }

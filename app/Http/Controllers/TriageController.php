@@ -27,13 +27,8 @@ class TriageController extends Controller
       $dados = $request->only([
         'temperature',
         'bloodPressure',
-        'heartRate',
-        'respiratoryRate',
-        'oxygenSaturation',
         'weight',
         'height',
-        'observations',
-        'riskClassification',
     ]);
 
     $dados['triageDate'] = now()->toDateString();

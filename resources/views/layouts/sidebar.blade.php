@@ -51,7 +51,7 @@
                     </li>
                     <li>
                         <a href="{{ route('patients.create') }}" wire:navigate>
-                            Adicionar Paciente
+                            Novo Paciente
                         </a>
                     </li>
                 </ul>
@@ -86,7 +86,7 @@
                     </li>
                     <li>
                         <a href="{{ route('appointments.create') }}" wire:navigate>
-                            Marcar Consulta
+                             Consulta
                         </a>
                     </li>
                 </ul>
@@ -102,7 +102,7 @@
 
                 <ul class="treeview-menu">
                     <li><a href="{{ route('nurses.index') }}">Lista de Enfermeiros</a></li>
-                    <li><a href="{{ route('nurses.create') }}">Adicionar Enfermeiro</a></li>
+                    <li><a href="{{ route('nurses.create') }}">Cadastro </a></li>
                 </ul>
             </li>
 
@@ -117,7 +117,7 @@
 
                 <ul class="treeview-menu">
                     <li><a href="{{ route('doctors.index') }}">Lista de Médicos</a></li>
-                    <li><a href="{{ route('doctors.create') }}">Adicionar Médico</a></li>
+                    <li><a href="{{ route('doctors.create') }}">Cadastro</a></li>
                 </ul>
             </li>
 
@@ -131,7 +131,7 @@
 
                 <ul class="treeview-menu">
                     <li><a href="#">Lista de Exames</a></li>
-                    <li><a href="#">Adicionar Exame</a></li>
+                    <li><a href="#">Novo Exame</a></li>
                 </ul>
             </li>
 
@@ -150,7 +150,7 @@
                     </li>
                     <li>
                         <a href="{{ route('specialties.create') }}" wire:navigate>
-                            Adicionar Especialidade
+                            Nova Especialidade
                         </a>
                     </li>
                 </ul>
@@ -177,7 +177,7 @@
                     </li>
                     <li>
                         <a href="{{ route('employees.create') }}" wire:navigate>
-                            Adicionar Funcionário
+                            Novo Funcionário
                         </a>
                     </li>
                     <li>
@@ -204,7 +204,7 @@
                     </li>
                     <li>
                         <a href="{{ route('schedules.create') }}" wire:navigate>
-                            Adicionar Agendamento
+                            Novo Agendamento
                         </a>
                     </li>
                 </ul>
@@ -300,7 +300,7 @@
                     </li>
                     <li>
                         <a href="{{ route('settings.roles.create-role') }}" wire:navigate>
-                            Adicionar Função
+                            Nova Função
                         </a>
                     </li>
                     <li>
@@ -332,28 +332,9 @@
                 </a>
             </li>
 
-            {{-- PERFIL --}}
-            <li class="{{ request()->routeIs('profile.*') ? 'active' : '' }}">
-                <a href="{{ route('profile.index') }}" wire:navigate>
-                    <i class="ri-user-settings-line"></i>
-                    <span class="menu-text">Meu Perfil</span>
-                </a>
-            </li>
-
         </ul>
     </div>
 
-    {{-- CONTACTO --}}
-    <div class="sidebar-contact">
-        <p class="fw-light mb-1 text-nowrap text-truncate">
-            Contacto de Emergência
-        </p>
-
-        <h5 class="m-0 lh-1 text-nowrap text-truncate">
-            956207362
-        </h5>
-
-        <i class="ri-phone-line"></i>
-    </div>
+    
 
 </nav>

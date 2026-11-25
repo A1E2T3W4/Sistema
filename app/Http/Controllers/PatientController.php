@@ -44,7 +44,6 @@ class PatientController extends Controller
             'phone',
             'address',
             'BI',
-            'observation',
         ]));
 
         return redirect()->route('patients.index')->with('success', 'Paciente cadastrado com sucesso!');
@@ -66,7 +65,7 @@ class PatientController extends Controller
             'phone',
             'address',
             'BI' . $patient->id,
-            'observation',
+  
         ]));    
 
 

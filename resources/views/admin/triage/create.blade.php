@@ -88,88 +88,11 @@
                                     </div>
                                 </div>
 
-                                <div class="col-xxl-3 col-lg-4 col-sm-6">
-                                    <div class="mb-3">
-                                        <label for="heartRate" class="form-label">
-                                            Frequência Cardíaca (bpm)
-                                        </label>
+                            
 
-                                        <input type="number"
-                                            name="heartRate"
-                                            id="heartRate"
-                                            class="form-control"
-                                            placeholder="Ex.: 80"
-                                            value="{{ old('heartRate') }}">
-                                    </div>
-                                </div>
+                            
 
-                                <div class="col-xxl-3 col-lg-4 col-sm-6">
-                                    <div class="mb-3">
-                                        <label for="respiratoryRate" class="form-label">
-                                            Frequência Respiratória (rpm)
-                                        </label>
-
-                                        <input type="number"
-                                            name="respiratoryRate"
-                                            id="respiratoryRate"
-                                            class="form-control"
-                                            placeholder="Ex.: 18"
-                                            value="{{ old('respiratoryRate') }}">
-                                    </div>
-                                </div>
-
-                                <div class="col-xxl-3 col-lg-4 col-sm-6">
-                                    <div class="mb-3">
-                                        <label for="oxygenSaturation" class="form-label">
-                                            Saturação de Oxigénio (%)
-                                        </label>
-
-                                        <input type="number" step="0.01"
-                                            name="oxygenSaturation"
-                                            id="oxygenSaturation"
-                                            class="form-control"
-                                            placeholder="Ex.: 98"
-                                            value="{{ old('oxygenSaturation') }}">
-                                    </div>
-                                </div>
-
-                                <div class="col-xxl-3 col-lg-4 col-sm-6">
-                                    <div class="mb-3">
-                                        <label for="weight" class="form-label">
-                                            Peso (kg)
-                                        </label>
-
-                                        <input type="number" step="0.1"
-                                            name="weight"
-                                            id="weight"
-                                            class="form-control"
-                                            placeholder="Ex.: 70"
-                                            value="{{ old('weight') }}">
-                                    </div>
-                                </div>
-                                {{-- Classificação de Risco --}}
-                                <div class="mb-4">
-
-                                    <div class="row gx-3">
-
-                                        <div class="col-xxl-4 col-lg-4 col-sm-6">
-                                            <div class="mb-3">
-                                                <label for="riskClassification" class="form-label">
-                                                    Nível de Prioridade
-                                                </label>
-
-                                                <select name="riskClassification" id="riskClassification" class="form-select">
-                                                    <option value="">Seleccionar Classificação</option>
-                                                    <option value="emergency" {{ old('riskClassification') == 'emergency' ? 'selected' : '' }}>Emergência</option>
-                                                    <option value="very_urgent" {{ old('riskClassification') == 'very_urgent' ? 'selected' : '' }}>Muito Urgente</option>
-                                                    <option value="urgent" {{ old('riskClassification') == 'urgent' ? 'selected' : '' }}>Urgente</option>
-                                                    <option value="less_urgent" {{ old('riskClassification') == 'less_urgent' ? 'selected' : '' }}>Pouco Urgente</option>
-                                                    <option value="non_urgent" {{ old('riskClassification') == 'non_urgent' ? 'selected' : '' }}>Não Urgente</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                 <div class="col-xxl-3 col-lg-4 col-sm-6">
                                             <div class="mb-3">
                                                 <label for="height" class="form-label">
                                                     Altura (cm)
@@ -185,54 +108,25 @@
 
                                         </div>
 
+                                <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                    <div class="mb-3">
+                                        <label for="weight" class="form-label">
+                                            Peso (kg)
+                                        </label>
 
-
-
-
-
-
-                                    </div>
-                                </div>
-
-
-
-                                {{-- Avaliação Inicial --}}
-                                <div class="mb-4">
-
-
-
-                                    <div class="row gx-3">
-
-                                        <div class="col-sm-12">
-                                            <div class="mb-3">
-                                                <label for="observations" class="form-label">
-                                                    Observacões do Paciente
-                                                </label>
-
-                                                <textarea name="observations"
-                                                    id="observations"
-                                                    class="form-control"
-                                                    rows="3"
-                                                    placeholder="Descreva as observações do paciente"
-                                                    required>{{ old('observations') }}</textarea>
-                                            </div>
-                                        </div>
-
-
-
+                                        <input type="number" step="0.1"
+                                            name="weight"
+                                            id="weight"
+                                            class="form-control"
+                                            placeholder="Ex.: 70"
+                                            value="{{ old('weight') }}">
                                     </div>
 
+                                    
                                 </div>
-                            </div>
-
-
-
-                            {{-- Responsável pela Triagem --}}
-                            <div class="mb-4">
-
-                                <div class="row gx-3">
-
-                                    <div class="col-xxl-4 col-lg-4 col-sm-6">
+                              
+                               {{-- Responsável pela Triagem --}}
+                                 <div class="col-xxl-4 col-lg-4 col-sm-6">
                                         <div class="mb-3">
                                             <label for="professional_name" class="form-label">
                                                 Enfermeiro / Técnico Responsável
@@ -246,9 +140,8 @@
                                                 value="">
                                         </div>
                                     </div>
-
-                                </div>
                             </div>
+
 
                             {{-- Botões --}}
                             <div class="d-flex gap-2 justify-content-end">

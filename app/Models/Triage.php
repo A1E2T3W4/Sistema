@@ -11,13 +11,8 @@ class Triage extends Model
     protected $fillable = [
         'temperature',
         'bloodPressure',
-        'heartRate',
-        'respiratoryRate',
-        'oxygenSaturation',
         'weight',
         'height',
-        'observations',
-        'riskClassification',
         'triageDate',
         'triagetime',
     ];

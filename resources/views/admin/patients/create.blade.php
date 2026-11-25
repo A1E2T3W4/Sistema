@@ -89,23 +89,7 @@
 
                       
 
-                        <div class="row gx-3">
-
-                            <div class="col-sm-12">
-                                <div class="mb-3">
-                                    <label for="observation" class="form-label">
-                                        Observações do Paciente
-                                    </label>
-
-                                    <textarea name="observation"
-                                        id="observation"
-                                        class="form-control"
-                                        rows="3"
-                                        placeholder="Descreva as observações do paciente"
-                                        required>{{ old('observation') }}</textarea>
-                                </div>
-                            </div>
-                        </div>
+                    
 
                     </div>
 

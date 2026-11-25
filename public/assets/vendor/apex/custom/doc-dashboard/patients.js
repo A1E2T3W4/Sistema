@@ -15,7 +15,7 @@ var options = {
   },
   series: [
     {
-      name: "New Patients",
+      name: " Paciente",
       data: [100, 400, 150, 400, 200, 350, 150, 300, 200, 450, 300, 560],
     },
     {

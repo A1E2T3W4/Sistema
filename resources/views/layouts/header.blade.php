@@ -14,7 +14,7 @@
       <!-- App brand starts -->
       <div class="app-brand ms-3">
         <a href="{{ route('dashboard') }}" class="d-lg-block d-none">
-          <img src="{{ url('assets/images/logo.svg') }}" class="logo" alt="Medicare Admin Template">
+          <h1 style="color: white; font-family: Arial, Helvetica, sans-serif; font-weight: bolder;">Hospital</h1>
         </a>
 
 
@@ -35,145 +35,8 @@
         <!-- Header actions starts -->
         <div class="d-lg-flex d-none gap-2">
 
-          <!-- Select country dropdown starts -->
-          <div class="dropdown">
-            <a class="dropdown-toggle header-icon" href="#!" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              <img src="{{ url('assets/images/flags/1x1/fr.svg') }}" class="header-country-flag" alt="Bootstrap Dashboards">
-            </a>
-            <div class="dropdown-menu dropdown-menu-end dropdown-mini">
-              <div class="country-container">
-                <a href="{{ route('dashboard') }}" class="py-2">
-                  <img src="{{ url('assets/images/flags/1x1/us.svg') }}" alt="Admin Panel">
-                </a>
-                <a href="index.html" class="py-2">
-                  <img src="{{ url('assets/images/flags/1x1/in.svg') }}" alt="Admin Panels">
-                </a>
-                <a href="index.html" class="py-2">
-                  <img src="{{ url('assets/images/flags/1x1/br.svg') }}" alt="Admin Dashboards">
-                </a>
-                <a href="index.html" class="py-2">
-                  <img src="{{ url('assets/images/flags/1x1/tr.svg') }}" alt="Admin Templatess">
-                </a>
-                <a href="index.html" class="py-2">
-                  <img src="{{ url('assets/images/flags/1x1/gb.svg') }}" alt="Google Admin">
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- Select country dropdown ends -->
-
-          <!-- Notifications dropdown starts -->
-          <div class="dropdown">
-            <a class="dropdown-toggle header-icon" href="#!" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              <i class="ri-list-check-3"></i>
-              <span class="count-label warning"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end dropdown-300">
-              <h5 class="fw-semibold px-3 py-2 text-primary">Activity</h5>
-
-              <!-- Scroll starts -->
-              <div class="scroll300">
-
-                <!-- Activity List Starts -->
-                <div class="p-3">
-                  <ul class="p-0 activity-list2">
-                    <li class="activity-item pb-3 mb-3">
-                      <a href="#!">
-                        <h5 class="fw-regular">
-                          <i class="ri-circle-fill text-danger me-1"></i>
-                          Invoices.
-                        </h5>
-                        <div class="ps-3 ms-2 border-start">
-                          <div class="d-flex align-items-center mb-2">
-                            <div class="flex-shrink-0">
-                              <img src="assets/images/products/1.jpg" class="img-shadow img-3x rounded-1"
-                                alt="Hospital Admin Templates">
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                              23 invoices have been paid to the MediCare Labs.
-                            </div>
-                          </div>
-                          <p class="m-0 small">10:20AM Today</p>
-                        </div>
-                      </a>
-                    </li>
-                    <li class="activity-item pb-3 mb-3">
-                      <a href="#!">
-                        <h5 class="fw-regular">
-                          <i class="ri-circle-fill text-info me-1"></i>
-                          Purchased.
-                        </h5>
-                        <div class="ps-3 ms-2 border-start">
-                          <div class="d-flex align-items-center mb-2">
-                            <div class="flex-shrink-0">
-                              <img src="{{ url('assets/images/products/2.jpg') }}" class="img-shadow img-3x rounded-1"
-                                alt="Hospital Admin Templates">
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                              28 new surgical equipments have been purchased.
-                            </div>
-                          </div>
-                          <p class="m-0 small">04:30PM Today</p>
-                        </div>
-                      </a>
-                    </li>
-                    <li class="activity-item pb-3 mb-3">
-                      <a href="#!">
-                        <h5 class="fw-regular">
-                          <i class="ri-circle-fill text-success me-1"></i>
-                          Appointed.
-                        </h5>
-                        <div class="ps-3 ms-2 border-start">
-                          <div class="d-flex align-items-center mb-2">
-                            <div class="flex-shrink-0">
-                              <img src="{{ url('assets/images/products/8.jpg') }}" class="img-shadow img-3x rounded-1"
-                                alt="Hospital Admin Templates">
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                              36 new doctors and 28 staff members appointed.
-                            </div>
-                          </div>
-                          <p class="m-0 small">06:50PM Today</p>
-                        </div>
-                      </a>
-                    </li>
-                    <li class="activity-item">
-                      <a href="#!">
-                        <h5 class="fw-regular">
-                          <i class="ri-circle-fill text-warning me-1"></i>
-                          Requested
-                        </h5>
-                        <div class="ps-3 ms-2 border-start">
-                          <div class="d-flex align-items-center mb-2">
-                            <div class="flex-shrink-0">
-                              <img src="{{ url('assets/images/products/9.jpg') }}" class="img-shadow img-3x rounded-1"
-                                alt="Hospital Admin Templates">
-                            </div>
-                            <div class="flex-grow-1 ms-3">
-                              Requested for 6 new vehicles for medical emergency. .
-                            </div>
-                          </div>
-                          <p class="m-0 small">08:30PM Today</p>
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <!-- Activity List Ends -->
-
-              </div>
-              <!-- Scroll ends -->
-
-              <!-- View all button starts -->
-              <div class="d-grid m-3">
-                <a href="javascript:void(0)" class="btn btn-primary">View all</a>
-              </div>
-              <!-- View all button ends -->
-
-            </div>
-          </div>
+         
+     
           <!-- Notifications dropdown ends -->
 
           <!-- Notifications dropdown starts -->
@@ -184,7 +47,7 @@
               <span class="count-label success"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-300">
-              <h5 class="fw-semibold px-3 py-2 text-primary">Alerts</h5>
+              <h5 class="fw-semibold px-3 py-2 text-primary">Alerta</h5>
 
               <!-- Scroll starts -->
               <div class="scroll300">
@@ -245,10 +108,7 @@
 
           <!-- Messages dropdown starts -->
           <div class="dropdown">
-            <a class="dropdown-toggle header-icon" href="#!" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              <i class="ri-message-3-line"></i>
-              <span class="count-label"></span>
+           
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-300">
               <h5 class="fw-semibold px-3 py-2 text-primary">Messages</h5>
@@ -320,7 +180,7 @@
               <h6 class="m-0">James Bruton</h6>
             </div>
             <div class="mx-3 my-2 d-grid">
-              <a href="login.html" class="btn btn-danger">Logout</a>
+              <a href="login.html" class="btn btn-danger">Sair</a>
             </div>
           </div>
         </div>

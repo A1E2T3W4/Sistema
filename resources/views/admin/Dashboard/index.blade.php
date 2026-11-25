@@ -8,49 +8,7 @@
 
     <div class="app-body">
         
-                    <!-- Row starts -->
-                    <div class="row gx-3">
-                      <div class="col-xxl-12 col-sm-12">
-                        <div class="card mb-3 bg-2">
-                          <div class="card-body">
-                            <div class="py-4 px-3 text-white">
-                              <h6>Good Morning,</h6>
-                              <h2>Dr. Patrick Kim</h2>
-                              <h5>Your schedule today.</h5>
-                              <div class="mt-4 d-flex gap-3">
-                                <div class="d-flex align-items-center">
-                                  <div class="icon-box lg bg-arctic rounded-3 me-3">
-                                    <i class="ri-surgical-mask-line fs-4"></i>
-                                  </div>
-                                  <div class="d-flex flex-column">
-                                    <h2 class="m-0 lh-1">9</h2>
-                                    <p class="m-0">Patients</p>
-                                  </div>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                  <div class="icon-box lg bg-lime rounded-3 me-3">
-                                    <i class="ri-lungs-line fs-4"></i>
-                                  </div>
-                                  <div class="d-flex flex-column">
-                                    <h2 class="m-0 lh-1">3</h2>
-                                    <p class="m-0">Surgeries</p>
-                                  </div>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                  <div class="icon-box lg bg-peach rounded-3 me-3">
-                                    <i class="ri-walk-line fs-4"></i>
-                                  </div>
-                                  <div class="d-flex flex-column">
-                                    <h2 class="m-0 lh-1">2</h2>
-                                    <p class="m-0">Discharges</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                
                     <!-- Row ends -->
         
                     <!-- Row starts -->
@@ -65,18 +23,18 @@
                                 </div>
                               </div>
                               <div class="d-flex flex-column">
-                                <h2 class="lh-1">890</h2>
-                                <p class="m-0">New Patients</p>
+                                <h2 class="lh-1">{{ $totalPatients }}</h2>
+                                <p class="m-0"> Paciente</p>
                               </div>
                             </div>
                             <div class="d-flex align-items-end justify-content-between mt-1">
-                              <a class="text-success" href="javascript:void(0);">
-                                <span>View All</span>
+                              <a class="text-success" href="{{ route('patients.index') }}">
+                                <span>Ver Paciente</span>
                                 <i class="ri-arrow-right-line text-success ms-1"></i>
                               </a>
                               <div class="text-end">
                                 <p class="mb-0 text-success">+40%</p>
-                                <span class="badge bg-success-subtle text-success small">this month</span>
+                                <span class="badge bg-success-subtle text-success small">Este Mês</span>
                               </div>
                             </div>
                           </div>
@@ -92,18 +50,18 @@
                                 </div>
                               </div>
                               <div class="d-flex flex-column">
-                                <h2 class="lh-1">360</h2>
-                                <p class="m-0">OPD Patients</p>
+                                <h2 class="lh-1">{{ $totalTriages }}</h2>
+                                <p class="m-0">Triagem</p>
                               </div>
                             </div>
                             <div class="d-flex align-items-end justify-content-between mt-1">
-                              <a class="text-primary" href="javascript:void(0);">
-                                <span>View All</span>
+                              <a class="text-primary" href="{{ route('triage.index') }}">
+                                <span>Ver Triagem</span>
                                 <i class="ri-arrow-right-line ms-1"></i>
                               </a>
                               <div class="text-end">
                                 <p class="mb-0 text-primary">+30%</p>
-                                <span class="badge bg-primary-subtle text-primary small">this month</span>
+                                <span class="badge bg-primary-subtle text-primary small">Este Mês</span>
                               </div>
                             </div>
                           </div>
@@ -119,18 +77,18 @@
                                 </div>
                               </div>
                               <div class="d-flex flex-column">
-                                <h2 class="lh-1">980</h2>
-                                <p class="m-0">Lab tests</p>
+                                <h2 class="lh-1">0</h2>
+                                <p class="m-0">Exames</p>
                               </div>
                             </div>
                             <div class="d-flex align-items-end justify-content-between mt-1">
                               <a class="text-danger" href="javascript:void(0);">
-                                <span>View All</span>
+                                <span>Ver Exame</span>
                                 <i class="ri-arrow-right-line ms-1"></i>
                               </a>
                               <div class="text-end">
                                 <p class="mb-0 text-danger">+60%</p>
-                                <span class="badge bg-danger-subtle text-danger small">this month</span>
+                                <span class="badge bg-danger-subtle text-danger small">Este Mês</span>
                               </div>
                             </div>
                           </div>
@@ -146,18 +104,18 @@
                                 </div>
                               </div>
                               <div class="d-flex flex-column">
-                                <h2 class="lh-1">$98000</h2>
-                                <p class="m-0">Total Earnings</p>
+                                <h2 class="lh-1">Kz 000</h2>
+                                <p class="m-0">Receita Total</p>
                               </div>
                             </div>
                             <div class="d-flex align-items-end justify-content-between mt-1">
                               <a class="text-warning" href="javascript:void(0);">
-                                <span>View All</span>
+                                <span>Ver Receita</span>
                                 <i class="ri-arrow-right-line ms-1"></i>
                               </a>
                               <div class="text-end">
                                 <p class="mb-0 text-warning">+20%</p>
-                                <span class="badge bg-warning-subtle text-warning small">this month</span>
+                                <span class="badge bg-warning-subtle text-warning small">Este Mês</span>
                               </div>
                             </div>
                           </div>
@@ -175,8 +133,8 @@
                               <div class="icon-box md rounded-5 bg-primary mb-3">
                                 <i class="ri-verified-badge-line fs-4 lh-1"></i>
                               </div>
-                              <h6>Appointments</h6>
-                              <h2 class="text-primary m-0">639</h2>
+                              <h6>Prescrição</h6>
+                              <h2 class="text-primary m-0">0</h2>
                             </div>
                           </div>
                         </div>
@@ -188,8 +146,8 @@
                               <div class="icon-box md rounded-5 bg-primary mb-3">
                                 <i class="ri-stethoscope-line fs-4 lh-1"></i>
                               </div>
-                              <h6>Doctors</h6>
-                              <h2 class="text-primary m-0">83</h2>
+                              <h6>Consultas</h6>
+                              <h2 class="text-primary m-0">{{  $totalAppointments }}</h2>
                             </div>
                           </div>
                         </div>
@@ -201,8 +159,8 @@
                               <div class="icon-box md rounded-5 bg-primary mb-3">
                                 <i class="ri-psychotherapy-line fs-4 lh-1"></i>
                               </div>
-                              <h6>Staff</h6>
-                              <h2 class="text-primary m-0">296</h2>
+                              <h6>Equipa de Trabalho</h6>
+                              <h2 class="text-primary m-0">0</h2>
                             </div>
                           </div>
                         </div>
@@ -214,8 +172,8 @@
                               <div class="icon-box md rounded-5 bg-primary mb-3">
                                 <i class="ri-lungs-line fs-4 lh-1"></i>
                               </div>
-                              <h6>Operations</h6>
-                              <h2 class="text-primary m-0">49</h2>
+                              <h6>Operações</h6>
+                              <h2 class="text-primary m-0">0</h2>
                             </div>
                           </div>
                         </div>
@@ -227,8 +185,8 @@
                               <div class="icon-box md rounded-5 bg-primary mb-3">
                                 <i class="ri-hotel-bed-line fs-4 lh-1"></i>
                               </div>
-                              <h6>Admitted</h6>
-                              <h2 class="text-primary m-0">372</h2>
+                              <h6>Internamentos</h6>
+                              <h2 class="text-primary m-0">0</h2>
                             </div>
                           </div>
                         </div>
@@ -240,8 +198,8 @@
                               <div class="icon-box md rounded-5 bg-primary mb-3">
                                 <i class="ri-walk-line fs-4 lh-1"></i>
                               </div>
-                              <h6>Discharged</h6>
-                              <h2 class="text-primary m-0">253</h2>
+                              <h6>Alta Medica</h6>
+                              <h2 class="text-primary m-0">0</h2>
                             </div>
                           </div>
                         </div>
@@ -254,7 +212,7 @@
                       <div class="col-xxl-12 col-sm-12">
                         <div class="card mb-3">
                           <div class="card-header">
-                            <h5 class="card-title">Available Beds</h5>
+                            <h5 class="card-title">Leitos disponíveis</h5>
                           </div>
                           <div class="card-body">
                             <div id="availableBeds"></div>
@@ -264,7 +222,7 @@
                       <div class="col-xxl-6 col-sm-12">
                         <div class="card mb-3">
                           <div class="card-header">
-                            <h5 class="card-title">Patients</h5>
+                            <h5 class="card-title">Pacientes</h5>
                           </div>
                           <div class="card-body">
                             <div id="patients"></div>
@@ -274,7 +232,7 @@
                       <div class="col-xxl-6 col-sm-12">
                         <div class="card mb-3">
                           <div class="card-header">
-                            <h5 class="card-title">Treatment Type</h5>
+                            <h5 class="card-title">Tipo de Tratamento</h5>
                           </div>
                           <div class="card-body">
                             <div id="treatment"></div>
@@ -284,7 +242,7 @@
                       <div class="col-xxl-6 col-sm-12">
                         <div class="card mb-3">
                           <div class="card-header">
-                            <h5 class="card-title">Hospital Earnings</h5>
+                            <h5 class="card-title">ewfsdfsdfsdf</h5>
                           </div>
                           <div class="card-body">
         
@@ -318,7 +276,7 @@
                                         <small>26%</small> <i class="ri-arrow-right-down-line ms-1 fw-bold"></i>
                                       </div>
                                     </div>
-                                    <small class="text-dark">Overall Purchases</small>
+                                    <small class="text-dark">HFDSHFSDFSD</small>
                                   </div>
                                 </div>
                               </div>
@@ -350,7 +308,7 @@
                                         <small>30%</small> <i class="ri-arrow-right-up-line ms-1 fw-bold"></i>
                                       </div>
                                     </div>
-                                    <small class="text-dark">Monthly Billing</small>
+                                    <small class="text-dark">WERWEREWRWE</small>
                                   </div>
                                 </div>
                               </div>
@@ -363,7 +321,7 @@
                       <div class="col-xxl-3 col-sm-6">
                         <div class="card mb-3">
                           <div class="card-header">
-                            <h5 class="card-title">Insurance Claims</h5>
+                            <h5 class="card-title">ETRERTERTE</h5>
                           </div>
                           <div class="card-body">
                             <div id="claims"></div>
@@ -373,7 +331,7 @@
                       <div class="col-xxl-3 col-sm-6">
                         <div class="card mb-3">
                           <div class="card-header">
-                            <h5 class="card-title">Patients by Gender</h5>
+                            <h5 class="card-title">QWEQWEQWE</h5>
                           </div>
                           <div class="card-body">
                             <div class="auto-align-graph">

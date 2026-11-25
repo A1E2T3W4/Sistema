@@ -1,4 +1,3 @@
-
 @extends('layouts.main')
 
 @section('title', 'Adicionar Enfermeiro')
@@ -42,7 +41,7 @@
                                     </button>
                                 </li>
 
-                             
+
 
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link"
@@ -79,7 +78,7 @@
                                                         required>
                                                 </div>
                                                 @error('name')
-                                                    <small class="text-danger">{{ $message }}</small>
+                                                <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
                                         </div>
@@ -130,7 +129,7 @@
                                         <div class="col-xxl-3 col-lg-4 col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Telefone</label>
-                                                <input type="text"
+                                                <input type="number"
                                                     name="phone"
                                                     class="form-control"
                                                     value="{{ old('phone') }}"
@@ -173,7 +172,7 @@
                                                         accept="image/*">
                                                 </div>
                                                 @error('photo')
-                                                    <small class="text-danger">{{ $message }}</small>
+                                                <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
                                         </div>
@@ -181,27 +180,26 @@
                                         <div class="col-lg-9 col-md-8">
                                             <div class="row gx-3">
 
-                                            
+
 
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label class="form-label">Especialidade</label>
-                                                        <select name="specialty" class="form-select">
+
+                                                        <select name="specialty_id" class="form-select">
                                                             <option value="">Seleccionar especialidade</option>
-                                                            @foreach([
-                                                                'Enfermagem Geral',
-                                                                'Enfermagem Pediátrica',
-                                                                'Enfermagem Obstétrica',
-                                                                'Enfermagem Cirúrgica',
-                                                                'Cuidados Intensivos',
-                                                                'Urgência e Emergência',
-                                                                'Saúde Pública'
-                                                            ] as $specialty)
-                                                                <option value="{{ $specialty }}" {{ old('specialty') == $specialty ? 'selected' : '' }}>
-                                                                    {{ $specialty }}
-                                                                </option>
+
+                                                            @foreach($specialties as $specialty)
+                                                            <option value="{{ $specialty->id }}"
+                                                                {{ old('specialty_id') == $specialty->id ? 'selected' : '' }}>
+                                                                {{ $specialty->name }}
+                                                            </option>
                                                             @endforeach
                                                         </select>
+
+                                                        @error('specialty_id')
+                                                        <small class="text-danger">{{ $message }}</small>
+                                                        @enderror
                                                     </div>
                                                 </div>
 
@@ -222,13 +220,13 @@
                                                         <select name="position" class="form-select">
                                                             <option value="">Seleccionar cargo</option>
                                                             @foreach([
-                                                                'Enfermeiro',
-                                                                'Enfermeiro Chefe',
-                                                                'Supervisor de Enfermagem'
+                                                            'Enfermeiro',
+                                                            'Enfermeiro Chefe',
+                                                            'Supervisor de Enfermagem'
                                                             ] as $position)
-                                                                <option value="{{ $position }}" {{ old('position') == $position ? 'selected' : '' }}>
-                                                                    {{ $position }}
-                                                                </option>
+                                                            <option value="{{ $position }}" {{ old('position') == $position ? 'selected' : '' }}>
+                                                                {{ $position }}
+                                                            </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -240,7 +238,7 @@
                                     </div>
                                 </div>
 
-                               
+
 
                                 {{-- DADOS DA CONTA --}}
                                 <div class="tab-pane fade" id="account">

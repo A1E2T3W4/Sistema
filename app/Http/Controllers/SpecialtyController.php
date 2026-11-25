@@ -52,18 +52,30 @@ class SpecialtyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+  public function edit(string $id)
+{
+    $specialty = Specialty::findOrFail($id);
+
+    return view('admin.specialties.edit', compact('specialty'));
+}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+   // ACTUALIZAR ESPECIALIDADE
+public function update(Request $request, string $id)
+{
+    $specialty = Specialty::findOrFail($id);
+
+    $specialty::create($request->only([
+            'name',
+            'description',
+        ]));
+
+    return redirect()
+        ->route('specialties.index')
+        ->with('success', 'Especialidade actualizada com sucesso!');
+}
 
     /**
      * Remove the specified resource from storage.

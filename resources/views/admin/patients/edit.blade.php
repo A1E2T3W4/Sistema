@@ -115,29 +115,6 @@
                             </div>
                         </div>
 
-                           <div class="row gx-3">
-
-                                    <div class="col-sm-12">
-                                        <div class="mb-3">
-                                            <label for="mainComplaint" class="form-label">
-                                                Observacões do Paciente 
-                                            </label>
-
-                                            <textarea name="mainComplaint"
-                                                id="mainComplaint"
-                                                class="form-control"
-                                                rows="3"
-                                                placeholder="Descreva as observações do paciente"
-                                                required>{{ old('observation', $patient->observation) }}</textarea>
-                                        </div>
-                                    </div>
-
-                    </div>
-
-                      
-
-                       
-
                         {{-- Botões --}}
                         <div class="col-sm-12">
                             <div class="d-flex gap-2 justify-content-end">

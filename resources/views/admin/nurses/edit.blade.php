@@ -1,159 +1,88 @@
 
 @extends('layouts.main')
 
-@section('title', 'Editar Enfermeiro')
-@section('page-title', 'Editar Enfermeiro')
+@section('title', 'Editar Especialidade')
+@section('page-title', 'Editar Especialidade')
 
 @section('content')
 
 <div class="app-body">
 
     <div class="row gx-3">
-        <div class="col-xl-12">
+        <div class="col-sm-12">
 
             <div class="card">
+
+                {{-- Cabeçalho --}}
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Editar Especialidade</h5>
+                </div>
+
+                {{-- Formulário --}}
                 <div class="card-body">
 
-                    <form action="{{ route('nurses.update', ['id' => $nurse->id]) }}"
-                          method="POST"
-                          enctype="multipart/form-data">
+                    <form action="{{ route('specialties.update', $specialty->id) }}" method="POST">
 
                         @csrf
                         @method('PUT')
 
                         <div class="row gx-3">
 
+                            {{-- Nome --}}
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Nome</label>
-                                <input type="text" name="name"
-                                       class="form-control"
-                                       value="{{ old('name', $nurse->name) }}"
-                                       required>
-                            </div>
+                                <label class="form-label">
+                                    Nome da Especialidade
+                                </label>
 
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Data de Nascimento</label>
-                                <input type="date" name="dateOfBirth"
-                                       class="form-control"
-                                       value="{{ old('dateOfBirth', $nurse->dateOfBirth) }}">
-                            </div>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    class="form-control @error('name') is-invalid @enderror"
+                                    value="{{ old('name', $specialty->name) }}"
+                                    placeholder="Digite o nome da especialidade"
+                                    required
+                                >
 
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Genero</label>
-                                <select name="gender" class="form-select">
-                                    <option value="">Seleccionar genero</option>
-                                    <option value="Masculino" {{ old('gender', $nurse->gender) == 'Masculino' ? 'selected' : '' }}>Masculino</option>
-                                    <option value="Feminino" {{ old('gender', $nurse->gender) == 'Feminino' ? 'selected' : '' }}>Feminino</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Identificação</label>
-                                <input type="text" name="BI"
-                                       class="form-control"
-                                       value="{{ old('BI', $nurse->BI) }}">
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">E-mail</label>
-                                <input type="email" name="email"
-                                       class="form-control"
-                                       value="{{ old('email', $nurse->email) }}">
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Telefone</label>
-                                <input type="text" name="phone"
-                                       class="form-control"
-                                       value="{{ old('phone', $nurse->phone) }}">
-                            </div>
-
-                            <div class="col-12 mb-3">
-                                <label class="form-label">Morada</label>
-                                <input type="text" name="address"
-                                       class="form-control"
-                                       value="{{ old('address', $nurse->address) }}">
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Fotografia</label>
-
-                                @if($nurse->photo)
-                                    <div class="mb-2">
-                                        <img src="{{ asset('storage/' . $nurse->photo) }}"
-                                             width="100"
-                                             height="100"
-                                             class="rounded-circle"
-                                             style="object-fit: cover;">
+                                @error('name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
                                     </div>
-                                @endif
-
-                                <input type="file" name="photo"
-                                       class="form-control"
-                                       accept="image/*">
+                                @enderror
                             </div>
 
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Especialidade</label>
-                                <select name="specialty" class="form-select">
-                                    <option value="">Seleccionar especialidade</option>
+                            {{-- Descrição --}}
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">
+                                    Descrição
+                                </label>
 
-                                    @foreach([
-                                        'Enfermagem Geral',
-                                        'Enfermagem Pediátrica',
-                                        'Enfermagem Obstétrica',
-                                        'Enfermagem Cirúrgica',
-                                        'Cuidados Intensivos',
-                                        'Urgência e Emergência',
-                                        'Saúde Pública'
-                                    ] as $specialty)
+                                <textarea
+                                    name="description"
+                                    class="form-control @error('description') is-invalid @enderror"
+                                    rows="4"
+                                    placeholder="Digite a descrição da especialidade"
+                                >{{ old('description', $specialty->description) }}</textarea>
 
-                                        <option value="{{ $specialty }}"
-                                            {{ old('specialty', $nurse->specialty) == $specialty ? 'selected' : '' }}>
-                                            {{ $specialty }}
-                                        </option>
-
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Número de Inscrição Profissional</label>
-                                <input type="text"
-                                       name="professionalRegistration"
-                                       class="form-control"
-                                       value="{{ old('professionalRegistration', $nurse->professionalRegistration) }}">
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Cargo</label>
-                                <select name="position" class="form-select">
-                                    <option value="">Seleccionar cargo</option>
-
-                                    @foreach([
-                                        'Enfermeiro',
-                                        'Enfermeiro Chefe',
-                                        'Supervisor de Enfermagem'
-                                    ] as $position)
-
-                                        <option value="{{ $position }}"
-                                            {{ old('position', $nurse->position) == $position ? 'selected' : '' }}>
-                                            {{ $position }}
-                                        </option>
-
-                                    @endforeach
-                                </select>
+                                @error('description')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                         </div>
 
-                        <div class="d-flex justify-content-end gap-2 mt-4">
+                        {{-- Botões --}}
+                        <div class="d-flex justify-content-end gap-2">
 
-                         
+                            <a href="{{ route('specialties.index') }}"
+                               class="btn btn-secondary">
+                                Cancelar
+                            </a>
 
                             <button type="submit" class="btn btn-primary">
-                                <i class="ri-save-line me-1"></i>
-                                Actualizar Enfermeiro
+                                <i class="fa fa-save"></i>
+                                Actualizar Especialidade
                             </button>
 
                         </div>
@@ -161,6 +90,7 @@
                     </form>
 
                 </div>
+
             </div>
 
         </div>

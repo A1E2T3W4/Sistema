@@ -3,7 +3,7 @@
     <div class="msg-sidebar notifications msg-noti">
 
         <div class="topnav-dropdown-header">
-            <span>Messages</span>
+            <span>Messagem</span>
         </div>
 
         <div class="drop-scroll msg-list-scroll" id="msg_list">

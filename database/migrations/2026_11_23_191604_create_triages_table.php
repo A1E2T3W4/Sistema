@@ -18,14 +18,8 @@ return new class extends Migration
             // Sinais vitais
             $table->decimal('temperature', 4, 1)->nullable();
             $table->string('bloodPressure')->nullable();
-            $table->unsignedSmallInteger('heartRate')->nullable();
-            $table->unsignedSmallInteger('respiratoryRate')->nullable();
-            $table->decimal('oxygenSaturation', 5, 2)->nullable();
             $table->decimal('weight', 6, 2)->nullable();
             $table->decimal('height', 5, 2)->nullable();
-            $table->decimal('bloodGlucose', 6, 2)->nullable();
-            $table->text('observations')->nullable();
-            $table->enum('riskClassification', ['emergency', 'very_urgent', 'urgent', 'less_urgent', 'non_urgent'])->nullable();
             $table->date('triageDate')->nullable();
             $table->time('triagetime')->nullable();
             

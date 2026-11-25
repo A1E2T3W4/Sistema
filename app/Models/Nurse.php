@@ -17,8 +17,13 @@ class Nurse extends Model
         'phone',
         'address',
         'photo',
-        'specialty',
+        'specialty_id',
         'professionalRegistration',
         'position',
     ];
+
+    public function specialty()
+{
+    return $this->belongsTo(Specialty::class, 'specialty_id');
+}
 }
